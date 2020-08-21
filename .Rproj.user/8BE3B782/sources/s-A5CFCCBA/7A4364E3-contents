@@ -1,0 +1,72 @@
+---
+title: "P1-T2-20-22 Time Series-Stationary, 2nd set"
+output: html_notebook
+---
+
+Learning objectives
+
+* Describe the requirements for a series to be covariance stationary.
+* Define the autocovariance function and the autocorrelation function.
+* Define white noise; describe independent white noise and normal (Gaussian) white noise.
+
+```{r}
+library(tidyverse)
+library(magrittr)
+library(scales)
+library(gridExtra)
+library(forecast)
+library(tseries)
+library(ggthemes)
+theme_set(theme_economist())
+```
+
+Stationary Time Series: ARMA
+
+Wold Decomposition
+
+
+arima.sim
+model c(p, d, q)
+p = AR order
+q = MA order
+
+```{r}
+# Generate and plot white noise
+# WN <- arima.sim(model=list(order= c(0,0,0)), n = 200 )
+# plot(WN)
+
+MA_mean = 2
+MA_weight = 0.5
+# Generate and plot an MA(1) with parameter .9 
+# MA <- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean,
+#                rand.gen = rnorm, sd = 40)
+MA <- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean)
+
+AR_param = 0.6
+AR_intercept = 3
+# Generate and plot an AR(2) with parameters 1.5 and -.75
+AR <- arima.sim(model=list(order=c(1,0,0), ar = AR_param), n = 200, mean = AR_intercept)
+
+ts.plot(MA, AR)
+
+# white_noise_1_tb  <- as_tibble(white_noise) %>% rowid_to_column()
+# dat_wn_tbl <- bind_cols(dat_wn) %>% rowid_to_column() %>% rename(value_y = ...1 )
+time_ma_ar <- bind_cols(MA, AR) %>% rowid_to_column() %>% 
+  rename(y_MA = ...1, y_AR = ...2)
+time_ma_ar %>% ggplot(aes(x = rowid)) + 
+  geom_line(aes(y = y_MA), color = "darkred") +
+  geom_line(aes(y = y_AR), color = "steelblue")
+
+# MA mean is intercept
+lr_mean_AR <- AR_intercept/(1 - AR_param)
+
+variance_MA <- (1 + MA_weight^2)*1
+variance_AR <- 1/(1 - AR_param^2)
+
+
+
+```
+
+
+
+
