@@ -34,17 +34,22 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-20T17:47:26-07:00</lastmod>
+    <lastmod>2020-08-20T18:28:02-07:00</lastmod>
   </url>
   
   <url>
     <loc>/category/demo/</loc>
-    <lastmod>2020-08-20T17:47:26-07:00</lastmod>
+    <lastmod>2020-08-20T18:28:02-07:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-08-20T17:47:26-07:00</lastmod>
+    <lastmod>2020-08-20T18:28:02-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/test-2nd-post/</loc>
+    <lastmod>2020-08-20T18:28:02-07:00</lastmod>
   </url>
   
   <url>

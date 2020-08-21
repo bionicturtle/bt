@@ -1,0 +1,42 @@
+---
+title: Test (2nd) post
+author: David Harper
+date: '2020-08-20'
+slug: test-2nd-post
+categories:
+  - Demo
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-20T18:28:02-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+Here we simulate stock prices then plot ACF
+
+```{r}
+
+library(tidyverse)
+
+mu <- 0.02
+sigma <- 0.05
+initial = 100
+mystock = numeric(100)
+mystock[1] = initial
+eshocks <- rnorm(100)
+for (i in 2:100) {
+  mystock[i] = mystock[i-1]*exp(mu + sigma*eshocks[i])
+}
+plot(mystock)
+
+ss <- ts(mystock)
+
+ss_returns <- log(mystock[-1]/mystock[-100])
+
+ggAcf(ss_returns)

@@ -13,6 +13,18 @@
     </image>
     
     <item>
+      <title>Test (2nd) post</title>
+      <link>/post/test-2nd-post/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/test-2nd-post/</guid>
+      <description>
+
+
+
+</description>
+    </item>
+    
+    <item>
       <title>Test post</title>
       <link>/post/test-post/</link>
       <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
