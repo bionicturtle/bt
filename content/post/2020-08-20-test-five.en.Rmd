@@ -1,0 +1,31 @@
+---
+title: Test five
+author: David Harper
+date: '2020-08-20'
+slug: test-five
+categories:
+  - Demo
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-20T20:40:13-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+Troubleshooting Hugo. I'd be stuck except that Alison Hill's blog is really helpful. 
+
+```{r}
+library(tidyverse)
+data("mtcars")
+
+mtcars %>% ggplot(aes(x = wt, y = mpg)) + geom_point()
+
+```
+
