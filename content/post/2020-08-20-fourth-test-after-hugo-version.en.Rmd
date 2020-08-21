@@ -1,0 +1,35 @@
+---
+title: Fourth test (after hugo version)
+author: David Harper
+date: '2020-08-20'
+slug: fourth-test-after-hugo-version
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-20T19:04:16-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+Hello this is Davd again, let's try: 
+
+```{r}
+library(tidyverse)
+rnorm(100)
+
+MA_mean = 2
+MA_weight = 0.5
+# Generate and plot an MA(1) with parameter .9 
+# MA <- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean,
+#                rand.gen = rnorm, sd = 40)
+MA <- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean)
+ts.plot(MA)
+
+```
+

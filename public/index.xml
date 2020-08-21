@@ -77,6 +77,58 @@
     </item>
     
     <item>
+      <title>Fourth test (after hugo version)</title>
+      <link>/post/fourth-test-after-hugo-version/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/fourth-test-after-hugo-version/</guid>
+      <description>
+
+
+&lt;p&gt;Hello this is Davd again, let’s try:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.1
+## v tidyr   1.1.1     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ---------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(100)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   [1] -1.04873892 -2.05175828  0.30188353  1.58039637 -0.51091546  2.26285770
+##   [7] -0.32596120  0.05783181 -1.15205200  1.18991440  0.11502937 -0.85065609
+##  [13] -1.77719524 -0.76561508 -1.45737056 -0.78493188 -1.95802704 -0.32119660
+##  [19]  0.54246098  1.34389353 -1.40165230  0.21335916  0.22838313 -0.44356215
+##  [25]  0.74246096 -1.21285201 -0.69633703 -0.78387662  1.64323979  0.88133055
+##  [31]  0.12027037 -0.07570465  1.55418867  0.33115574 -1.34892182  1.57106728
+##  [37]  1.23177375  0.63527234  0.29981044 -0.31839281 -0.08049343  0.59890197
+##  [43] -0.34369065 -0.54042482  0.38040296 -0.98277176 -0.36326344 -0.49248725
+##  [49]  0.28957364  1.98823777 -0.85855850 -1.04741155 -1.31949132 -0.91296047
+##  [55]  1.01479449 -1.40952125 -0.43946546 -0.33209513  0.08536422  0.92723664
+##  [61]  1.96199152  1.34782635  0.24071725 -0.08893611  2.30406328 -1.81248102
+##  [67]  1.15070970 -0.95241534 -0.28259452 -0.43186271  0.25380438  0.22125218
+##  [73]  0.32018693  0.31417036  1.01256962  2.30897088 -0.22525073  0.72027852
+##  [79]  0.85838798  0.23531684  1.99719319 -0.12688966 -0.11922057 -0.14506790
+##  [85]  0.69311103 -0.82451159  0.41857563  0.81320562 -1.18901524 -1.13208863
+##  [91] -1.04228280  0.22326179  0.43006922  0.56581695 -0.39813535  1.05873621
+##  [97] -0.01866932 -0.62063520  1.64529792 -1.15822093&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;MA_mean = 2
+MA_weight = 0.5
+# Generate and plot an MA(1) with parameter .9 
+# MA &amp;lt;- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean,
+#                rand.gen = rnorm, sd = 40)
+MA &amp;lt;- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean)
+ts.plot(MA)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-20-fourth-test-after-hugo-version.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Test post</title>
       <link>/post/test-post/</link>
       <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>

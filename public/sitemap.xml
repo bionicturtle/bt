@@ -43,8 +43,13 @@
   </url>
   
   <url>
+    <loc>/post/fourth-test-after-hugo-version/</loc>
+    <lastmod>2020-08-20T19:04:16-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
-    <lastmod>2020-08-20T18:39:32-07:00</lastmod>
+    <lastmod>2020-08-20T19:04:16-07:00</lastmod>
   </url>
   
   <url>
