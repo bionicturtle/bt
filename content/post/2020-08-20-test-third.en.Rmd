@@ -1,0 +1,34 @@
+---
+title: test third
+author: David Harper
+date: '2020-08-20'
+slug: test-third
+categories:
+  - Demo
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-20T18:39:32-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+Here we simulate stock prices then plot ACF
+
+
+```{r}
+library(tidyverse)
+
+# MA_mean = 2
+# MA_weight = 0.5
+
+MA <- arima.sim(model=list(order = c(0,0,1), ma = 0.5), n = 200, mean = 2)
+plot(MA)
+
+```
