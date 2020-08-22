@@ -1,47 +1,42 @@
 ---
 authors:
 - admin
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: I teach risk, finance and I practice data sciene.
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
-    year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+  - course: > 40 Data science courses
+    institution: Datacamp (and others)
+    year: 2015-
+  - course: Chartered Financial Analyst (CFA)
+    institution: CFA Institute
+    year: 2003
+  - course: BA, Economics
+    University of California at Berkeley
+    year: 1989
 email: ""
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Risk measurement
+- Quantitative methods
+- Teaching
 organizations:
-- name: Stanford University
-  url: ""
-role: Professor of Artificial Intelligence
+- name: Bionic Turtle, LLC
+  url: "https://www.bionicturtle.com/"
+role: Founder and CEO
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'
+  link: 'david.harper@cox.net'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/bionicturtle
-- icon: google-scholar
-  icon_pack: ai
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://github.com/bionicturtle
 superuser: true
-title: Nelson Bighetti
+title: David Harper II
 user_groups:
 - Researchers
 - Visitors
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-
-David Harper dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+David Harper, CFA, FRM is the founder of Bionic Turtle, LLC which is the leading exam prep provider for the Financial Risk Manager (FRM) exam. 
