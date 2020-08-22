@@ -18,7 +18,7 @@ organizations:
   url: "https://www.bionicturtle.com/"
 
 # Short bio (displayed in user profile at end of posts)
-bio: I teach risk and finance, and I practice data science.
+bio: I teach financial risk and enjoy learning data science
 
 interests:
 - Risk measurement
@@ -27,6 +27,9 @@ interests:
 
 education:
   courses:
+  - course: 40+ data science certifications
+    institution: datacamp and others
+    year: 2015-
   - course: Chartered Financial Analyst (CFA)
     institution: CFA Institute
     year: 2003
