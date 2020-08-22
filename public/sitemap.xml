@@ -33,22 +33,17 @@
   </url>
   
   <url>
-    <loc>/post/2020-08-21-/</loc>
-    <lastmod>2020-08-21T21:41:34-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-21T21:41:34-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
     <lastmod>2020-08-20T20:40:13-07:00</lastmod>
   </url>
   
   <url>
     <loc>/category/demo/</loc>
+    <lastmod>2020-08-20T20:40:13-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
     <lastmod>2020-08-20T20:40:13-07:00</lastmod>
   </url>
   
@@ -93,7 +88,7 @@
   </url>
   
   <url>
-    <loc>/author/nelson-bighetti/</loc>
+    <loc>/author/david-harper/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url>
   
