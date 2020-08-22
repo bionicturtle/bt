@@ -27,9 +27,9 @@ interests:
 
 education:
   courses:
-  - course: 40+ data science certifications
-    institution: datacamp and others
-    year: 2015-
+  - course: 40+ data science courses/certifications
+    institution: datacamp, coursera, etc
+    year: 2014-
   - course: Chartered Financial Analyst (CFA)
     institution: CFA Institute
     year: 2003
