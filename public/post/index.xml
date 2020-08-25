@@ -13,6 +13,18 @@
     </image>
     
     <item>
+      <title>2nd regression test</title>
+      <link>/post/2020sep/2nd-regression-test/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/2020sep/2nd-regression-test/</guid>
+      <description>
+
+
+&lt;p&gt;Hello world! this is in a subdirectory, yay!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>regression-test</title>
       <link>/post/regression-test/</link>
       <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
