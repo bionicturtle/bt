@@ -19,3 +19,12 @@ projects: []
 ---
 
 Hello this is david with another test
+
+```{r}
+library(tidyverse)
+bottle <- read_csv("data/bottle-small.csv")
+str(bottle)
+bottle
+
+```
+
