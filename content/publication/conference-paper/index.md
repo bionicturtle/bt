@@ -31,7 +31,7 @@ featured: true
 links:
 - name: Custom Link
   url: http://example.org
-url_pdf: http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf
+url_pdf: https://www.dropbox.com/s/h4gomj3m4d83zk8/2020%20FRM%20Learning%20Objectives_091319.pdf
 url_code: '#'
 url_dataset: '#'
 url_poster: '#'
