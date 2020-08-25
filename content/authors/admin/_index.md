@@ -35,7 +35,7 @@ education:
     year: 2003
   - course: BA in Economics
     institution: University of California at UC Berkeley
-    year: 1889
+    year: 1989
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
