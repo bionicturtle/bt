@@ -20,7 +20,7 @@
       <description>
 
 
-&lt;p&gt;BT is already known for our tough practice questions, but I wanted to take it a step further and add more realism. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!). It takes more time, but in these regression sets I’ve been pulling actual datasets. In combination with actual code-based applications, these question sets are much more &lt;strong&gt;realistic&lt;/strong&gt; than your typical exam prep fare. Let’s face it: in the real world, these quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s my responsibility to help candidates get exposure to the tools that are useful. We’ve long been the only FRM EPP who engages all the quantitative topics with spreadsheet (a construction that’s taken me the better part of a decade); now we’ll be the only FRM EPP who serves you actual code-based practice questions.&lt;/p&gt;
+&lt;p&gt;BT is already known for our tough practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!). It takes more time, but in these regression sets I’ve been pulling actual datasets. In combination with actual code-based applications, these new question sets are much more &lt;strong&gt;realistic&lt;/strong&gt; than typical exam-prep fare. Let’s face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s my responsibility to help candidates get exposure to the tools that are actually useful. We’ve long been the only FRM EPP who engages all of the FRM broad array of quantitative topics with spreadsheet workbook (a massive construction that’s taken me the better part of a decade). Now we’ll be the only FRM EPP who serves candidates actual code-based practice questions.&lt;/p&gt;
 &lt;p&gt;My first question in the new regression set reads as follows:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (&lt;a href=&#34;https://fred.stlouisfed.org/&#34; class=&#34;uri&#34;&gt;https://fred.stlouisfed.org/&lt;/a&gt;). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; &lt;a href=&#34;https://en.wikipedia.org/wiki/Phillips_curve&#34; class=&#34;uri&#34;&gt;https://en.wikipedia.org/wiki/Phillips_curve&lt;/a&gt;. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below.”&lt;/p&gt;
@@ -71,7 +71,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
 }
 
-#yksinrpqwm .gt_table {
+#cuhvhieuwo .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -96,7 +96,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-left-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_heading {
+#cuhvhieuwo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -108,7 +108,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_title {
+#cuhvhieuwo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -118,7 +118,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-width: 0;
 }
 
-#yksinrpqwm .gt_subtitle {
+#cuhvhieuwo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -128,13 +128,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-width: 0;
 }
 
-#yksinrpqwm .gt_bottom_border {
+#cuhvhieuwo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_col_headings {
+#cuhvhieuwo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -149,7 +149,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_col_heading {
+#cuhvhieuwo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -169,7 +169,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#yksinrpqwm .gt_column_spanner_outer {
+#cuhvhieuwo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -181,15 +181,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 4px;
 }
 
-#yksinrpqwm .gt_column_spanner_outer:first-child {
+#cuhvhieuwo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yksinrpqwm .gt_column_spanner_outer:last-child {
+#cuhvhieuwo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yksinrpqwm .gt_column_spanner {
+#cuhvhieuwo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -201,7 +201,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   width: 100%;
 }
 
-#yksinrpqwm .gt_group_heading {
+#cuhvhieuwo .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -223,7 +223,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#yksinrpqwm .gt_empty_group_heading {
+#cuhvhieuwo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -238,15 +238,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#yksinrpqwm .gt_from_md &gt; :first-child {
+#cuhvhieuwo .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#yksinrpqwm .gt_from_md &gt; :last-child {
+#cuhvhieuwo .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#yksinrpqwm .gt_row {
+#cuhvhieuwo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,7 +265,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#yksinrpqwm .gt_stub {
+#cuhvhieuwo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -277,7 +277,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-left: 12px;
 }
 
-#yksinrpqwm .gt_summary_row {
+#cuhvhieuwo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -287,7 +287,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#yksinrpqwm .gt_first_summary_row {
+#cuhvhieuwo .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -297,7 +297,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_grand_summary_row {
+#cuhvhieuwo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -307,7 +307,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#yksinrpqwm .gt_first_grand_summary_row {
+#cuhvhieuwo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -317,11 +317,11 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_striped {
+#cuhvhieuwo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yksinrpqwm .gt_table_body {
+#cuhvhieuwo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -330,7 +330,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_footnotes {
+#cuhvhieuwo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -344,13 +344,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_footnote {
+#cuhvhieuwo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#yksinrpqwm .gt_sourcenotes {
+#cuhvhieuwo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -364,46 +364,46 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#yksinrpqwm .gt_sourcenote {
+#cuhvhieuwo .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#yksinrpqwm .gt_left {
+#cuhvhieuwo .gt_left {
   text-align: left;
 }
 
-#yksinrpqwm .gt_center {
+#cuhvhieuwo .gt_center {
   text-align: center;
 }
 
-#yksinrpqwm .gt_right {
+#cuhvhieuwo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yksinrpqwm .gt_font_normal {
+#cuhvhieuwo .gt_font_normal {
   font-weight: normal;
 }
 
-#yksinrpqwm .gt_font_bold {
+#cuhvhieuwo .gt_font_bold {
   font-weight: bold;
 }
 
-#yksinrpqwm .gt_font_italic {
+#cuhvhieuwo .gt_font_italic {
   font-style: italic;
 }
 
-#yksinrpqwm .gt_super {
+#cuhvhieuwo .gt_super {
   font-size: 65%;
 }
 
-#yksinrpqwm .gt_footnote_marks {
+#cuhvhieuwo .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 &lt;/style&gt;
-&lt;div id=&#34;yksinrpqwm&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+&lt;div id=&#34;cuhvhieuwo&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
   
   &lt;thead class=&#34;gt_col_headings&#34;&gt;
     &lt;tr&gt;
@@ -475,7 +475,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
 }
 
-#gdphhssiqx .gt_table {
+#tgkswefoqr .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -500,7 +500,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-left-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_heading {
+#tgkswefoqr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -512,7 +512,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_title {
+#tgkswefoqr .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -522,7 +522,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-width: 0;
 }
 
-#gdphhssiqx .gt_subtitle {
+#tgkswefoqr .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -532,13 +532,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-width: 0;
 }
 
-#gdphhssiqx .gt_bottom_border {
+#tgkswefoqr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_col_headings {
+#tgkswefoqr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -553,7 +553,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_col_heading {
+#tgkswefoqr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -573,7 +573,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#gdphhssiqx .gt_column_spanner_outer {
+#tgkswefoqr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -585,15 +585,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 4px;
 }
 
-#gdphhssiqx .gt_column_spanner_outer:first-child {
+#tgkswefoqr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gdphhssiqx .gt_column_spanner_outer:last-child {
+#tgkswefoqr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gdphhssiqx .gt_column_spanner {
+#tgkswefoqr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -605,7 +605,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   width: 100%;
 }
 
-#gdphhssiqx .gt_group_heading {
+#tgkswefoqr .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -627,7 +627,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#gdphhssiqx .gt_empty_group_heading {
+#tgkswefoqr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -642,15 +642,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#gdphhssiqx .gt_from_md &gt; :first-child {
+#tgkswefoqr .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#gdphhssiqx .gt_from_md &gt; :last-child {
+#tgkswefoqr .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#gdphhssiqx .gt_row {
+#tgkswefoqr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -669,7 +669,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#gdphhssiqx .gt_stub {
+#tgkswefoqr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -681,7 +681,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-left: 12px;
 }
 
-#gdphhssiqx .gt_summary_row {
+#tgkswefoqr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -691,7 +691,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#gdphhssiqx .gt_first_summary_row {
+#tgkswefoqr .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -701,7 +701,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_grand_summary_row {
+#tgkswefoqr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -711,7 +711,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#gdphhssiqx .gt_first_grand_summary_row {
+#tgkswefoqr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -721,11 +721,11 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_striped {
+#tgkswefoqr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gdphhssiqx .gt_table_body {
+#tgkswefoqr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -734,7 +734,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_footnotes {
+#tgkswefoqr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -748,13 +748,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_footnote {
+#tgkswefoqr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gdphhssiqx .gt_sourcenotes {
+#tgkswefoqr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -768,46 +768,46 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#gdphhssiqx .gt_sourcenote {
+#tgkswefoqr .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gdphhssiqx .gt_left {
+#tgkswefoqr .gt_left {
   text-align: left;
 }
 
-#gdphhssiqx .gt_center {
+#tgkswefoqr .gt_center {
   text-align: center;
 }
 
-#gdphhssiqx .gt_right {
+#tgkswefoqr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gdphhssiqx .gt_font_normal {
+#tgkswefoqr .gt_font_normal {
   font-weight: normal;
 }
 
-#gdphhssiqx .gt_font_bold {
+#tgkswefoqr .gt_font_bold {
   font-weight: bold;
 }
 
-#gdphhssiqx .gt_font_italic {
+#tgkswefoqr .gt_font_italic {
   font-style: italic;
 }
 
-#gdphhssiqx .gt_super {
+#tgkswefoqr .gt_super {
   font-size: 65%;
 }
 
-#gdphhssiqx .gt_footnote_marks {
+#tgkswefoqr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 &lt;/style&gt;
-&lt;div id=&#34;gdphhssiqx&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+&lt;div id=&#34;tgkswefoqr&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
   &lt;thead class=&#34;gt_header&#34;&gt;
     &lt;tr&gt;
       &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)&lt;/th&gt;
@@ -866,949 +866,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   geom_point() +
   geom_smooth(method = &amp;quot;lm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-25-bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>2nd regression test</title>
-      <link>/post/2020sep/2nd-regression-test/</link>
-      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/2020sep/2nd-regression-test/</guid>
-      <description>
-
-
-&lt;p&gt;Hello world! this is in a subdirectory, yay!&lt;/p&gt;
-&lt;p&gt;code chunk&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(100)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   [1]  0.7688859088 -0.4916336393 -0.2136172236  0.1410764486  0.2670942596
-##   [6] -0.6962295127  0.8711073890  0.3004870407  0.1905883667  1.1431728877
-##  [11] -0.8043918218  0.5043546101  2.2286937783 -0.0972577974  0.5333699714
-##  [16]  0.9504696749  0.9516743993  0.1474150293  0.4811437234 -0.4348008551
-##  [21]  0.4154474388  0.3178241845 -0.2034540867 -1.3742770323 -0.2244726049
-##  [26]  0.6217744621  0.5162895643  1.0941246463  0.3341693169  0.4141980948
-##  [31] -2.0825901458 -0.4992200418  0.0148768988 -0.1903008576  1.4399213140
-##  [36]  0.3466814097  0.0715837943  0.5856953373 -0.6476760137 -0.1399231806
-##  [41]  0.4201317923  0.3589578145 -1.0062758828 -1.0259570822  1.6423862610
-##  [46] -1.3907812761 -0.1603702267  1.2185992537 -0.4081621899 -0.5006908691
-##  [51] -1.8914239200  0.1694476906 -0.5190324013 -0.2235138316 -1.4487023020
-##  [56] -0.5419678917  0.0007066754  0.1839926457 -0.7786827820  1.1828261600
-##  [61] -0.2006146939 -1.0823623678  0.4858267457  3.0559652642 -1.8184492266
-##  [66] -0.0236391201 -1.5836846966  0.0392470293  0.8089233716  0.7860612146
-##  [71]  0.9736410059  0.3902745300 -0.9326847465 -0.6155102901 -1.0970790072
-##  [76] -0.6942346504 -1.3998541338  0.7876980270  0.3331634030 -0.4800238204
-##  [81]  1.1122343814  0.6597312958 -0.0596424521  0.5746822684 -2.1268788304
-##  [86] -0.3320655094  0.3651897314  0.2433679477 -0.1053337009 -1.6197450905
-##  [91]  1.7568341505  0.1129054716 -0.1930334469  0.2195156998 -0.4630336365
-##  [96] -1.0387629872 -1.7973111531  0.5338210668 -1.7020241686 -1.7150221861&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here is an image
-&lt;img src=&#34;https://www.bionicturtle.com/images/2020/forum/062120-variance-sample-variance1.png&#34; alt=&#34;Image of Yakocate&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Does that work?&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>regression-test</title>
-      <link>/post/regression-test/</link>
-      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/regression-test/</guid>
-      <description>
-
-
-&lt;p&gt;Hello this is david with another test&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ----------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.3     v dplyr   1.0.1
-## v tidyr   1.1.1     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts -------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bottle &amp;lt;- read_csv(&amp;quot;data/bottle-small.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   Sta_ID = col_character(),
-##   Depth_ID = col_character(),
-##   BtlNum = col_logical(),
-##   T_qual = col_logical(),
-##   ChlorA = col_logical(),
-##   Phaeop = col_logical(),
-##   PO4uM = col_logical(),
-##   SiO3uM = col_logical(),
-##   NO2uM = col_logical(),
-##   NO3uM = col_logical(),
-##   NH3uM = col_logical(),
-##   C14As1 = col_logical(),
-##   C14A1p = col_logical(),
-##   C14As2 = col_logical(),
-##   C14A2p = col_logical(),
-##   DarkAs = col_logical(),
-##   DarkAp = col_logical(),
-##   MeanAs = col_logical(),
-##   MeanAp = col_logical(),
-##   IncTim = col_logical()
-##   # ... with 16 more columns
-## )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(bottle)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## tibble [56 x 74] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##  $ Cst_Cnt            : num [1:56] 1 1 14855 14855 14855 ...
-##  $ Btl_Cnt            : num [1:56] 1 2 395792 395793 395794 ...
-##  $ Sta_ID             : chr [1:56] &amp;quot;054.0 056.0&amp;quot; &amp;quot;054.0 056.0&amp;quot; &amp;quot;066.7 090.0&amp;quot; &amp;quot;066.7 090.0&amp;quot; ...
-##  $ Depth_ID           : chr [1:56] &amp;quot;19-4903CR-HY-060-0930-05400560-0000A-3&amp;quot; &amp;quot;19-4903CR-HY-060-0930-05400560-0008A-3&amp;quot; &amp;quot;19-6607JD-HY-195-1400-06670900-0200A-7&amp;quot; &amp;quot;19-6607JD-HY-195-1400-06670900-0218A-3&amp;quot; ...
-##  $ Depthm             : num [1:56] 0 8 200 218 248 250 296 300 348 400 ...
-##  $ T_degC             : num [1:56] 10.5 10.46 8.64 8.37 8.02 ...
-##  $ Salnty             : num [1:56] 33.4 33.4 33.9 34 34 ...
-##  $ O2ml_L             : num [1:56] NA NA 3.63 3.44 2.81 2.78 2.24 2.22 2.05 1.74 ...
-##  $ STheta             : num [1:56] 25.6 25.7 26.3 26.4 26.5 ...
-##  $ O2Sat              : num [1:56] NA NA 55.3 52.1 42.2 41.8 33.3 32.9 30 25 ...
-##  $ Oxy_µmol/Kg        : num [1:56] NA NA 158 150 122 ...
-##  $ BtlNum             : logi [1:56] NA NA NA NA NA NA ...
-##  $ RecInd             : num [1:56] 3 3 7 3 3 7 3 7 3 7 ...
-##  $ T_prec             : num [1:56] 1 2 2 2 2 2 2 2 2 2 ...
-##  $ T_qual             : logi [1:56] NA NA NA NA NA NA ...
-##  $ S_prec             : num [1:56] 2 2 3 3 3 3 3 3 3 3 ...
-##  $ S_qual             : num [1:56] NA NA NA NA NA NA NA NA NA NA ...
-##  $ P_qual             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ O_qual             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ SThtaq             : num [1:56] NA NA NA NA NA NA NA NA NA NA ...
-##  $ O2Satq             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ ChlorA             : logi [1:56] NA NA NA NA NA NA ...
-##  $ Chlqua             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ Phaeop             : logi [1:56] NA NA NA NA NA NA ...
-##  $ Phaqua             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ PO4uM              : logi [1:56] NA NA NA NA NA NA ...
-##  $ PO4q               : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ SiO3uM             : logi [1:56] NA NA NA NA NA NA ...
-##  $ SiO3qu             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ NO2uM              : logi [1:56] NA NA NA NA NA NA ...
-##  $ NO2q               : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ NO3uM              : logi [1:56] NA NA NA NA NA NA ...
-##  $ NO3q               : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ NH3uM              : logi [1:56] NA NA NA NA NA NA ...
-##  $ NH3q               : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ C14As1             : logi [1:56] NA NA NA NA NA NA ...
-##  $ C14A1p             : logi [1:56] NA NA NA NA NA NA ...
-##  $ C14A1q             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ C14As2             : logi [1:56] NA NA NA NA NA NA ...
-##  $ C14A2p             : logi [1:56] NA NA NA NA NA NA ...
-##  $ C14A2q             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ DarkAs             : logi [1:56] NA NA NA NA NA NA ...
-##  $ DarkAp             : logi [1:56] NA NA NA NA NA NA ...
-##  $ DarkAq             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ MeanAs             : logi [1:56] NA NA NA NA NA NA ...
-##  $ MeanAp             : logi [1:56] NA NA NA NA NA NA ...
-##  $ MeanAq             : num [1:56] 9 9 9 9 9 9 9 9 9 9 ...
-##  $ IncTim             : logi [1:56] NA NA NA NA NA NA ...
-##  $ LightP             : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_Depth            : num [1:56] 0 8 200 218 248 250 296 300 348 400 ...
-##  $ R_TEMP             : num [1:56] 10.5 10.46 8.64 8.37 8.02 ...
-##  $ R_POTEMP           : num [1:56] 10.5 10.46 8.62 8.35 7.99 ...
-##  $ R_SALINITY         : num [1:56] 33.4 33.4 33.9 34 34 ...
-##  $ R_SIGMA            : num [1:56] 25.6 25.6 26.3 26.4 26.5 ...
-##  $ R_SVA              : num [1:56] 233 232 174 165 157 ...
-##  $ R_DYNHT            : num [1:56] 0 0.01 0.57 0.6 0.65 0.65 0.72 0.73 0.79 0.86 ...
-##  $ R_O2               : num [1:56] NA NA 3.63 3.44 2.81 2.78 2.24 2.22 2.05 1.74 ...
-##  $ R_O2Sat            : num [1:56] NA NA 55.3 52.1 42.2 41.8 33.3 32.9 30 25 ...
-##  $ R_SIO3             : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_PO4              : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_NO3              : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_NO2              : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_NH4              : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_CHLA             : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_PHAEO            : logi [1:56] NA NA NA NA NA NA ...
-##  $ R_PRES             : num [1:56] 0 8 201 219 249 251 298 302 350 403 ...
-##  $ R_SAMP             : logi [1:56] NA NA NA NA NA NA ...
-##  $ DIC1               : logi [1:56] NA NA NA NA NA NA ...
-##  $ DIC2               : logi [1:56] NA NA NA NA NA NA ...
-##  $ TA1                : logi [1:56] NA NA NA NA NA NA ...
-##  $ TA2                : logi [1:56] NA NA NA NA NA NA ...
-##  $ pH2                : logi [1:56] NA NA NA NA NA NA ...
-##  $ pH1                : logi [1:56] NA NA NA NA NA NA ...
-##  $ DIC Quality Comment: logi [1:56] NA NA NA NA NA NA ...
-##  - attr(*, &amp;quot;spec&amp;quot;)=
-##   .. cols(
-##   ..   Cst_Cnt = col_double(),
-##   ..   Btl_Cnt = col_double(),
-##   ..   Sta_ID = col_character(),
-##   ..   Depth_ID = col_character(),
-##   ..   Depthm = col_double(),
-##   ..   T_degC = col_double(),
-##   ..   Salnty = col_double(),
-##   ..   O2ml_L = col_double(),
-##   ..   STheta = col_double(),
-##   ..   O2Sat = col_double(),
-##   ..   `Oxy_µmol/Kg` = col_double(),
-##   ..   BtlNum = col_logical(),
-##   ..   RecInd = col_double(),
-##   ..   T_prec = col_double(),
-##   ..   T_qual = col_logical(),
-##   ..   S_prec = col_double(),
-##   ..   S_qual = col_double(),
-##   ..   P_qual = col_double(),
-##   ..   O_qual = col_double(),
-##   ..   SThtaq = col_double(),
-##   ..   O2Satq = col_double(),
-##   ..   ChlorA = col_logical(),
-##   ..   Chlqua = col_double(),
-##   ..   Phaeop = col_logical(),
-##   ..   Phaqua = col_double(),
-##   ..   PO4uM = col_logical(),
-##   ..   PO4q = col_double(),
-##   ..   SiO3uM = col_logical(),
-##   ..   SiO3qu = col_double(),
-##   ..   NO2uM = col_logical(),
-##   ..   NO2q = col_double(),
-##   ..   NO3uM = col_logical(),
-##   ..   NO3q = col_double(),
-##   ..   NH3uM = col_logical(),
-##   ..   NH3q = col_double(),
-##   ..   C14As1 = col_logical(),
-##   ..   C14A1p = col_logical(),
-##   ..   C14A1q = col_double(),
-##   ..   C14As2 = col_logical(),
-##   ..   C14A2p = col_logical(),
-##   ..   C14A2q = col_double(),
-##   ..   DarkAs = col_logical(),
-##   ..   DarkAp = col_logical(),
-##   ..   DarkAq = col_double(),
-##   ..   MeanAs = col_logical(),
-##   ..   MeanAp = col_logical(),
-##   ..   MeanAq = col_double(),
-##   ..   IncTim = col_logical(),
-##   ..   LightP = col_logical(),
-##   ..   R_Depth = col_double(),
-##   ..   R_TEMP = col_double(),
-##   ..   R_POTEMP = col_double(),
-##   ..   R_SALINITY = col_double(),
-##   ..   R_SIGMA = col_double(),
-##   ..   R_SVA = col_double(),
-##   ..   R_DYNHT = col_double(),
-##   ..   R_O2 = col_double(),
-##   ..   R_O2Sat = col_double(),
-##   ..   R_SIO3 = col_logical(),
-##   ..   R_PO4 = col_logical(),
-##   ..   R_NO3 = col_logical(),
-##   ..   R_NO2 = col_logical(),
-##   ..   R_NH4 = col_logical(),
-##   ..   R_CHLA = col_logical(),
-##   ..   R_PHAEO = col_logical(),
-##   ..   R_PRES = col_double(),
-##   ..   R_SAMP = col_logical(),
-##   ..   DIC1 = col_logical(),
-##   ..   DIC2 = col_logical(),
-##   ..   TA1 = col_logical(),
-##   ..   TA2 = col_logical(),
-##   ..   pH2 = col_logical(),
-##   ..   pH1 = col_logical(),
-##   ..   `DIC Quality Comment` = col_logical()
-##   .. )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bottle&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 56 x 74
-##    Cst_Cnt Btl_Cnt Sta_ID Depth_ID Depthm T_degC Salnty O2ml_L STheta O2Sat
-##      &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-##  1       1       1 054.0~ 19-4903~      0  10.5    33.4  NA      25.6  NA  
-##  2       1       2 054.0~ 19-4903~      8  10.5    33.4  NA      25.7  NA  
-##  3   14855  395792 066.7~ 19-6607~    200   8.64   33.9   3.63   26.3  55.3
-##  4   14855  395793 066.7~ 19-6607~    218   8.37   34.0   3.44   26.4  52.1
-##  5   14855  395794 066.7~ 19-6607~    248   8.02   34.0   2.81   26.5  42.2
-##  6   14855  395795 066.7~ 19-6607~    250   8      34.0   2.78   26.5  41.8
-##  7   14855  395796 066.7~ 19-6607~    296   7.48   34.1   2.24   26.6  33.3
-##  8   14855  395797 066.7~ 19-6607~    300   7.43   34.1   2.22   26.6  32.9
-##  9   14855  395798 066.7~ 19-6607~    348   6.83   34.1   2.05   26.8  30  
-## 10   14855  395799 066.7~ 19-6607~    400   6.06   34.1   1.74   26.8  25  
-## # ... with 46 more rows, and 64 more variables: `Oxy_µmol/Kg` &amp;lt;dbl&amp;gt;,
-## #   BtlNum &amp;lt;lgl&amp;gt;, RecInd &amp;lt;dbl&amp;gt;, T_prec &amp;lt;dbl&amp;gt;, T_qual &amp;lt;lgl&amp;gt;, S_prec &amp;lt;dbl&amp;gt;,
-## #   S_qual &amp;lt;dbl&amp;gt;, P_qual &amp;lt;dbl&amp;gt;, O_qual &amp;lt;dbl&amp;gt;, SThtaq &amp;lt;dbl&amp;gt;, O2Satq &amp;lt;dbl&amp;gt;,
-## #   ChlorA &amp;lt;lgl&amp;gt;, Chlqua &amp;lt;dbl&amp;gt;, Phaeop &amp;lt;lgl&amp;gt;, Phaqua &amp;lt;dbl&amp;gt;, PO4uM &amp;lt;lgl&amp;gt;,
-## #   PO4q &amp;lt;dbl&amp;gt;, SiO3uM &amp;lt;lgl&amp;gt;, SiO3qu &amp;lt;dbl&amp;gt;, NO2uM &amp;lt;lgl&amp;gt;, NO2q &amp;lt;dbl&amp;gt;,
-## #   NO3uM &amp;lt;lgl&amp;gt;, NO3q &amp;lt;dbl&amp;gt;, NH3uM &amp;lt;lgl&amp;gt;, NH3q &amp;lt;dbl&amp;gt;, C14As1 &amp;lt;lgl&amp;gt;,
-## #   C14A1p &amp;lt;lgl&amp;gt;, C14A1q &amp;lt;dbl&amp;gt;, C14As2 &amp;lt;lgl&amp;gt;, C14A2p &amp;lt;lgl&amp;gt;, C14A2q &amp;lt;dbl&amp;gt;,
-## #   DarkAs &amp;lt;lgl&amp;gt;, DarkAp &amp;lt;lgl&amp;gt;, DarkAq &amp;lt;dbl&amp;gt;, MeanAs &amp;lt;lgl&amp;gt;, MeanAp &amp;lt;lgl&amp;gt;,
-## #   MeanAq &amp;lt;dbl&amp;gt;, IncTim &amp;lt;lgl&amp;gt;, LightP &amp;lt;lgl&amp;gt;, R_Depth &amp;lt;dbl&amp;gt;, R_TEMP &amp;lt;dbl&amp;gt;,
-## #   R_POTEMP &amp;lt;dbl&amp;gt;, R_SALINITY &amp;lt;dbl&amp;gt;, R_SIGMA &amp;lt;dbl&amp;gt;, R_SVA &amp;lt;dbl&amp;gt;,
-## #   R_DYNHT &amp;lt;dbl&amp;gt;, R_O2 &amp;lt;dbl&amp;gt;, R_O2Sat &amp;lt;dbl&amp;gt;, R_SIO3 &amp;lt;lgl&amp;gt;, R_PO4 &amp;lt;lgl&amp;gt;,
-## #   R_NO3 &amp;lt;lgl&amp;gt;, R_NO2 &amp;lt;lgl&amp;gt;, R_NH4 &amp;lt;lgl&amp;gt;, R_CHLA &amp;lt;lgl&amp;gt;, R_PHAEO &amp;lt;lgl&amp;gt;,
-## #   R_PRES &amp;lt;dbl&amp;gt;, R_SAMP &amp;lt;lgl&amp;gt;, DIC1 &amp;lt;lgl&amp;gt;, DIC2 &amp;lt;lgl&amp;gt;, TA1 &amp;lt;lgl&amp;gt;, TA2 &amp;lt;lgl&amp;gt;,
-## #   pH2 &amp;lt;lgl&amp;gt;, pH1 &amp;lt;lgl&amp;gt;, `DIC Quality Comment` &amp;lt;lgl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Test five</title>
-      <link>/post/test-five/</link>
-      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/test-five/</guid>
-      <description>
-
-
-&lt;p&gt;Troubleshooting Hugo. I’d be stuck except that Alison Hill’s blog is really helpful.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages -------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.3     v dplyr   1.0.1
-## v tidyr   1.1.1     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ----------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(&amp;quot;mtcars&amp;quot;)
-
-mtcars %&amp;gt;% ggplot(aes(x = wt, y = mpg)) + geom_point()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-20-test-five.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Test post</title>
-      <link>/post/test-post/</link>
-      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/test-post/</guid>
-      <description>
-
-
-&lt;p&gt;Let’s load some packages…&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.3     v dplyr   1.0.1
-## v tidyr   1.1.1     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ---------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(magrittr)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;magrittr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;magrittr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
-## 
-##     set_names&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:tidyr&amp;#39;:
-## 
-##     extract&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(scales)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;scales&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
-## 
-##     discard&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
-## 
-##     col_factor&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gridExtra)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;gridExtra&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;gridExtra&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:
-## 
-##     combine&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(forecast)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;forecast&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;quantmod&amp;#39;:
-##   method            from
-##   as.zoo.data.frame zoo&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tseries)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tseries&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggthemes)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggthemes&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_economist())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Stationary Time Series: ARMA&lt;/p&gt;
-&lt;p&gt;Wold Decomposition&lt;/p&gt;
-&lt;p&gt;arima.sim
-model c(p, d, q)
-p = AR order
-q = MA order&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Generate and plot white noise
-# WN &amp;lt;- arima.sim(model=list(order= c(0,0,0)), n = 200 )
-# plot(WN)
-
-MA_mean = 2
-MA_weight = 0.5
-# Generate and plot an MA(1) with parameter .9 
-# MA &amp;lt;- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean,
-#                rand.gen = rnorm, sd = 40)
-MA &amp;lt;- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean)
-
-AR_param = 0.6
-AR_intercept = 3
-# Generate and plot an AR(2) with parameters 1.5 and -.75
-AR &amp;lt;- arima.sim(model=list(order=c(1,0,0), ar = AR_param), n = 200, mean = AR_intercept)
-
-ts.plot(MA, AR)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-20-test-post.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Fourth test (after hugo version)</title>
-      <link>/post/fourth-test-after-hugo-version/</link>
-      <pubDate>Wed, 19 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/fourth-test-after-hugo-version/</guid>
-      <description>
-
-
-&lt;p&gt;Hello this is Davd again, let’s try:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.3     v dplyr   1.0.1
-## v tidyr   1.1.1     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ---------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(100)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   [1]  1.098938541 -1.907737778 -0.791217080 -1.953475974 -1.020584786
-##   [6]  0.146487129  0.617171837 -0.307106658  1.381719683 -0.507676584
-##  [11] -0.225904605 -0.208550018 -0.082423790  0.253429567 -0.345551262
-##  [16]  1.995140013 -0.278696851 -1.022980604 -0.097233756 -0.477901530
-##  [21]  0.083872458 -1.261749564 -0.211795593 -2.228193844  0.116155533
-##  [26]  0.246750633  0.394016542 -0.843947413 -1.184717717  0.941151583
-##  [31] -1.530623386 -0.317433354  0.574606229  0.168328049 -1.021705760
-##  [36] -1.374098072  0.219152238  0.238876913  0.181682406  0.677987159
-##  [41]  0.784654444 -0.001038014 -0.432927637  0.923711570 -0.137502189
-##  [46]  1.274346238 -0.305066121  0.952092220  0.389831106  0.535865905
-##  [51] -1.166039487  0.312157396 -0.931202787  0.355816563 -1.392074813
-##  [56] -1.830382447  0.228556901 -1.025879846  1.704737348 -0.343748377
-##  [61]  0.549442171 -0.109930539 -1.814964290 -0.890987794 -0.507802957
-##  [66] -0.592766610 -1.292171588  0.505544204  2.143159683 -1.285197218
-##  [71]  0.376706405  0.246802277 -2.387765870  0.699593190  0.920371146
-##  [76]  0.494863342  0.890219468 -2.600085854 -0.235397461  0.303443108
-##  [81] -0.889808411 -0.231478562  0.485221820  2.008803389 -0.517157659
-##  [86] -0.722761908  0.025132431  0.940627037  0.824355720  1.910222504
-##  [91] -0.856397948 -1.110672793 -0.542107406 -0.257160564  0.105445743
-##  [96] -0.636943064 -0.710272554  0.062241186  0.609570812  0.030320598&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;MA_mean = 2
-MA_weight = 0.5
-# Generate and plot an MA(1) with parameter .9 
-# MA &amp;lt;- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean,
-#                rand.gen = rnorm, sd = 40)
-MA &amp;lt;- arima.sim(model=list(order = c(0,0,1), ma = MA_weight), n = 200, mean = MA_mean)
-ts.plot(MA)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-20-fourth-test-after-hugo-version.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Writing technical content in Academic</title>
-      <link>/post/writing-technical-content/</link>
-      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/post/writing-technical-content/</guid>
-      <description>&lt;p&gt;Academic is designed to give technical content creators a seamless experience. You can focus on the content and Academic handles the rest.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;On this page, you&amp;rsquo;ll find some examples of the types of technical content that can be rendered with Academic.&lt;/p&gt;
-&lt;h2 id=&#34;examples&#34;&gt;Examples&lt;/h2&gt;
-&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for highlighting code syntax. You can enable this feature by toggling the &lt;code&gt;highlight&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```python
-import pandas as pd
-data = pd.read_csv(&amp;quot;data.csv&amp;quot;)
-data.head()
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
-data = pd.read_csv(&amp;quot;data.csv&amp;quot;)
-data.head()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;math&#34;&gt;Math&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for $\LaTeX$ math. You can enable this feature by toggling the &lt;code&gt;math&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;To render &lt;em&gt;inline&lt;/em&gt; or &lt;em&gt;block&lt;/em&gt; math, wrap your LaTeX math with &lt;code&gt;$...$&lt;/code&gt; or &lt;code&gt;$$...$$&lt;/code&gt;, respectively.&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;math block&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;$$\gamma_{n} = \frac{ 
-\left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T 
-\left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}
-{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left |\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right |^2}$$&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;inline math&lt;/strong&gt; &lt;code&gt;$\nabla F(\mathbf{x}_{n})$&lt;/code&gt; renders as $\nabla F(\mathbf{x}_{n})$.&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;multi-line math&lt;/strong&gt; using the &lt;code&gt;\\\\&lt;/code&gt; math linebreak:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;$$f(k;p_0^*) = \begin{cases} p_0^* &amp;amp; \text{if }k=1, \\\\
-1-p_0^* &amp;amp; \text {if }k=0.\end{cases}$$
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;$$f(k;p_0^*) = \begin{cases} p_0^* &amp;amp; \text{if }k=1, \\&lt;br&gt;
-1-p_0^* &amp;amp; \text {if }k=0.\end{cases}$$&lt;/p&gt;
-&lt;h3 id=&#34;diagrams&#34;&gt;Diagrams&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for diagrams. You can enable this feature by toggling the &lt;code&gt;diagram&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file or by adding &lt;code&gt;diagram: true&lt;/code&gt; to your page front matter.&lt;/p&gt;
-&lt;p&gt;An example &lt;strong&gt;flowchart&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-graph TD
-A[Hard] --&amp;gt;|Text| B(Round)
-B --&amp;gt; C{Decision}
-C --&amp;gt;|One| D[Result 1]
-C --&amp;gt;|Two| E[Result 2]
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph TD
-A[Hard] --&amp;gt;|Text| B(Round)
-B --&amp;gt; C{Decision}
-C --&amp;gt;|One| D[Result 1]
-C --&amp;gt;|Two| E[Result 2]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;sequence diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-sequenceDiagram
-Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-loop Healthcheck
-    John-&amp;gt;&amp;gt;John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John--&amp;gt;&amp;gt;Alice: Great!
-John-&amp;gt;&amp;gt;Bob: How about you?
-Bob--&amp;gt;&amp;gt;John: Jolly good!
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;sequenceDiagram
-Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-loop Healthcheck
-    John-&amp;gt;&amp;gt;John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John--&amp;gt;&amp;gt;Alice: Great!
-John-&amp;gt;&amp;gt;Bob: How about you?
-Bob--&amp;gt;&amp;gt;John: Jolly good!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;Gantt diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;class diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-classDiagram
-Class01 &amp;lt;|-- AveryLongClass : Cool
-&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Class01
-Class09 --&amp;gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&amp;gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &amp;lt;&amp;lt;service&amp;gt;&amp;gt;
-  int id
-  size()
-}
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;classDiagram
-Class01 &amp;lt;|-- AveryLongClass : Cool
-&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Class01
-Class09 --&amp;gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&amp;gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &amp;lt;&amp;lt;service&amp;gt;&amp;gt;
-  int id
-  size()
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;state diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-stateDiagram
-[*] --&amp;gt; Still
-Still --&amp;gt; [*]
-Still --&amp;gt; Moving
-Moving --&amp;gt; Still
-Moving --&amp;gt; Crash
-Crash --&amp;gt; [*]
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;stateDiagram
-[*] --&amp;gt; Still
-Still --&amp;gt; [*]
-Still --&amp;gt; Moving
-Moving --&amp;gt; Still
-Moving --&amp;gt; Crash
-Crash --&amp;gt; [*]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;todo-lists&#34;&gt;Todo lists&lt;/h3&gt;
-&lt;p&gt;You can even write your todo lists in Academic too:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;- [x] Write math example
-- [x] Write diagram example
-- [ ] Do something else
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Write math example&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Write diagram example&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Do something else&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;tables&#34;&gt;Tables&lt;/h3&gt;
-&lt;p&gt;Represent your data in tables:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;First Header&lt;/th&gt;
-&lt;th&gt;Second Header&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;asides&#34;&gt;Asides&lt;/h3&gt;
-&lt;p&gt;Academic supports a 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/#alerts&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcode for asides&lt;/a&gt;, also referred to as &lt;em&gt;notices&lt;/em&gt;, &lt;em&gt;hints&lt;/em&gt;, or &lt;em&gt;alerts&lt;/em&gt;. By wrapping a paragraph in &lt;code&gt;{{% alert note %}} ... {{% /alert %}}&lt;/code&gt;, it will render as an aside.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% alert note %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /alert %}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;spoilers&#34;&gt;Spoilers&lt;/h3&gt;
-&lt;p&gt;Add a spoiler to a page to reveal text, such as an answer to a question, after a button is clicked.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; spoiler text=&amp;quot;Click to view the spoiler&amp;quot; &amp;gt;}}
-You found me!
-{{&amp;lt; /spoiler &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;div class=&#34;spoiler &#34; &gt;
-  &lt;p&gt;
-    &lt;a class=&#34;btn btn-primary&#34; data-toggle=&#34;collapse&#34; href=&#34;#spoiler-1&#34; role=&#34;button&#34; aria-expanded=&#34;false&#34; aria-controls=&#34;spoiler-1&#34;&gt;
-      Click to view the spoiler
-    &lt;/a&gt;
-  &lt;/p&gt;
-  &lt;div class=&#34;collapse card &#34; id=&#34;spoiler-1&#34;&gt;
-    &lt;div class=&#34;card-body&#34;&gt;
-      You found me!
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;icons&#34;&gt;Icons&lt;/h3&gt;
-&lt;p&gt;Academic enables you to use a wide range of 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/page-builder/#icons&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;icons from &lt;em&gt;Font Awesome&lt;/em&gt; and &lt;em&gt;Academicons&lt;/em&gt;&lt;/a&gt; in addition to 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/#emojis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;emojis&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here are some examples using the &lt;code&gt;icon&lt;/code&gt; shortcode to render icons:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; icon name=&amp;quot;terminal&amp;quot; pack=&amp;quot;fas&amp;quot; &amp;gt;}} Terminal  
-{{&amp;lt; icon name=&amp;quot;python&amp;quot; pack=&amp;quot;fab&amp;quot; &amp;gt;}} Python  
-{{&amp;lt; icon name=&amp;quot;r-project&amp;quot; pack=&amp;quot;fab&amp;quot; &amp;gt;}} R
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;
-  &lt;i class=&#34;fas fa-terminal  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Terminal&lt;br&gt;
-
-  &lt;i class=&#34;fab fa-python  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Python&lt;br&gt;
-
-  &lt;i class=&#34;fab fa-r-project  pr-1 fa-fw&#34;&gt;&lt;/i&gt; R&lt;/p&gt;
-&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>/post/jupyter/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/post/jupyter/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
-Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;./index_1_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;Welcome to Academic!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;install-python-and-jupyterlab&#34;&gt;Install Python and JupyterLab&lt;/h2&gt;
-&lt;p&gt;
-&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and JupyterLab.&lt;/p&gt;
-&lt;p&gt;Alternatively, install JupyterLab with &lt;code&gt;pip3 install jupyterlab&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
-&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY-WEBSITE-FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;SHORT-POST-TITLE&amp;gt;&lt;/code&gt; with the file path to your Academic website folder and a short title for your blog post (use hyphens instead of spaces), respectively:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-cd &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-jupyter lab index.ipynb
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;jupyter&lt;/code&gt; command above will launch the JupyterLab editor, allowing us to add Academic metadata and write the content.&lt;/p&gt;
-&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
-&lt;p&gt;The first cell of your Jupter notebook will contain your post metadata (
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;front matter&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In Jupter, choose &lt;em&gt;Markdown&lt;/em&gt; as the type of the first cell and wrap your Academic metadata in three dashes, indicating that it is YAML front matter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: My post&#39;s title
-date: 2019-09-01
-
-# Put any other Academic metadata here...
----
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Edit the metadata of your post, using the 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt; as a guide to the available options.&lt;/p&gt;
-&lt;p&gt;To set a 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
-&lt;p&gt;For other tips, such as using math, see the guide on 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Academic: the website builder for Hugo</title>
-      <link>/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/post/getting-started/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Create a free website with Academic using Markdown, Jupyter, or RStudio. Choose a beautiful color theme and build anything with the Page Builder - over 40 &lt;em&gt;widgets&lt;/em&gt;, &lt;em&gt;themes&lt;/em&gt;, and &lt;em&gt;language packs&lt;/em&gt; included!&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;
-&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or 
-&lt;a href=&#34;https://sourcethemes.com/academic/#expo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;view the &lt;strong&gt;showcase&lt;/strong&gt;&lt;/a&gt; of personal, project, and business sites.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;👉 
-&lt;a href=&#34;#install&#34;&gt;&lt;strong&gt;Get Started&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;📚 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;View the &lt;strong&gt;documentation&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💬 
-&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Ask a question&lt;/strong&gt; on the forum&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;👥 
-&lt;a href=&#34;https://spectrum.chat/academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chat with the &lt;strong&gt;community&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;🐦 Twitter: 
-&lt;a href=&#34;https://twitter.com/source_themes&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@source_themes&lt;/a&gt; 
-&lt;a href=&#34;https://twitter.com/GeorgeCushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@GeorgeCushen&lt;/a&gt; 
-&lt;a href=&#34;https://twitter.com/search?q=%23MadeWithAcademic&amp;amp;src=typd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#MadeWithAcademic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💡 
-&lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Request a &lt;strong&gt;feature&lt;/strong&gt; or report a &lt;strong&gt;bug&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;⬆️ &lt;strong&gt;Updating?&lt;/strong&gt; View the 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Update Guide&lt;/a&gt; and 
-&lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;❤️ &lt;strong&gt;Support development&lt;/strong&gt; of Academic:
-&lt;ul&gt;
-&lt;li&gt;☕️ 
-&lt;a href=&#34;https://paypal.me/cushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Donate a coffee&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💵 
-&lt;a href=&#34;https://www.patreon.com/cushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Become a backer on &lt;strong&gt;Patreon&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;🖼️ 
-&lt;a href=&#34;https://www.redbubble.com/people/neutreno/works/34387919-academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Decorate your laptop or journal with an Academic &lt;strong&gt;sticker&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;👕 
-&lt;a href=&#34;https://academic.threadless.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wear the &lt;strong&gt;T-shirt&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;👩‍💻 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/contribute/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Contribute&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure id=&#34;figure-academic-is-mobile-first-with-a-responsive-design-to-ensure-that-your-site-looks-stunning-on-every-device&#34;&gt;
-
-
-  &lt;a data-fancybox=&#34;&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; data-caption=&#34;Academic is mobile first with a responsive design to ensure that your site looks stunning on every device.&#34;&gt;
-
-
-  &lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; alt=&#34;&#34;  &gt;
-&lt;/a&gt;
-
-
-  
-  
-  &lt;figcaption&gt;
-    Academic is mobile first with a responsive design to ensure that your site looks stunning on every device.
-  &lt;/figcaption&gt;
-
-
-&lt;/figure&gt;
-
-&lt;p&gt;&lt;strong&gt;Key features:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Page builder&lt;/strong&gt; - Create &lt;em&gt;anything&lt;/em&gt; with 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/page-builder/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;widgets&lt;/strong&gt;&lt;/a&gt; and 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;elements&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Edit any type of content&lt;/strong&gt; - Blog posts, publications, talks, slides, projects, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Create content&lt;/strong&gt; in 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown&lt;/strong&gt;&lt;/a&gt;, 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/jupyter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Jupyter&lt;/strong&gt;&lt;/a&gt;, or 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-rstudio&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;RStudio&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Plugin System&lt;/strong&gt; - Fully customizable 
-&lt;a href=&#34;https://sourcethemes.com/academic/themes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;color&lt;/strong&gt; and &lt;strong&gt;font themes&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Display Code and Math&lt;/strong&gt; - Code highlighting and 
-&lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LaTeX math&lt;/a&gt; supported&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Integrations&lt;/strong&gt; - 
-&lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Analytics&lt;/a&gt;, 
-&lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Disqus commenting&lt;/a&gt;, Maps, Contact Forms, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Beautiful Site&lt;/strong&gt; - Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Industry-Leading SEO&lt;/strong&gt; - Help get your website found on search engines and social media&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Media Galleries&lt;/strong&gt; - Display your images and videos with captions in a customizable gallery&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mobile Friendly&lt;/strong&gt; - Look amazing on every screen with a mobile friendly version of your site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-language&lt;/strong&gt; - 15+ language packs including English, 中文, and Português&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-user&lt;/strong&gt; - Each author gets their own profile page&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Privacy Pack&lt;/strong&gt; - Assists with GDPR&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stand Out&lt;/strong&gt; - Bring your site to life with animation, parallax backgrounds, and scroll effects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One-Click Deployment&lt;/strong&gt; - No servers. No databases. Only files.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-&lt;p&gt;Academic comes with &lt;strong&gt;automatic day (light) and night (dark) mode&lt;/strong&gt; built-in. Alternatively, visitors can  choose their preferred mode - click the sun/moon icon in the top right of the 
-&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demo&lt;/a&gt; to see it in action! Day/night mode can also be disabled by the site admin in &lt;code&gt;params.toml&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;
-&lt;a href=&#34;https://sourcethemes.com/academic/themes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Choose a stunning &lt;strong&gt;theme&lt;/strong&gt; and &lt;strong&gt;font&lt;/strong&gt;&lt;/a&gt; for your site. Themes are fully 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/customization/#custom-theme&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;customizable&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;
-&lt;a href=&#34;https://github.com/sourcethemes/academic-admin&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic Admin&lt;/a&gt;:&lt;/strong&gt; An admin tool to import publications from BibTeX or import assets for an offline site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;
-&lt;a href=&#34;https://github.com/sourcethemes/academic-scripts&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic Scripts&lt;/a&gt;:&lt;/strong&gt; Scripts to help migrate content to new versions of Academic&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
-&lt;p&gt;You can choose from one of the following four methods to install:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-web-browser&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;one-click install using your web browser (recommended)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-git&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;install on your computer using &lt;strong&gt;Git&lt;/strong&gt; with the Command Prompt/Terminal app&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;install on your computer by downloading the &lt;strong&gt;ZIP files&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-rstudio&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;install on your computer with &lt;strong&gt;RStudio&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Then 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/get-started/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;personalize and deploy your new site&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;updating&#34;&gt;Updating&lt;/h2&gt;
-&lt;p&gt;
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;View the Update Guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Feel free to &lt;em&gt;star&lt;/em&gt; the project on 
-&lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Github&lt;/a&gt; to help keep track of 
-&lt;a href=&#34;https://sourcethemes.com/academic/updates&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;updates&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-&lt;p&gt;Copyright 2016-present 
-&lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Released under the 
-&lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>
-
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-08-25-bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

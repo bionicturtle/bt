@@ -31,7 +31,7 @@ featured: true
 links:
 - name: Custom Link
   url: http://example.org
-url_pdf: https://www.dropbox.com/s/h4gomj3m4d83zk8/2020%20FRM%20Learning%20Objectives_091319.pdf
+url_pdf: https://frm-bionicturtle.s3.amazonaws.com/david/howto-fix-frm-v4.pdf
 url_code: '#'
 url_dataset: '#'
 url_poster: '#'
