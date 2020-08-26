@@ -32,13 +32,13 @@ education:
     institution: datacamp, coursera, etc
     year: 2014-
   - course: Financial Risk Manager (FRM)
-    institution: Global Association of Risk Professionals (GARP)
+    institution: Global Association of Risk Professionals (GARP), ID 40933
     year: 2004
   - course: Chartered Financial Analyst (CFA)
-    institution: CFA Institute
+    institution: CFA Institute, Charter 65864
     year: 2003
   - course: BA in Economics
-    institution: University of California at UC Berkeley
+    institution: University of California (UC), Berkeley
     year: 1989
 
 # Social/Academic Networking
