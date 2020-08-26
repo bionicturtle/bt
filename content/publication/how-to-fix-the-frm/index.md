@@ -1,5 +1,5 @@
 ---
-title: "How to Fix the FRM"
+title: "How to Fix the FRM (my memo to GARP's Board of Trustees)"
 authors:
 - admin
 
@@ -22,7 +22,7 @@ publication_types: ["2"]
 abstract: How to fix the FRM
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: On behalf of my customers and myself, this memo has three goals. One, to warn you of reputational risks that are accruing to the FRM product, at least online. Two, to convince you there is an opportunity for improvement in the FRM product. Three, if those arguments are convincing, to learn that the Committee will take some concrete steps to make improvements. With that agenda, at the end of this memo, after asking important questions, I offer recommendations and suggestions.
 
 tags:
 - Source Themes
