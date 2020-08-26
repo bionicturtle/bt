@@ -3,7 +3,7 @@ title: "How to Fix the FRM (my memo to GARP's Board of Trustees)"
 authors:
 - admin
 
-date: "2013-07-01T00:00:00Z"
+date: "2020-08-01T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
