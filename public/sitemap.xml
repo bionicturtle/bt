@@ -33,17 +33,22 @@
   </url>
   
   <url>
+    <loc>/post/</loc>
+    <lastmod>2020-08-26T16:56:51-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/test-today/</loc>
+    <lastmod>2020-08-26T16:56:51-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/</loc>
     <lastmod>2020-08-25T20:43:31-07:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-25T20:43:31-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2020-08-25T20:43:31-07:00</lastmod>
   </url>
   

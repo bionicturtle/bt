@@ -77,6 +77,15 @@
     </item>
     
     <item>
+      <title>test today</title>
+      <link>/post/test-today/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/test-today/</guid>
+      <description>&lt;p&gt;Hello world does this have comments?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>BT Question P1-T2-20-16-1: Univariate regression: Inflation versus unemployment (using gt package to display table)</title>
       <link>/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/</link>
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
