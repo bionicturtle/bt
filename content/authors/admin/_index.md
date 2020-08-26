@@ -21,8 +21,8 @@ organizations:
 bio: I teach financial risk and enjoy learning data science
 
 interests:
-- Quantitative mMethods
-- Finance & Risk measurement
+- Quantitative methods
+- Finance & Risk
 - Data science
 - Teaching & Learning methods
 
