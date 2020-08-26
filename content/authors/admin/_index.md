@@ -21,15 +21,19 @@ organizations:
 bio: I teach financial risk and enjoy learning data science
 
 interests:
-- Risk measurement
-- Quantitative methods
-- Teaching
+- Quantitative mMethods
+- Finance & Risk measurement
+- Data science
+- Teaching & Learning methods
 
 education:
   courses:
   - course: 40+ data science courses/certifications
     institution: datacamp, coursera, etc
     year: 2014-
+  - course: Financial Risk Manager (FRM)
+    institution: Global Association of Risk Professionals (GARP)
+    year: 2004
   - course: Chartered Financial Analyst (CFA)
     institution: CFA Institute
     year: 2003

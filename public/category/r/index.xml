@@ -20,8 +20,8 @@
       <description>
 
 
-&lt;p&gt;BT is already known for our practice questions, but I wanted to take it a step further. I’ve been writing (painting?) a fresh coat of questions on the regression topic. It takes more time, but I’ve been pulling actual datasets. When combined with actual code-based regression, the questions sets are much more realistic than your average academic fare. Let’s face it: the quantitative topics (e.g., regression) are all done in software, not calculators, so in a way, it’s our responsibility to help candidates get practice in realistic toolsets.&lt;/p&gt;
-&lt;p&gt;This first question in the new regression set reads:&lt;/p&gt;
+&lt;p&gt;BT is already known for our tough practice questions, but I wanted to take it a step further. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!). It takes more time, but in these regression sets I’ve been pulling actual datasets. In combination with actual code-based applications, these question sets are much more &lt;strong&gt;realistic&lt;/strong&gt; than your typical exam prep fare. Let’s face it: in the real world, these quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s my responsibility to help candidates get exposure to the tools that are useful. We’ve long been the only FRM EPP who engages all the quantitative topics with spreadsheet (a construction that’s taken me the better part of a decade); now we’ll be the only FRM EPP who serves you actual code-based practice questions.&lt;/p&gt;
+&lt;p&gt;My first question in the new regression set reads as follows:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (&lt;a href=&#34;https://fred.stlouisfed.org/&#34; class=&#34;uri&#34;&gt;https://fred.stlouisfed.org/&lt;/a&gt;). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; &lt;a href=&#34;https://en.wikipedia.org/wiki/Phillips_curve&#34; class=&#34;uri&#34;&gt;https://en.wikipedia.org/wiki/Phillips_curve&lt;/a&gt;. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below.”&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -71,7 +71,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
 }
 
-#zlxiayzniv .gt_table {
+#vudwcyphic .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -96,7 +96,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-left-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_heading {
+#vudwcyphic .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -108,7 +108,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_title {
+#vudwcyphic .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -118,7 +118,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-width: 0;
 }
 
-#zlxiayzniv .gt_subtitle {
+#vudwcyphic .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -128,13 +128,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-width: 0;
 }
 
-#zlxiayzniv .gt_bottom_border {
+#vudwcyphic .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_col_headings {
+#vudwcyphic .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -149,7 +149,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_col_heading {
+#vudwcyphic .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -169,7 +169,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#zlxiayzniv .gt_column_spanner_outer {
+#vudwcyphic .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -181,15 +181,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 4px;
 }
 
-#zlxiayzniv .gt_column_spanner_outer:first-child {
+#vudwcyphic .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zlxiayzniv .gt_column_spanner_outer:last-child {
+#vudwcyphic .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zlxiayzniv .gt_column_spanner {
+#vudwcyphic .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -201,7 +201,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   width: 100%;
 }
 
-#zlxiayzniv .gt_group_heading {
+#vudwcyphic .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -223,7 +223,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#zlxiayzniv .gt_empty_group_heading {
+#vudwcyphic .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -238,15 +238,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#zlxiayzniv .gt_from_md &gt; :first-child {
+#vudwcyphic .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#zlxiayzniv .gt_from_md &gt; :last-child {
+#vudwcyphic .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#zlxiayzniv .gt_row {
+#vudwcyphic .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,7 +265,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#zlxiayzniv .gt_stub {
+#vudwcyphic .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -277,7 +277,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-left: 12px;
 }
 
-#zlxiayzniv .gt_summary_row {
+#vudwcyphic .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -287,7 +287,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#zlxiayzniv .gt_first_summary_row {
+#vudwcyphic .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -297,7 +297,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_grand_summary_row {
+#vudwcyphic .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -307,7 +307,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#zlxiayzniv .gt_first_grand_summary_row {
+#vudwcyphic .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -317,11 +317,11 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_striped {
+#vudwcyphic .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zlxiayzniv .gt_table_body {
+#vudwcyphic .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -330,7 +330,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_footnotes {
+#vudwcyphic .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -344,13 +344,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_footnote {
+#vudwcyphic .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#zlxiayzniv .gt_sourcenotes {
+#vudwcyphic .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -364,46 +364,46 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#zlxiayzniv .gt_sourcenote {
+#vudwcyphic .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#zlxiayzniv .gt_left {
+#vudwcyphic .gt_left {
   text-align: left;
 }
 
-#zlxiayzniv .gt_center {
+#vudwcyphic .gt_center {
   text-align: center;
 }
 
-#zlxiayzniv .gt_right {
+#vudwcyphic .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zlxiayzniv .gt_font_normal {
+#vudwcyphic .gt_font_normal {
   font-weight: normal;
 }
 
-#zlxiayzniv .gt_font_bold {
+#vudwcyphic .gt_font_bold {
   font-weight: bold;
 }
 
-#zlxiayzniv .gt_font_italic {
+#vudwcyphic .gt_font_italic {
   font-style: italic;
 }
 
-#zlxiayzniv .gt_super {
+#vudwcyphic .gt_super {
   font-size: 65%;
 }
 
-#zlxiayzniv .gt_footnote_marks {
+#vudwcyphic .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 &lt;/style&gt;
-&lt;div id=&#34;zlxiayzniv&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+&lt;div id=&#34;vudwcyphic&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
   
   &lt;thead class=&#34;gt_col_headings&#34;&gt;
     &lt;tr&gt;
@@ -475,7 +475,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
 }
 
-#btvnoztrnh .gt_table {
+#yajlwijqyi .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -500,7 +500,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-left-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_heading {
+#yajlwijqyi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -512,7 +512,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_title {
+#yajlwijqyi .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -522,7 +522,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-width: 0;
 }
 
-#btvnoztrnh .gt_subtitle {
+#yajlwijqyi .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -532,13 +532,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-width: 0;
 }
 
-#btvnoztrnh .gt_bottom_border {
+#yajlwijqyi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_col_headings {
+#yajlwijqyi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -553,7 +553,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_col_heading {
+#yajlwijqyi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -573,7 +573,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#btvnoztrnh .gt_column_spanner_outer {
+#yajlwijqyi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -585,15 +585,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 4px;
 }
 
-#btvnoztrnh .gt_column_spanner_outer:first-child {
+#yajlwijqyi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#btvnoztrnh .gt_column_spanner_outer:last-child {
+#yajlwijqyi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#btvnoztrnh .gt_column_spanner {
+#yajlwijqyi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -605,7 +605,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   width: 100%;
 }
 
-#btvnoztrnh .gt_group_heading {
+#yajlwijqyi .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -627,7 +627,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#btvnoztrnh .gt_empty_group_heading {
+#yajlwijqyi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -642,15 +642,15 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   vertical-align: middle;
 }
 
-#btvnoztrnh .gt_from_md &gt; :first-child {
+#yajlwijqyi .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#btvnoztrnh .gt_from_md &gt; :last-child {
+#yajlwijqyi .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#btvnoztrnh .gt_row {
+#yajlwijqyi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -669,7 +669,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   overflow-x: hidden;
 }
 
-#btvnoztrnh .gt_stub {
+#yajlwijqyi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -681,7 +681,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-left: 12px;
 }
 
-#btvnoztrnh .gt_summary_row {
+#yajlwijqyi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -691,7 +691,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#btvnoztrnh .gt_first_summary_row {
+#yajlwijqyi .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -701,7 +701,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_grand_summary_row {
+#yajlwijqyi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -711,7 +711,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   padding-right: 5px;
 }
 
-#btvnoztrnh .gt_first_grand_summary_row {
+#yajlwijqyi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -721,11 +721,11 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-top-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_striped {
+#yajlwijqyi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#btvnoztrnh .gt_table_body {
+#yajlwijqyi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -734,7 +734,7 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_footnotes {
+#yajlwijqyi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -748,13 +748,13 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_footnote {
+#yajlwijqyi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#btvnoztrnh .gt_sourcenotes {
+#yajlwijqyi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -768,46 +768,46 @@ gt_table&lt;/code&gt;&lt;/pre&gt;
   border-right-color: #D3D3D3;
 }
 
-#btvnoztrnh .gt_sourcenote {
+#yajlwijqyi .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#btvnoztrnh .gt_left {
+#yajlwijqyi .gt_left {
   text-align: left;
 }
 
-#btvnoztrnh .gt_center {
+#yajlwijqyi .gt_center {
   text-align: center;
 }
 
-#btvnoztrnh .gt_right {
+#yajlwijqyi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#btvnoztrnh .gt_font_normal {
+#yajlwijqyi .gt_font_normal {
   font-weight: normal;
 }
 
-#btvnoztrnh .gt_font_bold {
+#yajlwijqyi .gt_font_bold {
   font-weight: bold;
 }
 
-#btvnoztrnh .gt_font_italic {
+#yajlwijqyi .gt_font_italic {
   font-style: italic;
 }
 
-#btvnoztrnh .gt_super {
+#yajlwijqyi .gt_super {
   font-size: 65%;
 }
 
-#btvnoztrnh .gt_footnote_marks {
+#yajlwijqyi .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 &lt;/style&gt;
-&lt;div id=&#34;btvnoztrnh&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+&lt;div id=&#34;yajlwijqyi&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
   &lt;thead class=&#34;gt_header&#34;&gt;
     &lt;tr&gt;
       &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)&lt;/th&gt;
