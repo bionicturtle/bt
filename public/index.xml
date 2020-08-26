@@ -77,6 +77,864 @@
     </item>
     
     <item>
+      <title>BT Question P1-T2-20-16-1: Univariate regression: Inflation versus unemployment (using gt package to display table)</title>
+      <link>/post/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/</guid>
+      <description>
+
+
+&lt;p&gt;BT is already known for our practice questions, but I wanted to take it a step further. I’ve been writing (painting?) a fresh coat of questions on the regression topic. It takes more time, but I’ve been pulling actual datasets. When combined with actual code-based regression, the questions sets are much more realistic than your average academic fare. Let’s face it: the quantitative topics (e.g., regression) are all done in software, not calculators, so in a way, it’s our responsibility to help candidates get practice in realistic toolsets.&lt;/p&gt;
+&lt;p&gt;This first question in the new regression set reads:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (&lt;a href=&#34;https://fred.stlouisfed.org/&#34; class=&#34;uri&#34;&gt;https://fred.stlouisfed.org/&lt;/a&gt;). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; &lt;a href=&#34;https://en.wikipedia.org/wiki/Phillips_curve&#34; class=&#34;uri&#34;&gt;https://en.wikipedia.org/wiki/Phillips_curve&lt;/a&gt;. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We load the packages&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(gt) # library(reactable) is another table package I haven&amp;#39;t used
+library(alfred) # Direct access to FRED
+library(broom)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And then see if we might find a super-simple (ie, linear) Phillips curve
+(BT Question P1.T2.20.16.1)&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;startdate &amp;lt;- &amp;quot;1980-01-01&amp;quot;
+enddate &amp;lt;- &amp;quot;2020-01-01&amp;quot;
+
+# Phillips x = unemployment
+unrate &amp;lt;- get_fred_series(&amp;quot;UNRATE&amp;quot;, &amp;quot;Unemployment&amp;quot;, observation_start = startdate, observation_end = enddate)
+inflation &amp;lt;- get_fred_series(&amp;quot;CPIAUCSL&amp;quot;, &amp;quot;inflation&amp;quot;, observation_start = startdate, observation_end = enddate)
+inflation_rate &amp;lt;- get_fred_series(&amp;quot;PCETRIM12M159SFRBDAL&amp;quot;, &amp;quot;Inflation_Rate&amp;quot;, observation_start = startdate, observation_end = enddate)
+df1 &amp;lt;- cbind(inflation, unrate, inflation_rate)
+df1 &amp;lt;- df1[ , c(1,2, 4, 6)]
+df2 &amp;lt;- df1 %&amp;gt;% filter(Inflation_Rate &amp;gt; 4.3)
+df_fit &amp;lt;- lm(Inflation_Rate ~ Unemployment, data = df2)
+summary(df_fit)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Inflation_Rate ~ Unemployment, data = df2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.27252 -0.22807 -0.02961  0.25143  0.83596 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  16.38811    0.47300   34.65   &amp;lt;2e-16 ***
+## Unemployment -1.10565    0.05572  -19.84   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.4726 on 38 degrees of freedom
+## Multiple R-squared:  0.912,  Adjusted R-squared:  0.9097 
+## F-statistic: 393.8 on 1 and 38 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_fit_tidy &amp;lt;- tidy(df_fit)
+gt_table &amp;lt;- gt(df_fit_tidy)
+
+# This is the standard gt table which is an improvement
+gt_table&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#zlxiayzniv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zlxiayzniv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zlxiayzniv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zlxiayzniv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zlxiayzniv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zlxiayzniv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zlxiayzniv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zlxiayzniv .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zlxiayzniv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zlxiayzniv .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#zlxiayzniv .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#zlxiayzniv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zlxiayzniv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#zlxiayzniv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlxiayzniv .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlxiayzniv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zlxiayzniv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zlxiayzniv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zlxiayzniv .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zlxiayzniv .gt_left {
+  text-align: left;
+}
+
+#zlxiayzniv .gt_center {
+  text-align: center;
+}
+
+#zlxiayzniv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zlxiayzniv .gt_font_normal {
+  font-weight: normal;
+}
+
+#zlxiayzniv .gt_font_bold {
+  font-weight: bold;
+}
+
+#zlxiayzniv .gt_font_italic {
+  font-style: italic;
+}
+
+#zlxiayzniv .gt_super {
+  font-size: 65%;
+}
+
+#zlxiayzniv .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;zlxiayzniv&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;term&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;std.error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;statistic&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p.value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;16.38811&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;0.47300171&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;34.64705&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.328227e-30&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34;&gt;Unemployment&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;-1.10565&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;0.05571874&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;-19.84342&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1.186893e-21&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# But here we&amp;#39;ll utilize the pipe to specifically style the table
+gt_table &amp;lt;- 
+  gt_table %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)&amp;quot;,
+    subtitle = md(&amp;quot;1980 to 2020 Monthly but conditioned on high inflation regimes&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = md(&amp;quot;Source: FRED at https://fred.stlouisfed.org/&amp;quot;)
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 3
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  ) %&amp;gt;% 
+  tab_footnote(
+    footnote = &amp;quot;Filtered on months with inflation &amp;gt;4.3% deliberately to generate regression results&amp;quot;,
+    locations = cells_title(&amp;quot;subtitle&amp;quot;)
+  )
+
+gt_table&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#btvnoztrnh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#btvnoztrnh .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#btvnoztrnh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#btvnoztrnh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#btvnoztrnh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#btvnoztrnh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#btvnoztrnh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#btvnoztrnh .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#btvnoztrnh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#btvnoztrnh .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#btvnoztrnh .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#btvnoztrnh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#btvnoztrnh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#btvnoztrnh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#btvnoztrnh .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#btvnoztrnh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#btvnoztrnh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#btvnoztrnh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#btvnoztrnh .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#btvnoztrnh .gt_left {
+  text-align: left;
+}
+
+#btvnoztrnh .gt_center {
+  text-align: center;
+}
+
+#btvnoztrnh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#btvnoztrnh .gt_font_normal {
+  font-weight: normal;
+}
+
+#btvnoztrnh .gt_font_bold {
+  font-weight: bold;
+}
+
+#btvnoztrnh .gt_font_italic {
+  font-style: italic;
+}
+
+#btvnoztrnh .gt_super {
+  font-size: 65%;
+}
+
+#btvnoztrnh .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;btvnoztrnh&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;1980 to 2020 Monthly but conditioned on high inflation regimes&lt;sup class=&#34;gt_footnote_marks&#34;&gt;1&lt;/sup&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;16.388&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.473&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;34.647&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.33 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;30&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;Unemployment&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;1.106&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.056&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;19.843&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.19 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;21&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: FRED at https://fred.stlouisfed.org/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  &lt;tfoot&gt;
+    &lt;tr class=&#34;gt_footnotes&#34;&gt;
+      &lt;td colspan=&#34;5&#34;&gt;
+        &lt;p class=&#34;gt_footnote&#34;&gt;
+          &lt;sup class=&#34;gt_footnote_marks&#34;&gt;
+            &lt;em&gt;1&lt;/em&gt;
+          &lt;/sup&gt;
+           
+          Filtered on months with inflation &amp;gt;4.3% deliberately to generate regression results
+          &lt;br /&gt;
+        &lt;/p&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;The question does not utilize a scatterplot but here it is anyway&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df2 %&amp;gt;% ggplot(aes(Unemployment, Inflation_Rate)) + 
+  geom_point() +
+  geom_smooth(method = &amp;quot;lm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-25-bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>2nd regression test</title>
       <link>/post/2020sep/2nd-regression-test/</link>
       <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
