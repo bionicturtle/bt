@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="BT is already known for our tough practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!">
+  <meta name="description" content="BackgroundBT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh question sets on the regression topics; I’m always writing new questions!">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/">
@@ -228,8 +228,8 @@
   
 
   <link rel="manifest" href="/index.webmanifest">
-  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+  <link rel="icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png">
 
   <link rel="canonical" href="/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/">
 
@@ -249,8 +249,8 @@
   <meta property="og:site_name" content="David&#39;s (bionicturtle) data blog">
   <meta property="og:url" content="/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/">
   <meta property="og:title" content="BT Question P1-T2-20-16-1: Univariate regression: Inflation versus unemployment (using gt package to display table) | David&#39;s (bionicturtle) data blog">
-  <meta property="og:description" content="BT is already known for our tough practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!"><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="BackgroundBT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh question sets on the regression topics; I’m always writing new questions!"><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-08-25T00:00:00&#43;00:00">
@@ -296,10 +296,10 @@
     "name": "David's (bionicturtle) data blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+      "url": "/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "BT is already known for our tough practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!"
+  "description": "Background\rBT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh question sets on the regression topics; I’m always writing new questions!"
 }
 </script>
 
@@ -650,8 +650,14 @@
       
 
 
-<p>BT is already known for our tough practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh set of questions on the regression topic (I’m always writing new questions!). It takes more time, but in these regression sets I’ve been pulling actual datasets. In combination with actual code-based applications, these new question sets are much more <strong>realistic</strong> than typical exam-prep fare. Let’s face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s my responsibility to help candidates get exposure to the tools that are actually useful. We’ve long been the only FRM EPP who engages all of the FRM broad array of quantitative topics with spreadsheet workbook (a massive construction that’s taken me the better part of a decade). Now we’ll be the only FRM EPP who serves candidates actual code-based practice questions.</p>
-<p>My first question in the new regression set reads as follows:</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>BT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh question sets on the regression topics; I’m always writing new questions! It takes more time, but in these regression sets I’ve been pulling actual datasets. For this question, I pulled inflation and unemployment rates from the FRED database (see below). In combination with actual <em>code-based applications</em>, these new question sets are much more <strong>realistic</strong> than typical exam-prep fare. Let’s face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s our responsibility to help candidates get exposure to tools that are actually useful. We’ve always been the only FRM exam prep provider (EPP) who develops virtually the entire, broad array of quantitative risk (FRM) topics in spreadsheet workbooks (this is a massive construction of hundreds of spreadsheets that has taken me the better part of a decade to build). Now I’ve started to develop associated code-based applications for the ultimate in <em>realistic</em> study material.</p>
+</div>
+<div id="using-the-gt-page-to-render-the-regression-output-table" class="section level2">
+<h2>Using the gt page to render the regression output table</h2>
+<p>I thought I’d try the <a href="https://github.com/rstudio/gt">gt package</a> to see if I could improve the presentation of the regression output table. It’s fairly intuitive but a little unexpected because you pipe (“%&gt;%”) additional format features.</p>
+<p>This question (my first in the new regression set) reads as follows:</p>
 <blockquote>
 <p>“20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; <a href="https://en.wikipedia.org/wiki/Phillips_curve" class="uri">https://en.wikipedia.org/wiki/Phillips_curve</a>. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below.”</p>
 </blockquote>
@@ -701,7 +707,7 @@ gt_table</code></pre>
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#cuhvhieuwo .gt_table {
+#zvmneftgbl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -726,7 +732,7 @@ gt_table</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_heading {
+#zvmneftgbl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -738,7 +744,7 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_title {
+#zvmneftgbl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -748,7 +754,7 @@ gt_table</code></pre>
   border-bottom-width: 0;
 }
 
-#cuhvhieuwo .gt_subtitle {
+#zvmneftgbl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -758,13 +764,13 @@ gt_table</code></pre>
   border-top-width: 0;
 }
 
-#cuhvhieuwo .gt_bottom_border {
+#zvmneftgbl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_col_headings {
+#zvmneftgbl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -779,7 +785,7 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_col_heading {
+#zvmneftgbl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -799,7 +805,7 @@ gt_table</code></pre>
   overflow-x: hidden;
 }
 
-#cuhvhieuwo .gt_column_spanner_outer {
+#zvmneftgbl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -811,15 +817,15 @@ gt_table</code></pre>
   padding-right: 4px;
 }
 
-#cuhvhieuwo .gt_column_spanner_outer:first-child {
+#zvmneftgbl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cuhvhieuwo .gt_column_spanner_outer:last-child {
+#zvmneftgbl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cuhvhieuwo .gt_column_spanner {
+#zvmneftgbl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -831,7 +837,7 @@ gt_table</code></pre>
   width: 100%;
 }
 
-#cuhvhieuwo .gt_group_heading {
+#zvmneftgbl .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -853,7 +859,7 @@ gt_table</code></pre>
   vertical-align: middle;
 }
 
-#cuhvhieuwo .gt_empty_group_heading {
+#zvmneftgbl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -868,15 +874,15 @@ gt_table</code></pre>
   vertical-align: middle;
 }
 
-#cuhvhieuwo .gt_from_md > :first-child {
+#zvmneftgbl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cuhvhieuwo .gt_from_md > :last-child {
+#zvmneftgbl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cuhvhieuwo .gt_row {
+#zvmneftgbl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -895,7 +901,7 @@ gt_table</code></pre>
   overflow-x: hidden;
 }
 
-#cuhvhieuwo .gt_stub {
+#zvmneftgbl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -907,7 +913,7 @@ gt_table</code></pre>
   padding-left: 12px;
 }
 
-#cuhvhieuwo .gt_summary_row {
+#zvmneftgbl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -917,7 +923,7 @@ gt_table</code></pre>
   padding-right: 5px;
 }
 
-#cuhvhieuwo .gt_first_summary_row {
+#zvmneftgbl .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -927,7 +933,7 @@ gt_table</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_grand_summary_row {
+#zvmneftgbl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -937,7 +943,7 @@ gt_table</code></pre>
   padding-right: 5px;
 }
 
-#cuhvhieuwo .gt_first_grand_summary_row {
+#zvmneftgbl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -947,11 +953,11 @@ gt_table</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_striped {
+#zvmneftgbl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cuhvhieuwo .gt_table_body {
+#zvmneftgbl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -960,7 +966,7 @@ gt_table</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_footnotes {
+#zvmneftgbl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -974,13 +980,13 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_footnote {
+#zvmneftgbl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#cuhvhieuwo .gt_sourcenotes {
+#zvmneftgbl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -994,46 +1000,46 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cuhvhieuwo .gt_sourcenote {
+#zvmneftgbl .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#cuhvhieuwo .gt_left {
+#zvmneftgbl .gt_left {
   text-align: left;
 }
 
-#cuhvhieuwo .gt_center {
+#zvmneftgbl .gt_center {
   text-align: center;
 }
 
-#cuhvhieuwo .gt_right {
+#zvmneftgbl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cuhvhieuwo .gt_font_normal {
+#zvmneftgbl .gt_font_normal {
   font-weight: normal;
 }
 
-#cuhvhieuwo .gt_font_bold {
+#zvmneftgbl .gt_font_bold {
   font-weight: bold;
 }
 
-#cuhvhieuwo .gt_font_italic {
+#zvmneftgbl .gt_font_italic {
   font-style: italic;
 }
 
-#cuhvhieuwo .gt_super {
+#zvmneftgbl .gt_super {
   font-size: 65%;
 }
 
-#cuhvhieuwo .gt_footnote_marks {
+#zvmneftgbl .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="cuhvhieuwo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="zvmneftgbl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1105,7 +1111,7 @@ gt_table</code></pre>
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tgkswefoqr .gt_table {
+#sgisxvfwtm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1130,7 +1136,7 @@ gt_table</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_heading {
+#sgisxvfwtm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1142,7 +1148,7 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_title {
+#sgisxvfwtm .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -1152,7 +1158,7 @@ gt_table</code></pre>
   border-bottom-width: 0;
 }
 
-#tgkswefoqr .gt_subtitle {
+#sgisxvfwtm .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -1162,13 +1168,13 @@ gt_table</code></pre>
   border-top-width: 0;
 }
 
-#tgkswefoqr .gt_bottom_border {
+#sgisxvfwtm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_col_headings {
+#sgisxvfwtm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1183,7 +1189,7 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_col_heading {
+#sgisxvfwtm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1203,7 +1209,7 @@ gt_table</code></pre>
   overflow-x: hidden;
 }
 
-#tgkswefoqr .gt_column_spanner_outer {
+#sgisxvfwtm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1215,15 +1221,15 @@ gt_table</code></pre>
   padding-right: 4px;
 }
 
-#tgkswefoqr .gt_column_spanner_outer:first-child {
+#sgisxvfwtm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tgkswefoqr .gt_column_spanner_outer:last-child {
+#sgisxvfwtm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tgkswefoqr .gt_column_spanner {
+#sgisxvfwtm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1235,7 +1241,7 @@ gt_table</code></pre>
   width: 100%;
 }
 
-#tgkswefoqr .gt_group_heading {
+#sgisxvfwtm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1257,7 +1263,7 @@ gt_table</code></pre>
   vertical-align: middle;
 }
 
-#tgkswefoqr .gt_empty_group_heading {
+#sgisxvfwtm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1272,15 +1278,15 @@ gt_table</code></pre>
   vertical-align: middle;
 }
 
-#tgkswefoqr .gt_from_md > :first-child {
+#sgisxvfwtm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tgkswefoqr .gt_from_md > :last-child {
+#sgisxvfwtm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tgkswefoqr .gt_row {
+#sgisxvfwtm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1299,7 +1305,7 @@ gt_table</code></pre>
   overflow-x: hidden;
 }
 
-#tgkswefoqr .gt_stub {
+#sgisxvfwtm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1311,7 +1317,7 @@ gt_table</code></pre>
   padding-left: 12px;
 }
 
-#tgkswefoqr .gt_summary_row {
+#sgisxvfwtm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1321,7 +1327,7 @@ gt_table</code></pre>
   padding-right: 5px;
 }
 
-#tgkswefoqr .gt_first_summary_row {
+#sgisxvfwtm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1331,7 +1337,7 @@ gt_table</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_grand_summary_row {
+#sgisxvfwtm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1341,7 +1347,7 @@ gt_table</code></pre>
   padding-right: 5px;
 }
 
-#tgkswefoqr .gt_first_grand_summary_row {
+#sgisxvfwtm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1351,11 +1357,11 @@ gt_table</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_striped {
+#sgisxvfwtm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tgkswefoqr .gt_table_body {
+#sgisxvfwtm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1364,7 +1370,7 @@ gt_table</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_footnotes {
+#sgisxvfwtm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1378,13 +1384,13 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_footnote {
+#sgisxvfwtm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#tgkswefoqr .gt_sourcenotes {
+#sgisxvfwtm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1398,46 +1404,46 @@ gt_table</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#tgkswefoqr .gt_sourcenote {
+#sgisxvfwtm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#tgkswefoqr .gt_left {
+#sgisxvfwtm .gt_left {
   text-align: left;
 }
 
-#tgkswefoqr .gt_center {
+#sgisxvfwtm .gt_center {
   text-align: center;
 }
 
-#tgkswefoqr .gt_right {
+#sgisxvfwtm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tgkswefoqr .gt_font_normal {
+#sgisxvfwtm .gt_font_normal {
   font-weight: normal;
 }
 
-#tgkswefoqr .gt_font_bold {
+#sgisxvfwtm .gt_font_bold {
   font-weight: bold;
 }
 
-#tgkswefoqr .gt_font_italic {
+#sgisxvfwtm .gt_font_italic {
   font-style: italic;
 }
 
-#tgkswefoqr .gt_super {
+#sgisxvfwtm .gt_super {
   font-size: 65%;
 }
 
-#tgkswefoqr .gt_footnote_marks {
+#sgisxvfwtm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="tgkswefoqr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="sgisxvfwtm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)</th>
@@ -1497,6 +1503,7 @@ gt_table</code></pre>
   geom_smooth(method = &quot;lm&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2020/2020-08-25-bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
 
     </div>
 

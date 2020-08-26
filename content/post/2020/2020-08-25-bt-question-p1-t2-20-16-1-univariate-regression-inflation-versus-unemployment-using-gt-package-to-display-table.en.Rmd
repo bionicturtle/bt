@@ -20,9 +20,15 @@ image:
 projects: []
 ---
 
-BT is already known for our tough practice questions, but I wanted to take it further and add more realism. I've been writing a fresh set of questions on the regression topic (I'm always writing new questions!). It takes more time, but in these regression sets I've been pulling actual datasets. In combination with actual code-based applications, these new question sets are much more **realistic** than typical exam-prep fare. Let's face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it's my responsibility to help candidates get exposure to the tools that are actually useful. We've long been the only FRM EPP who engages all of the FRM broad array of quantitative topics with spreadsheet workbook (a massive construction that's taken me the better part of a decade). Now we'll be the only FRM EPP who serves candidates actual code-based practice questions.
+## Background
 
-My first question in the new regression set reads as follows:
+BT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I've been writing a fresh question sets on the regression topics; I'm always writing new questions! It takes more time, but in these regression sets I've been pulling actual datasets. For this question, I pulled inflation and unemployment rates from the FRED database (see below). In combination with actual *code-based applications*, these new question sets are much more **realistic** than typical exam-prep fare. Let's face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it's our responsibility to help candidates get exposure to tools that are actually useful. We've always been the only FRM exam prep provider (EPP) who develops virtually the entire, broad array of quantitative risk (FRM) topics in spreadsheet workbooks (this is a massive construction of hundreds of spreadsheets that has taken me the better part of a decade to build). Now I've started to develop associated code-based applications for the ultimate in *realistic* study material. 
+
+## Using the gt page to render the regression output table
+
+I thought I'd try the [gt package](https://github.com/rstudio/gt) to see if I could improve the presentation of the regression output table. It's fairly intuitive but a little unexpected because you pipe ("%>%") additional format features. 
+
+This question (my first in the new regression set) reads as follows:
 
 > "20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (https://fred.stlouisfed.org/). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; https://en.wikipedia.org/wiki/Phillips_curve. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below."
 
