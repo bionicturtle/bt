@@ -24,7 +24,7 @@ projects: []
 
 BT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I've been writing a fresh question sets on the regression topics; I'm always writing new questions! It takes more time, but in these regression sets I've been pulling actual datasets. For this question, I pulled inflation and unemployment rates from the FRED database (see below). In combination with actual *code-based applications*, these new question sets are much more **realistic** than typical exam-prep fare. Let's face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it's our responsibility to help candidates get exposure to tools that are actually useful. We've always been the only FRM exam prep provider (EPP) who develops virtually the entire, broad array of quantitative risk (FRM) topics in spreadsheet workbooks (this is a massive construction of hundreds of spreadsheets that has taken me the better part of a decade to build). Now I've started to develop associated code-based applications for the ultimate in *realistic* study material. 
 
-## Using the gt page to render the regression output table
+## Using the gt package to render the regression output table
 
 I thought I'd try the [gt package](https://github.com/rstudio/gt) to see if I could improve the presentation of the regression output table. It's fairly intuitive but a little unexpected because you pipe ("%>%") additional format features. 
 
