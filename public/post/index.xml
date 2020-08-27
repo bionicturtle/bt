@@ -5,21 +5,12 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
-    
-    <item>
-      <title>test today</title>
-      <link>/post/test-today/</link>
-      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/test-today/</guid>
-      <description>&lt;p&gt;Hello world does this have comments?&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>BT Question P1-T2-20-16-1: Univariate regression: Inflation versus unemployment (using gt package to display table)</title>
