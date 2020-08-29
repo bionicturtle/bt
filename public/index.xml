@@ -77,6 +77,126 @@
     </item>
     
     <item>
+      <title>BT Question P1-T2-20-16-2: Univariate regression: Portfolio versus benchmark returns</title>
+      <link>/post/bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns/</guid>
+      <description>
+
+
+&lt;p&gt;20.16.2. Peter is an analyst who is evaluating an investment fund whose managers claim has outperformed their benchmark. He collected monthly returns for the last five years; i.e., the sample size is excess return pairs over n = 60 months. He plots excess returns, which are defined as the returns in excess of the riskfree rate; ie., an excess return equals the gross return minus the riskfree rate. The scatterplot is displayed below:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;scatterplot&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The correlation coefficient is 0.708. In regard to the univariate data, the standard deviation of the portfolio’s returns is 22.84% and the standard deviation of the benchmark’s returns is 9.79%. The average excess return of the benchmark was -0.37% and the average excess return of the portfolio was 2.61%. Each of the following statements is true EXCEPT which is false?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(scales)
+library(ggthemes)
+# library(lmtest)
+
+x_mu &amp;lt;- .01; x_sig &amp;lt;- .1
+
+y_mu &amp;lt;- .03; y_sig &amp;lt;- .2
+
+rho &amp;lt;-  0.72
+months &amp;lt;- 60
+
+#set.seed(59)
+set.seed(158)
+
+# 60  rows of random standard normals
+returns &amp;lt;- tibble(index = 1:months)
+returns$x1 &amp;lt;- rnorm(months) 
+returns$y1 &amp;lt;- rnorm(months)
+
+# make y2 correlated with y1; adjust location/scale
+returns1 &amp;lt;- returns %&amp;gt;% mutate(
+  y2 = rho*x1 + sqrt(1 - rho^2)*y1,
+  r_x = x_mu + x1 * x_sig,
+  r_y = y_mu + y2 * y_sig
+)
+
+x_sd &amp;lt;- sd(returns1$r_x)
+y_sd &amp;lt;- sd(returns1$r_y)
+rho_xy &amp;lt;- cor(returns1$r_x, returns1$r_y)
+beta_yx &amp;lt;- rho_xy * y_sd / x_sd
+x_mu_act &amp;lt;- mean(returns1$r_x)
+y_mu_act &amp;lt;- mean(returns1$r_y)
+
+sprintf(&amp;quot;sample rho is %.4f. The standard deviation of Portfolio returns is &amp;quot;, rho_xy)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;sample rho is 0.7078. The standard deviation of Portfolio returns is &amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;paste(&amp;quot;Portfolio standard deviation is&amp;quot;, percent(y_sd, accuracy = .01))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Portfolio standard deviation is 22.84%&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;paste(&amp;quot;Benchmark standard deviation is&amp;quot;, percent(x_sd, accuracy = .01))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Benchmark standard deviation is 9.79%&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;paste(&amp;quot;Portfolio average excess return is&amp;quot;, percent(y_mu_act, accuracy = .01))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Portfolio average excess return is 2.61%&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;paste(&amp;quot;Benchmark average excess return is&amp;quot;, percent(x_mu_act, accuracy = .01))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Benchmark average excess return is -0.37%&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sprintf(&amp;quot;Beta(P,B) is %.3f&amp;quot;, beta_yx) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Beta(P,B) is 1.652&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;returns1_lm &amp;lt;- lm(r_y ~ r_x, data = returns1)
+summary(returns1_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_y ~ r_x, data = returns1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.30810 -0.11231 -0.01385  0.09922  0.42134 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  0.03231    0.02102   1.537     0.13    
+## r_x          1.65219    0.21649   7.632 2.54e-10 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1627 on 58 degrees of freedom
+## Multiple R-squared:  0.501,  Adjusted R-squared:  0.4924 
+## F-statistic: 58.24 on 1 and 58 DF,  p-value: 2.543e-10&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;returns1 %&amp;gt;% ggplot(aes(x = r_x, y = r_y)) +
+  geom_point() +
+  geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE, color = &amp;quot;forestgreen&amp;quot;, linetype = &amp;quot;longdash&amp;quot;, size = 1.5) +
+  ggtitle(&amp;quot;Investment fund versus benchmark: Excess returns, n = 60 months&amp;quot;) +
+  xlab(&amp;quot;Benchmark&amp;#39;s excess returns&amp;quot;) +
+  ylab(&amp;quot;Portfolio&amp;#39;s excess returns&amp;quot;) +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  theme_light() +
+  theme(
+    axis.title.y = element_text(size = 14),
+    axis.title.x = element_text(size = 14),
+    axis.text.x = element_text(size = 14, margin = margin(b = 10)),
+    axis.text.y = element_text(size = 14, margin = margin(l = 10))
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-28-bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(returns1_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-28-bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns.en_files/figure-html/unnamed-chunk-1-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2020-08-28-bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns.en_files/figure-html/unnamed-chunk-1-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2020-08-28-bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns.en_files/figure-html/unnamed-chunk-1-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2020-08-28-bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns.en_files/figure-html/unnamed-chunk-1-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;new.df &amp;lt;- data.frame(r_x = c(x_mu_act, 0, seq(from = 0.01, to = 0.1, by = .01)))
+new.df$predicted_y &amp;lt;- predict(returns1_lm, new.df)
+new.df&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             r_x predicted_y
+## 1  -0.003740684  0.02613168
+## 2   0.000000000  0.03231199
+## 3   0.010000000  0.04883388
+## 4   0.020000000  0.06535577
+## 5   0.030000000  0.08187766
+## 6   0.040000000  0.09839955
+## 7   0.050000000  0.11492143
+## 8   0.060000000  0.13144332
+## 9   0.070000000  0.14796521
+## 10  0.080000000  0.16448710
+## 11  0.090000000  0.18100899
+## 12  0.100000000  0.19753088&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;intercept_predict &amp;lt;- (0 - x_mu_act)*beta_yx + y_mu_act
+intercept_predict_round &amp;lt;- (0 - round(x_mu_act,4))*beta_yx + round(y_mu_act,4)
+intercept_predict&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.03231199&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;intercept_predict_round&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0322131&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>BT Question P1-T2-20-16-1: Univariate regression: Inflation versus unemployment (using gt package to display table)</title>
       <link>/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/</link>
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
