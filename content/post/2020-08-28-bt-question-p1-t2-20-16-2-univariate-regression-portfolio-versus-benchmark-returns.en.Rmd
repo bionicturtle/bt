@@ -76,13 +76,16 @@ summary(returns1_lm)
 returns1 %>% ggplot(aes(x = r_x, y = r_y)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "forestgreen", linetype = "longdash", size = 1.5) +
-  ggtitle("Investment fund versus benchmark: Excess returns, n = 60 months") +
+  labs(title = "Investment fund versus benchmark", 
+       subtitle = "Excess returns, n = 60 months") +
   xlab("Benchmark's excess returns") +
   ylab("Portfolio's excess returns") +
   scale_x_continuous(labels = percent_format(accuracy = 1)) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   theme_light() +
   theme(
+    plot.title = element_text(size = 16),
+    plot.subtitle = element_text(size = 16),
     axis.title.y = element_text(size = 14),
     axis.title.x = element_text(size = 14),
     axis.text.x = element_text(size = 14, margin = margin(b = 10)),
