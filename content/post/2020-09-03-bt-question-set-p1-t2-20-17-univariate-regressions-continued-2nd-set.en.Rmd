@@ -1,0 +1,19 @@
+---
+title: 'BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set)'
+author: David Harper
+date: '2020-09-03'
+slug: bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-09-03T22:50:08-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
