@@ -77,6 +77,3077 @@
     </item>
     
     <item>
+      <title>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)</title>
+      <link>/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/</link>
+      <pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/</guid>
+      <description>
+
+
+&lt;div id=&#34;learning-objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.&lt;/li&gt;
+&lt;li&gt;Explain the steps needed to perform a hypothesis test in a linear regression.&lt;/li&gt;
+&lt;li&gt;Describe the relationship between a t-statistic, its p-value, and a confidence interval.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s load some packages!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(tidyquant)
+library(lubridate)
+library(readxl)
+library(timetk)
+library(tibbletime)
+library(quantmod)
+library(PerformanceAnalytics)
+library(scales)
+library(broom)
+library(gt)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;first-question&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;First question&lt;/h3&gt;
+&lt;p&gt;BT 20.17.1. Below the results of a linear regression analysis are displayed. The dataset is monthly returns over a six-year period; i.e., n = 72 months. The gross returns of Apple’s stock (ticker: AAPL) were regressed against the S&amp;amp;P 1500 Index (the S&amp;amp;P 1500 is our proxy for the market). The explanatory variable is SP_1500 and the response (aka, dependent) variable is AAPL.&lt;/p&gt;
+&lt;p&gt;Question: Which is nearest to the 90.0% confidence interval for the beta of Apple’s (AAPL) stock?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AAPL &amp;lt;- tq_get(&amp;#39;AAPL&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+SP1500 &amp;lt;- tq_get(&amp;#39;SPTM&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+AAPL &amp;lt;- AAPL %&amp;gt;% select(date, adjusted)
+SP1500 &amp;lt;- SP1500 %&amp;gt;% select(date, adjusted)
+
+AAPL_monthly &amp;lt;- AAPL %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+SP1500_monthly &amp;lt;- SP1500 %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+
+AAPL_monthly &amp;lt;- AAPL_monthly %&amp;gt;% mutate(
+  r_m_AAPL = log(adjusted/lag(adjusted)))
+SP1500_monthly &amp;lt;-SP1500_monthly %&amp;gt;% mutate(
+  r_m_SP = log(adjusted/lag(adjusted)))
+
+AAPL_monthly &amp;lt;- AAPL_monthly %&amp;gt;% 
+  rename(date_AAPL = date,
+         adj_AAPL = adjusted)
+SP1500_monthly &amp;lt;- SP1500_monthly %&amp;gt;% 
+  rename(date_SP = date,
+         adj_SP = adjusted)
+
+both_monthly &amp;lt;- cbind(SP1500_monthly, AAPL_monthly)
+
+both_72 &amp;lt;- both_monthly[-c(1:60), ]
+both_72 &amp;lt;- both_72 %&amp;gt;% rename(r_SP_1500 = r_m_SP)
+saveRDS(both_72, &amp;quot;t2-20-17-aapl-sp1500.rds&amp;quot;)
+
+con &amp;lt;- url(&amp;quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-aapl-sp1500.rds&amp;quot;)
+both_72 &amp;lt;- readRDS(con)
+close(con)
+
+
+model_72 &amp;lt;- lm(r_m_AAPL ~ r_SP_1500, data = both_72)
+summary(model_72)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 0.007969   0.007477   1.066     0.29    
+## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.06123 on 70 degrees of freedom
+## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
+## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1_model_72 &amp;lt;- both_72 %&amp;gt;% ggplot(aes(r_SP_1500, r_m_AAPL)) +
+  geom_point() +
+  geom_smooth(method = &amp;quot;lm&amp;quot;)
+
+model_72_tidy &amp;lt;- tidy(model_72)
+
+gt_table_model_72 &amp;lt;- gt(model_72_tidy)
+
+gt_table_model_72 &amp;lt;- 
+  gt_table_model_72 %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;AAPL versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&amp;quot;,
+    subtitle = md(&amp;quot;Six years (2014 - 2019), n = 72 months&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = &amp;quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&amp;quot;
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 3
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model_72&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#pjsacxzwhl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pjsacxzwhl .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pjsacxzwhl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pjsacxzwhl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pjsacxzwhl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pjsacxzwhl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pjsacxzwhl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pjsacxzwhl .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pjsacxzwhl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pjsacxzwhl .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#pjsacxzwhl .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#pjsacxzwhl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pjsacxzwhl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pjsacxzwhl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pjsacxzwhl .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pjsacxzwhl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pjsacxzwhl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pjsacxzwhl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pjsacxzwhl .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pjsacxzwhl .gt_left {
+  text-align: left;
+}
+
+#pjsacxzwhl .gt_center {
+  text-align: center;
+}
+
+#pjsacxzwhl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pjsacxzwhl .gt_font_normal {
+  font-weight: normal;
+}
+
+#pjsacxzwhl .gt_font_bold {
+  font-weight: bold;
+}
+
+#pjsacxzwhl .gt_font_italic {
+  font-style: italic;
+}
+
+#pjsacxzwhl .gt_super {
+  font-size: 65%;
+}
+
+#pjsacxzwhl .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;pjsacxzwhl&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;AAPL versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Six years (2014 - 2019), n = 72 months&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.008&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.007&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.066&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.90 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;r_SP_1500&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.270&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.216&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.889&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.23 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;7&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1_model_72&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(model_72)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 0.007969   0.007477   1.066     0.29    
+## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.06123 on 70 degrees of freedom
+## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
+## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beta &amp;lt;- model_72_tidy$estimate[2]
+se_beta &amp;lt;- model_72_tidy$std.error[2]
+ci_confidence = 0.90
+z_2s &amp;lt;- qnorm((1 + ci_confidence)/2)
+ci_lower &amp;lt;- beta - se_beta*z_2s
+ci_upper &amp;lt;- beta + se_beta*z_2s
+
+ci_lower&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9149958&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci_upper&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.624257&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;second-question&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Second question&lt;/h3&gt;
+&lt;p&gt;BT 20.17.2. Peter wants to add a low-beta stock to his portfolio. One candidate is Kroger’s stock (ticker: KR). As a proxy for the market, he uses the S&amp;amp;P 1500. He wrangled gross monthly returns for KR and SP_1500 over ten years such that his sample size is 120 pairwise returns. The regression results are displayed below.&lt;/p&gt;
+&lt;p&gt;Peters wants to make two decisions. In both cases, his test is a two-sided hypothesis test with 99.0% confidence. In the first test, the null hypothesis is that KR’s beta is zero. In the second test, the null hypothesis is that KR’s beta is one (1.0). Based on these regression results, which of the following is TRUE as a valid inference?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;KR &amp;lt;- tq_get(&amp;#39;KR&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+SP1500 &amp;lt;- tq_get(&amp;#39;SPTM&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+KR &amp;lt;- KR %&amp;gt;% select(date, adjusted)
+SP1500 &amp;lt;- SP1500 %&amp;gt;% select(date, adjusted)
+
+KR_monthly &amp;lt;- KR %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+SP1500_monthly &amp;lt;- SP1500 %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+
+KR_monthly &amp;lt;- KR_monthly %&amp;gt;% mutate(
+  r_m_KR = log(adjusted/lag(adjusted)))
+
+SP1500_monthly &amp;lt;-SP1500_monthly %&amp;gt;% mutate(
+  r_m_SP = log(adjusted/lag(adjusted)))
+
+KR_monthly &amp;lt;- KR_monthly %&amp;gt;% 
+  rename(date_KR = date,
+         adj_KR = adjusted)
+
+SP1500_monthly &amp;lt;- SP1500_monthly %&amp;gt;% 
+  rename(date_SP = date,
+         adj_SP = adjusted)
+
+both_monthly &amp;lt;- cbind(SP1500_monthly, KR_monthly)
+
+# testing different relationships really for Q&amp;amp;A properties
+# both_131 &amp;lt;- both_monthly[-1, ]
+both_120 &amp;lt;- both_monthly[-c(1:12), ]
+# both_108 &amp;lt;- both_monthly[-c(1:24), ]
+# both_96 &amp;lt;- both_monthly[-c(1:36), ]
+# both_84 &amp;lt;- both_monthly[-c(1:48), ]
+# both_72 &amp;lt;- both_monthly[-c(1:60), ]
+
+both_120 &amp;lt;- both_120 %&amp;gt;% rename(SP_1500 = r_m_SP)
+saveRDS(both_120, &amp;quot;t2-20-17-kroger-sp1500.rds&amp;quot;)
+
+con &amp;lt;- url(&amp;quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-kroger-sp1500.rds&amp;quot;)
+both_120 &amp;lt;- readRDS(con)
+close(con)
+
+both_120 %&amp;gt;% ggplot(aes(x = SP_1500, y = r_m_KR)) +
+  geom_point() +
+  geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_120 &amp;lt;- lm(r_m_KR ~ SP_1500, data = both_120)
+summary(model_120)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_m_KR ~ SP_1500, data = both_120)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.255113 -0.039050  0.009397  0.043573  0.203206 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 0.003594   0.006433   0.559    0.577    
+## SP_1500     0.696484   0.169073   4.119 7.08e-05 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.06775 on 118 degrees of freedom
+## Multiple R-squared:  0.1257, Adjusted R-squared:  0.1183 
+## F-statistic: 16.97 on 1 and 118 DF,  p-value: 7.082e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;###
+
+model_120_tidy &amp;lt;- tidy(model_120)
+
+gt_table_model_120 &amp;lt;- gt(model_120_tidy)
+
+gt_table_model_120 &amp;lt;- 
+  gt_table_model_120 %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Kroger (KR) versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&amp;quot;,
+    subtitle = md(&amp;quot;Ten years (2010 - 2019), n = 120 months&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = &amp;quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&amp;quot;
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 4
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model_120&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#izrtqykfua .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#izrtqykfua .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#izrtqykfua .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#izrtqykfua .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#izrtqykfua .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#izrtqykfua .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#izrtqykfua .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#izrtqykfua .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#izrtqykfua .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#izrtqykfua .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#izrtqykfua .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#izrtqykfua .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#izrtqykfua .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#izrtqykfua .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izrtqykfua .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izrtqykfua .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#izrtqykfua .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#izrtqykfua .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#izrtqykfua .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#izrtqykfua .gt_left {
+  text-align: left;
+}
+
+#izrtqykfua .gt_center {
+  text-align: center;
+}
+
+#izrtqykfua .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#izrtqykfua .gt_font_normal {
+  font-weight: normal;
+}
+
+#izrtqykfua .gt_font_bold {
+  font-weight: bold;
+}
+
+#izrtqykfua .gt_font_italic {
+  font-style: italic;
+}
+
+#izrtqykfua .gt_super {
+  font-size: 65%;
+}
+
+#izrtqykfua .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;izrtqykfua&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Kroger (KR) versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Ten years (2010 - 2019), n = 120 months&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0036&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0064&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.5587&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.77 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;SP_1500&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.6965&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.1691&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.1194&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.08 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;5&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;third-question&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Third question&lt;/h3&gt;
+&lt;p&gt;BT 20.17.3. Debra is an economist who is interested in the relationship between consumer spending and the gross domestic product (GDP). From the FRED database at the Fed’s Bank of St. Louis (&lt;a href=&#34;https://fred.stlouisfed.org/&#34; class=&#34;uri&#34;&gt;https://fred.stlouisfed.org/&lt;/a&gt;) she collects quarterly data from 1980 through the first quarter of 2020; her series includes n = 161 quarters of data. She regresses consumer spending (C_SPEND), as the response (aka, dependent) variable against GDP as the explanatory (aka, independent) variable. Each series is not a level, but rather a seasonally adjusted percent change. The regression results are displayed below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(alfred)
+library(ggplot2)
+
+
+# startdate &amp;lt;- &amp;quot;1980-01-01&amp;quot;
+# enddate &amp;lt;- &amp;quot;2020-01-01&amp;quot;
+# startdate1 &amp;lt;- &amp;quot;1980-01-01&amp;quot;
+# enddate1 &amp;lt;- &amp;quot;2020-01-01&amp;quot;
+
+# gdp &amp;lt;- get_fred_series(&amp;quot;A191RP1Q027SBEA&amp;quot;, &amp;quot;GDP&amp;quot;, observation_start = startdate1, observation_end = enddate1)
+# cspend &amp;lt;- get_fred_series(&amp;quot;DPCERL1Q225SBEA&amp;quot;, &amp;quot;C_Spend&amp;quot;, observation_start = startdate1, observation_end = enddate1)
+# testing
+# cdebt &amp;lt;- get_fred_series(&amp;quot;CDSP&amp;quot;, &amp;quot;C_Debt&amp;quot;, observation_start = startdate1, observation_end = enddate1)
+# df1 &amp;lt;- cbind(gdp, cdebt)
+# df1 &amp;lt;- df1[-3]
+
+# df2 &amp;lt;- cbind(gdp, cspend)
+# df2 &amp;lt;- df2[-3]
+# df2 &amp;lt;- df2 %&amp;gt;% rename(C_SPEND = C_Spend)
+# saving dataframe because series data changed in the meantime!
+# saveRDS(df2, &amp;quot;t2-20-17-spend-versus-gdp.rds&amp;quot;)
+
+con &amp;lt;- url(&amp;quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-spend-versus-gdp.rds&amp;quot;)
+df2 &amp;lt;- readRDS(con)
+close(con)
+
+ggplot(df2, aes(GDP, C_SPEND)) + 
+  geom_point() + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_spend &amp;lt;- lm(C_SPEND ~ GDP, data = df2)
+summary(model_spend)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = C_SPEND ~ GDP, data = df2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.0025  -1.1513   0.2266   1.2048   4.6900 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  0.89995    0.31555   2.852  0.00492 ** 
+## GDP          0.36591    0.04993   7.329 1.11e-11 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 2.155 on 159 degrees of freedom
+## Multiple R-squared:  0.2525, Adjusted R-squared:  0.2478 
+## F-statistic: 53.71 on 1 and 159 DF,  p-value: 1.107e-11&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_fit_tidy &amp;lt;- tidy(model_spend)
+
+sd(df2$GDP)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.411722&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sd(df2$C_SPEND)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.484429&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(df2$GDP, df2$C_SPEND)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5024882&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beta &amp;lt;- df_fit_tidy$estimate[2]
+beta_r &amp;lt;- round(beta,4)
+sd_gdp &amp;lt;- round(sd(df2$GDP),3)
+sd_spend &amp;lt;- round(sd(df2$C_SPEND),3)
+correlation_compute &amp;lt;- beta_r * sd_gdp/sd_spend
+
+gt_table &amp;lt;- gt(df_fit_tidy)
+
+gt_table &amp;lt;- 
+  gt_table %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)&amp;quot;,
+    subtitle = md(&amp;quot;Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = md(&amp;quot;Source: FRED at https://fred.stlouisfed.org/&amp;quot;)
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 4
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#rslkcytkdt .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rslkcytkdt .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rslkcytkdt .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rslkcytkdt .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rslkcytkdt .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rslkcytkdt .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rslkcytkdt .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rslkcytkdt .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rslkcytkdt .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rslkcytkdt .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#rslkcytkdt .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#rslkcytkdt .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rslkcytkdt .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#rslkcytkdt .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslkcytkdt .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslkcytkdt .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rslkcytkdt .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#rslkcytkdt .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rslkcytkdt .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#rslkcytkdt .gt_left {
+  text-align: left;
+}
+
+#rslkcytkdt .gt_center {
+  text-align: center;
+}
+
+#rslkcytkdt .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rslkcytkdt .gt_font_normal {
+  font-weight: normal;
+}
+
+#rslkcytkdt .gt_font_bold {
+  font-weight: bold;
+}
+
+#rslkcytkdt .gt_font_italic {
+  font-style: italic;
+}
+
+#rslkcytkdt .gt_super {
+  font-size: 65%;
+}
+
+#rslkcytkdt .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;rslkcytkdt&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.9000&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.3156&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.8520&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.92 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;3&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;GDP&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.3659&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0499&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.3285&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.11 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;11&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: FRED at https://fred.stlouisfed.org/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_fit_tidy$p.value[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.106954e-11&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y_intercept &amp;lt;- df_fit_tidy$estimate[1]
+se_y_intercept &amp;lt;- df_fit_tidy$std.error[1]
+ci_confidence = 0.95
+z_2s &amp;lt;- qnorm((1 + ci_confidence)/2)
+
+ci_lower &amp;lt;- y_intercept - se_y_intercept*z_2s
+ci_upper &amp;lt;- y_intercept + se_y_intercept*z_2s
+ci_lower&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2814779&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci_upper&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.518425&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slope_c &amp;lt;-df_fit_tidy$estimate[2]
+se_slope &amp;lt;- df_fit_tidy$std.error[2]
+slope_ci_lower &amp;lt;- slope_c - se_slope * z_2s
+slope_ci_upper &amp;lt;- slope_c + se_slope * z_2s
+slope_ci_lower&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2680529&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slope_ci_upper&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.463775&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set)</title>
+      <link>/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/</link>
+      <pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/</guid>
+      <description>
+
+
+&lt;p&gt;Learning objectives:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.&lt;/li&gt;
+&lt;li&gt;Explain the steps needed to perform a hypothesis test in a linear regression.&lt;/li&gt;
+&lt;li&gt;Describe the relationship between a t-statistic, its p-value, and a confidence interval.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s load some packages!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(tidyquant)
+library(lubridate)
+library(readxl)
+library(timetk)
+library(tibbletime)
+library(quantmod)
+library(PerformanceAnalytics)
+library(scales)
+library(broom)
+library(gt)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;BT 20.17.1. Below the results of a linear regression analysis are displayed. The dataset is monthly returns over a six-year period; i.e., n = 72 months. The gross returns of Apple’s stock (ticker: AAPL) were regressed against the S&amp;amp;P 1500 Index (the S&amp;amp;P 1500 is our proxy for the market). The explanatory variable is SP_1500 and the response (aka, dependent) variable is AAPL.&lt;/p&gt;
+&lt;p&gt;Question: Which is nearest to the 90.0% confidence interval for the beta of Apple’s (AAPL) stock?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AAPL &amp;lt;- tq_get(&amp;#39;AAPL&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+SP1500 &amp;lt;- tq_get(&amp;#39;SPTM&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+AAPL &amp;lt;- AAPL %&amp;gt;% select(date, adjusted)
+SP1500 &amp;lt;- SP1500 %&amp;gt;% select(date, adjusted)
+
+AAPL_monthly &amp;lt;- AAPL %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+SP1500_monthly &amp;lt;- SP1500 %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+
+AAPL_monthly &amp;lt;- AAPL_monthly %&amp;gt;% mutate(
+  r_m_AAPL = log(adjusted/lag(adjusted)))
+SP1500_monthly &amp;lt;-SP1500_monthly %&amp;gt;% mutate(
+  r_m_SP = log(adjusted/lag(adjusted)))
+
+AAPL_monthly &amp;lt;- AAPL_monthly %&amp;gt;% 
+  rename(date_AAPL = date,
+         adj_AAPL = adjusted)
+SP1500_monthly &amp;lt;- SP1500_monthly %&amp;gt;% 
+  rename(date_SP = date,
+         adj_SP = adjusted)
+
+both_monthly &amp;lt;- cbind(SP1500_monthly, AAPL_monthly)
+
+both_72 &amp;lt;- both_monthly[-c(1:60), ]
+both_72 &amp;lt;- both_72 %&amp;gt;% rename(r_SP_1500 = r_m_SP)
+saveRDS(both_72, &amp;quot;t2-20-17-aapl-sp1500.rds&amp;quot;)
+
+con &amp;lt;- url(&amp;quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-aapl-sp1500.rds&amp;quot;)
+both_72 &amp;lt;- readRDS(con)
+close(con)
+
+
+model_72 &amp;lt;- lm(r_m_AAPL ~ r_SP_1500, data = both_72)
+summary(model_72)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 0.007969   0.007477   1.066     0.29    
+## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.06123 on 70 degrees of freedom
+## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
+## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1_model_72 &amp;lt;- both_72 %&amp;gt;% ggplot(aes(r_SP_1500, r_m_AAPL)) +
+  geom_point() +
+  geom_smooth(method = &amp;quot;lm&amp;quot;)
+
+model_72_tidy &amp;lt;- tidy(model_72)
+
+gt_table_model_72 &amp;lt;- gt(model_72_tidy)
+
+gt_table_model_72 &amp;lt;- 
+  gt_table_model_72 %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;AAPL versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&amp;quot;,
+    subtitle = md(&amp;quot;Six years (2014 - 2019), n = 72 months&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = &amp;quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&amp;quot;
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 3
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model_72&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#bdezoxofsz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#bdezoxofsz .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#bdezoxofsz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#bdezoxofsz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bdezoxofsz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#bdezoxofsz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#bdezoxofsz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#bdezoxofsz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bdezoxofsz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bdezoxofsz .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#bdezoxofsz .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#bdezoxofsz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#bdezoxofsz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#bdezoxofsz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bdezoxofsz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bdezoxofsz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#bdezoxofsz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#bdezoxofsz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#bdezoxofsz .gt_left {
+  text-align: left;
+}
+
+#bdezoxofsz .gt_center {
+  text-align: center;
+}
+
+#bdezoxofsz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#bdezoxofsz .gt_font_normal {
+  font-weight: normal;
+}
+
+#bdezoxofsz .gt_font_bold {
+  font-weight: bold;
+}
+
+#bdezoxofsz .gt_font_italic {
+  font-style: italic;
+}
+
+#bdezoxofsz .gt_super {
+  font-size: 65%;
+}
+
+#bdezoxofsz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;bdezoxofsz&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;AAPL versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Six years (2014 - 2019), n = 72 months&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.008&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.007&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.066&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.90 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;r_SP_1500&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.270&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.216&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.889&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.23 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;7&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1_model_72&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(model_72)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 0.007969   0.007477   1.066     0.29    
+## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.06123 on 70 degrees of freedom
+## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
+## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beta &amp;lt;- model_72_tidy$estimate[2]
+se_beta &amp;lt;- model_72_tidy$std.error[2]
+ci_confidence = 0.90
+z_2s &amp;lt;- qnorm((1 + ci_confidence)/2)
+ci_lower &amp;lt;- beta - se_beta*z_2s
+ci_upper &amp;lt;- beta + se_beta*z_2s
+
+ci_lower&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9149958&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci_upper&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.624257&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;BT 20.17.2. Peter wants to add a low-beta stock to his portfolio. One candidate is Kroger’s stock (ticker: KR). As a proxy for the market, he uses the S&amp;amp;P 1500. He wrangled gross monthly returns for KR and SP_1500 over ten years such that his sample size is 120 pairwise returns. The regression results are displayed below.&lt;/p&gt;
+&lt;p&gt;Peters wants to make two decisions. In both cases, his test is a two-sided hypothesis test with 99.0% confidence. In the first test, the null hypothesis is that KR’s beta is zero. In the second test, the null hypothesis is that KR’s beta is one (1.0). Based on these regression results, which of the following is TRUE as a valid inference?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;KR &amp;lt;- tq_get(&amp;#39;KR&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+SP1500 &amp;lt;- tq_get(&amp;#39;SPTM&amp;#39;,
+               from = &amp;quot;2009-01-01&amp;quot;,
+               to = &amp;quot;2020-01-01&amp;quot;)
+
+KR &amp;lt;- KR %&amp;gt;% select(date, adjusted)
+SP1500 &amp;lt;- SP1500 %&amp;gt;% select(date, adjusted)
+
+KR_monthly &amp;lt;- KR %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+SP1500_monthly &amp;lt;- SP1500 %&amp;gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &amp;quot;lastof&amp;quot;)
+
+KR_monthly &amp;lt;- KR_monthly %&amp;gt;% mutate(
+  r_m_KR = log(adjusted/lag(adjusted)))
+
+SP1500_monthly &amp;lt;-SP1500_monthly %&amp;gt;% mutate(
+  r_m_SP = log(adjusted/lag(adjusted)))
+
+KR_monthly &amp;lt;- KR_monthly %&amp;gt;% 
+  rename(date_KR = date,
+         adj_KR = adjusted)
+
+SP1500_monthly &amp;lt;- SP1500_monthly %&amp;gt;% 
+  rename(date_SP = date,
+         adj_SP = adjusted)
+
+both_monthly &amp;lt;- cbind(SP1500_monthly, KR_monthly)
+
+# testing different relationships really for Q&amp;amp;A properties
+# both_131 &amp;lt;- both_monthly[-1, ]
+both_120 &amp;lt;- both_monthly[-c(1:12), ]
+# both_108 &amp;lt;- both_monthly[-c(1:24), ]
+# both_96 &amp;lt;- both_monthly[-c(1:36), ]
+# both_84 &amp;lt;- both_monthly[-c(1:48), ]
+# both_72 &amp;lt;- both_monthly[-c(1:60), ]
+
+both_120 &amp;lt;- both_120 %&amp;gt;% rename(SP_1500 = r_m_SP)
+saveRDS(both_120, &amp;quot;t2-20-17-kroger-sp1500.rds&amp;quot;)
+
+con &amp;lt;- url(&amp;quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-kroger-sp1500.rds&amp;quot;)
+both_120 &amp;lt;- readRDS(con)
+close(con)
+
+both_120 %&amp;gt;% ggplot(aes(x = SP_1500, y = r_m_KR)) +
+  geom_point() +
+  geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_120 &amp;lt;- lm(r_m_KR ~ SP_1500, data = both_120)
+summary(model_120)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = r_m_KR ~ SP_1500, data = both_120)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.255113 -0.039050  0.009397  0.043573  0.203206 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 0.003594   0.006433   0.559    0.577    
+## SP_1500     0.696484   0.169073   4.119 7.08e-05 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.06775 on 118 degrees of freedom
+## Multiple R-squared:  0.1257, Adjusted R-squared:  0.1183 
+## F-statistic: 16.97 on 1 and 118 DF,  p-value: 7.082e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;###
+
+model_120_tidy &amp;lt;- tidy(model_120)
+
+gt_table_model_120 &amp;lt;- gt(model_120_tidy)
+
+gt_table_model_120 &amp;lt;- 
+  gt_table_model_120 %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Kroger (KR) versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&amp;quot;,
+    subtitle = md(&amp;quot;Ten years (2010 - 2019), n = 120 months&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = &amp;quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&amp;quot;
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 4
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model_120&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#iphbyyecgs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iphbyyecgs .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iphbyyecgs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iphbyyecgs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iphbyyecgs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iphbyyecgs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iphbyyecgs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iphbyyecgs .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iphbyyecgs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iphbyyecgs .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#iphbyyecgs .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#iphbyyecgs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iphbyyecgs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#iphbyyecgs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iphbyyecgs .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iphbyyecgs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iphbyyecgs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iphbyyecgs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iphbyyecgs .gt_left {
+  text-align: left;
+}
+
+#iphbyyecgs .gt_center {
+  text-align: center;
+}
+
+#iphbyyecgs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iphbyyecgs .gt_font_normal {
+  font-weight: normal;
+}
+
+#iphbyyecgs .gt_font_bold {
+  font-weight: bold;
+}
+
+#iphbyyecgs .gt_font_italic {
+  font-style: italic;
+}
+
+#iphbyyecgs .gt_super {
+  font-size: 65%;
+}
+
+#iphbyyecgs .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;iphbyyecgs&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Kroger (KR) versus S&amp;amp;P_1500: Gross (incl. Rf) monthly log return&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Ten years (2010 - 2019), n = 120 months&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0036&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0064&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.5587&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.77 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;SP_1500&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.6965&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.1691&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.1194&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.08 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;5&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;BT 20.17.3. Debra is an economist who is interested in the relationship between consumer spending and the gross domestic product (GDP). From the FRED database at the Fed’s Bank of St. Louis (&lt;a href=&#34;https://fred.stlouisfed.org/&#34; class=&#34;uri&#34;&gt;https://fred.stlouisfed.org/&lt;/a&gt;) she collects quarterly data from 1980 through the first quarter of 2020; her series includes n = 161 quarters of data. She regresses consumer spending (C_SPEND), as the response (aka, dependent) variable against GDP as the explanatory (aka, independent) variable. Each series is not a level, but rather a seasonally adjusted percent change. The regression results are displayed below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(alfred)
+library(ggplot2)
+
+
+# startdate &amp;lt;- &amp;quot;1980-01-01&amp;quot;
+# enddate &amp;lt;- &amp;quot;2020-01-01&amp;quot;
+# startdate1 &amp;lt;- &amp;quot;1980-01-01&amp;quot;
+# enddate1 &amp;lt;- &amp;quot;2020-01-01&amp;quot;
+
+# gdp &amp;lt;- get_fred_series(&amp;quot;A191RP1Q027SBEA&amp;quot;, &amp;quot;GDP&amp;quot;, observation_start = startdate1, observation_end = enddate1)
+# cspend &amp;lt;- get_fred_series(&amp;quot;DPCERL1Q225SBEA&amp;quot;, &amp;quot;C_Spend&amp;quot;, observation_start = startdate1, observation_end = enddate1)
+# testing
+# cdebt &amp;lt;- get_fred_series(&amp;quot;CDSP&amp;quot;, &amp;quot;C_Debt&amp;quot;, observation_start = startdate1, observation_end = enddate1)
+# df1 &amp;lt;- cbind(gdp, cdebt)
+# df1 &amp;lt;- df1[-3]
+
+# df2 &amp;lt;- cbind(gdp, cspend)
+# df2 &amp;lt;- df2[-3]
+# df2 &amp;lt;- df2 %&amp;gt;% rename(C_SPEND = C_Spend)
+# saving dataframe because series data changed in the meantime!
+# saveRDS(df2, &amp;quot;t2-20-17-spend-versus-gdp.rds&amp;quot;)
+
+con &amp;lt;- url(&amp;quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-spend-versus-gdp.rds&amp;quot;)
+df2 &amp;lt;- readRDS(con)
+close(con)
+
+ggplot(df2, aes(GDP, C_SPEND)) + 
+  geom_point() + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_spend &amp;lt;- lm(C_SPEND ~ GDP, data = df2)
+summary(model_spend)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = C_SPEND ~ GDP, data = df2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.0025  -1.1513   0.2266   1.2048   4.6900 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  0.89995    0.31555   2.852  0.00492 ** 
+## GDP          0.36591    0.04993   7.329 1.11e-11 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 2.155 on 159 degrees of freedom
+## Multiple R-squared:  0.2525, Adjusted R-squared:  0.2478 
+## F-statistic: 53.71 on 1 and 159 DF,  p-value: 1.107e-11&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_fit_tidy &amp;lt;- tidy(model_spend)
+
+sd(df2$GDP)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.411722&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sd(df2$C_SPEND)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.484429&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(df2$GDP, df2$C_SPEND)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5024882&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beta &amp;lt;- df_fit_tidy$estimate[2]
+beta_r &amp;lt;- round(beta,4)
+sd_gdp &amp;lt;- round(sd(df2$GDP),3)
+sd_spend &amp;lt;- round(sd(df2$C_SPEND),3)
+correlation_compute &amp;lt;- beta_r * sd_gdp/sd_spend
+
+gt_table &amp;lt;- gt(df_fit_tidy)
+
+gt_table &amp;lt;- 
+  gt_table %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)&amp;quot;,
+    subtitle = md(&amp;quot;Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161&amp;quot;)
+  ) %&amp;gt;% 
+  tab_source_note(
+    source_note = md(&amp;quot;Source: FRED at https://fred.stlouisfed.org/&amp;quot;)
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 4
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#axfjzmrutd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#axfjzmrutd .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#axfjzmrutd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#axfjzmrutd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#axfjzmrutd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#axfjzmrutd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#axfjzmrutd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#axfjzmrutd .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#axfjzmrutd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#axfjzmrutd .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#axfjzmrutd .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#axfjzmrutd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#axfjzmrutd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#axfjzmrutd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#axfjzmrutd .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#axfjzmrutd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#axfjzmrutd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#axfjzmrutd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#axfjzmrutd .gt_left {
+  text-align: left;
+}
+
+#axfjzmrutd .gt_center {
+  text-align: center;
+}
+
+#axfjzmrutd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#axfjzmrutd .gt_font_normal {
+  font-weight: normal;
+}
+
+#axfjzmrutd .gt_font_bold {
+  font-weight: bold;
+}
+
+#axfjzmrutd .gt_font_italic {
+  font-style: italic;
+}
+
+#axfjzmrutd .gt_super {
+  font-size: 65%;
+}
+
+#axfjzmrutd .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;axfjzmrutd&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.9000&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.3156&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.8520&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.92 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;3&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;GDP&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.3659&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0499&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.3285&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.11 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;11&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Source: FRED at https://fred.stlouisfed.org/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_fit_tidy$p.value[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.106954e-11&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y_intercept &amp;lt;- df_fit_tidy$estimate[1]
+se_y_intercept &amp;lt;- df_fit_tidy$std.error[1]
+ci_confidence = 0.95
+z_2s &amp;lt;- qnorm((1 + ci_confidence)/2)
+
+ci_lower &amp;lt;- y_intercept - se_y_intercept*z_2s
+ci_upper &amp;lt;- y_intercept + se_y_intercept*z_2s
+ci_lower&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2814779&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci_upper&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.518425&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slope_c &amp;lt;-df_fit_tidy$estimate[2]
+se_slope &amp;lt;- df_fit_tidy$std.error[2]
+slope_ci_lower &amp;lt;- slope_c - se_slope * z_2s
+slope_ci_upper &amp;lt;- slope_c + se_slope * z_2s
+slope_ci_lower&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2680529&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slope_ci_upper&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.463775&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>BT Question P1-T2-20-16-3: Univariate regression: Monthly rental versus footage</title>
       <link>/post/bt-question-p1-t2-20-16-3-univariate-regression-monthly-rental-versus-footage/</link>
       <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>

@@ -1,15 +1,15 @@
 ---
-title: 'BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set)'
+title: 'BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)'
 author: David Harper
 date: '2020-09-03'
-slug: bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set
+slug: bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2
 categories:
   - R
 tags: []
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-09-03T22:50:08-07:00'
+lastmod: '2020-09-03T23:02:00-07:00'
 featured: no
 image:
   caption: ''
@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-Learning objectives: 
+## Learning objectives
 
 * Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression. 
 * Explain the steps needed to perform a hypothesis test in a linear regression. 
@@ -41,6 +41,7 @@ library(gt)
 
 ```
 
+### First question
 
 BT 20.17.1. Below the results of a linear regression analysis are displayed. The dataset is monthly returns over a six-year period; i.e., n = 72 months. The gross returns of Apple's stock (ticker: AAPL) were regressed against the S&P 1500 Index (the S&P 1500 is our proxy for the market). The explanatory variable is SP_1500 and the response (aka, dependent) variable is AAPL.
 
@@ -145,6 +146,8 @@ ci_upper
 
 ```
 
+### Second question
+
 BT 20.17.2. Peter wants to add a low-beta stock to his portfolio. One candidate is Kroger's stock (ticker: KR). As a proxy for the market, he uses the S&P 1500. He wrangled gross monthly returns for KR and SP_1500 over ten years such that his sample size is 120 pairwise returns. The regression results are displayed below.
 
 Peters wants to make two decisions. In both cases, his test is a two-sided hypothesis test with 99.0% confidence. In the first test, the null hypothesis is that KR's beta is zero. In the second test, the null hypothesis is that KR's beta is one (1.0). Based on these regression results, which of the following is TRUE as a valid inference?
@@ -246,7 +249,7 @@ gt_table_model_120 <-
 gt_table_model_120
 ```
 
-
+### Third question
 
 BT 20.17.3. Debra is an economist who is interested in the relationship between consumer spending and the gross domestic product (GDP). From the FRED database at the Fed's Bank of St. Louis (https://fred.stlouisfed.org/) she collects quarterly data from 1980 through the first quarter of 2020; her series includes n = 161 quarters of data. She regresses consumer spending (C_SPEND), as the response (aka, dependent) variable against GDP as the explanatory (aka, independent) variable. Each series is not a level, but rather a seasonally adjusted percent change. The regression results are displayed below.
 

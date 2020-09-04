@@ -1,0 +1,2633 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="David Harper">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Learning objectives:
+Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.Explain the steps needed to perform a hypothesis test in a linear regression.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#4caf50">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="David&#39;s (bionicturtle) data blog">
+  <meta property="og:url" content="/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/">
+  <meta property="og:title" content="BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set) | David&#39;s (bionicturtle) data blog">
+  <meta property="og:description" content="Learning objectives:
+Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.Explain the steps needed to perform a hypothesis test in a linear regression."><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-09-03T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-09-03T22:50:08-07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/"
+  },
+  "headline": "BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set)",
+  
+  "datePublished": "2020-09-03T00:00:00Z",
+  "dateModified": "2020-09-03T22:50:08-07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "David Harper"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "David's (bionicturtle) data blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Learning objectives:\n\rConstruct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.\rExplain the steps needed to perform a hypothesis test in a linear regression."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set) | David&#39;s (bionicturtle) data blog</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">David&#39;s (bionicturtle) data blog</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">David&#39;s (bionicturtle) data blog</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set)</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Sep 3, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    17 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p>Learning objectives:</p>
+<ul>
+<li>Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.</li>
+<li>Explain the steps needed to perform a hypothesis test in a linear regression.</li>
+<li>Describe the relationship between a t-statistic, its p-value, and a confidence interval.</li>
+</ul>
+<p>Let’s load some packages!</p>
+<pre class="r"><code>library(tidyverse)
+library(tidyquant)
+library(lubridate)
+library(readxl)
+library(timetk)
+library(tibbletime)
+library(quantmod)
+library(PerformanceAnalytics)
+library(scales)
+library(broom)
+library(gt)</code></pre>
+<p>BT 20.17.1. Below the results of a linear regression analysis are displayed. The dataset is monthly returns over a six-year period; i.e., n = 72 months. The gross returns of Apple’s stock (ticker: AAPL) were regressed against the S&amp;P 1500 Index (the S&amp;P 1500 is our proxy for the market). The explanatory variable is SP_1500 and the response (aka, dependent) variable is AAPL.</p>
+<p>Question: Which is nearest to the 90.0% confidence interval for the beta of Apple’s (AAPL) stock?</p>
+<pre class="r"><code>AAPL &lt;- tq_get(&#39;AAPL&#39;,
+               from = &quot;2009-01-01&quot;,
+               to = &quot;2020-01-01&quot;)
+
+SP1500 &lt;- tq_get(&#39;SPTM&#39;,
+               from = &quot;2009-01-01&quot;,
+               to = &quot;2020-01-01&quot;)
+
+AAPL &lt;- AAPL %&gt;% select(date, adjusted)
+SP1500 &lt;- SP1500 %&gt;% select(date, adjusted)
+
+AAPL_monthly &lt;- AAPL %&gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
+SP1500_monthly &lt;- SP1500 %&gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
+
+AAPL_monthly &lt;- AAPL_monthly %&gt;% mutate(
+  r_m_AAPL = log(adjusted/lag(adjusted)))
+SP1500_monthly &lt;-SP1500_monthly %&gt;% mutate(
+  r_m_SP = log(adjusted/lag(adjusted)))
+
+AAPL_monthly &lt;- AAPL_monthly %&gt;% 
+  rename(date_AAPL = date,
+         adj_AAPL = adjusted)
+SP1500_monthly &lt;- SP1500_monthly %&gt;% 
+  rename(date_SP = date,
+         adj_SP = adjusted)
+
+both_monthly &lt;- cbind(SP1500_monthly, AAPL_monthly)
+
+both_72 &lt;- both_monthly[-c(1:60), ]
+both_72 &lt;- both_72 %&gt;% rename(r_SP_1500 = r_m_SP)
+saveRDS(both_72, &quot;t2-20-17-aapl-sp1500.rds&quot;)
+
+con &lt;- url(&quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-aapl-sp1500.rds&quot;)
+both_72 &lt;- readRDS(con)
+close(con)
+
+
+model_72 &lt;- lm(r_m_AAPL ~ r_SP_1500, data = both_72)
+summary(model_72)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.007969   0.007477   1.066     0.29    
+## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.06123 on 70 degrees of freedom
+## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
+## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07</code></pre>
+<pre class="r"><code>p1_model_72 &lt;- both_72 %&gt;% ggplot(aes(r_SP_1500, r_m_AAPL)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;)
+
+model_72_tidy &lt;- tidy(model_72)
+
+gt_table_model_72 &lt;- gt(model_72_tidy)
+
+gt_table_model_72 &lt;- 
+  gt_table_model_72 %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;AAPL versus S&amp;P_1500: Gross (incl. Rf) monthly log return&quot;,
+    subtitle = md(&quot;Six years (2014 - 2019), n = 72 months&quot;)
+  ) %&gt;% 
+  tab_source_note(
+    source_note = &quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&quot;
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 3
+  ) %&gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model_72</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#bdezoxofsz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#bdezoxofsz .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#bdezoxofsz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#bdezoxofsz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bdezoxofsz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#bdezoxofsz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#bdezoxofsz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#bdezoxofsz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bdezoxofsz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bdezoxofsz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#bdezoxofsz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#bdezoxofsz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#bdezoxofsz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#bdezoxofsz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bdezoxofsz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bdezoxofsz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#bdezoxofsz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#bdezoxofsz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bdezoxofsz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#bdezoxofsz .gt_left {
+  text-align: left;
+}
+
+#bdezoxofsz .gt_center {
+  text-align: center;
+}
+
+#bdezoxofsz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#bdezoxofsz .gt_font_normal {
+  font-weight: normal;
+}
+
+#bdezoxofsz .gt_font_bold {
+  font-weight: bold;
+}
+
+#bdezoxofsz .gt_font_italic {
+  font-style: italic;
+}
+
+#bdezoxofsz .gt_super {
+  font-size: 65%;
+}
+
+#bdezoxofsz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="bdezoxofsz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>AAPL versus S&amp;P_1500: Gross (incl. Rf) monthly log return</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Six years (2014 - 2019), n = 72 months</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.008</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.007</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.066</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.90 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">r_SP_1500</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.270</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.216</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">5.889</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.23 &times; 10<sup class='gt_super'>&minus;7</sup></td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/</td>
+    </tr>
+  </tfoot>
+  
+</table></div>
+<pre class="r"><code>p1_model_72</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>summary(model_72)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.007969   0.007477   1.066     0.29    
+## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.06123 on 70 degrees of freedom
+## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
+## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07</code></pre>
+<pre class="r"><code>beta &lt;- model_72_tidy$estimate[2]
+se_beta &lt;- model_72_tidy$std.error[2]
+ci_confidence = 0.90
+z_2s &lt;- qnorm((1 + ci_confidence)/2)
+ci_lower &lt;- beta - se_beta*z_2s
+ci_upper &lt;- beta + se_beta*z_2s
+
+ci_lower</code></pre>
+<pre><code>## [1] 0.9149958</code></pre>
+<pre class="r"><code>ci_upper</code></pre>
+<pre><code>## [1] 1.624257</code></pre>
+<p>BT 20.17.2. Peter wants to add a low-beta stock to his portfolio. One candidate is Kroger’s stock (ticker: KR). As a proxy for the market, he uses the S&amp;P 1500. He wrangled gross monthly returns for KR and SP_1500 over ten years such that his sample size is 120 pairwise returns. The regression results are displayed below.</p>
+<p>Peters wants to make two decisions. In both cases, his test is a two-sided hypothesis test with 99.0% confidence. In the first test, the null hypothesis is that KR’s beta is zero. In the second test, the null hypothesis is that KR’s beta is one (1.0). Based on these regression results, which of the following is TRUE as a valid inference?</p>
+<pre class="r"><code>KR &lt;- tq_get(&#39;KR&#39;,
+               from = &quot;2009-01-01&quot;,
+               to = &quot;2020-01-01&quot;)
+
+SP1500 &lt;- tq_get(&#39;SPTM&#39;,
+               from = &quot;2009-01-01&quot;,
+               to = &quot;2020-01-01&quot;)
+
+KR &lt;- KR %&gt;% select(date, adjusted)
+SP1500 &lt;- SP1500 %&gt;% select(date, adjusted)
+
+KR_monthly &lt;- KR %&gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
+SP1500_monthly &lt;- SP1500 %&gt;% 
+  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
+
+KR_monthly &lt;- KR_monthly %&gt;% mutate(
+  r_m_KR = log(adjusted/lag(adjusted)))
+
+SP1500_monthly &lt;-SP1500_monthly %&gt;% mutate(
+  r_m_SP = log(adjusted/lag(adjusted)))
+
+KR_monthly &lt;- KR_monthly %&gt;% 
+  rename(date_KR = date,
+         adj_KR = adjusted)
+
+SP1500_monthly &lt;- SP1500_monthly %&gt;% 
+  rename(date_SP = date,
+         adj_SP = adjusted)
+
+both_monthly &lt;- cbind(SP1500_monthly, KR_monthly)
+
+# testing different relationships really for Q&amp;A properties
+# both_131 &lt;- both_monthly[-1, ]
+both_120 &lt;- both_monthly[-c(1:12), ]
+# both_108 &lt;- both_monthly[-c(1:24), ]
+# both_96 &lt;- both_monthly[-c(1:36), ]
+# both_84 &lt;- both_monthly[-c(1:48), ]
+# both_72 &lt;- both_monthly[-c(1:60), ]
+
+both_120 &lt;- both_120 %&gt;% rename(SP_1500 = r_m_SP)
+saveRDS(both_120, &quot;t2-20-17-kroger-sp1500.rds&quot;)
+
+con &lt;- url(&quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-kroger-sp1500.rds&quot;)
+both_120 &lt;- readRDS(con)
+close(con)
+
+both_120 %&gt;% ggplot(aes(x = SP_1500, y = r_m_KR)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>model_120 &lt;- lm(r_m_KR ~ SP_1500, data = both_120)
+summary(model_120)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = r_m_KR ~ SP_1500, data = both_120)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.255113 -0.039050  0.009397  0.043573  0.203206 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.003594   0.006433   0.559    0.577    
+## SP_1500     0.696484   0.169073   4.119 7.08e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.06775 on 118 degrees of freedom
+## Multiple R-squared:  0.1257, Adjusted R-squared:  0.1183 
+## F-statistic: 16.97 on 1 and 118 DF,  p-value: 7.082e-05</code></pre>
+<pre class="r"><code>###
+
+model_120_tidy &lt;- tidy(model_120)
+
+gt_table_model_120 &lt;- gt(model_120_tidy)
+
+gt_table_model_120 &lt;- 
+  gt_table_model_120 %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;Kroger (KR) versus S&amp;P_1500: Gross (incl. Rf) monthly log return&quot;,
+    subtitle = md(&quot;Ten years (2010 - 2019), n = 120 months&quot;)
+  ) %&gt;% 
+  tab_source_note(
+    source_note = &quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&quot;
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 4
+  ) %&gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model_120</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#iphbyyecgs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iphbyyecgs .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iphbyyecgs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iphbyyecgs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iphbyyecgs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iphbyyecgs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iphbyyecgs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iphbyyecgs .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iphbyyecgs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iphbyyecgs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iphbyyecgs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iphbyyecgs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iphbyyecgs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#iphbyyecgs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iphbyyecgs .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iphbyyecgs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iphbyyecgs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iphbyyecgs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iphbyyecgs .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iphbyyecgs .gt_left {
+  text-align: left;
+}
+
+#iphbyyecgs .gt_center {
+  text-align: center;
+}
+
+#iphbyyecgs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iphbyyecgs .gt_font_normal {
+  font-weight: normal;
+}
+
+#iphbyyecgs .gt_font_bold {
+  font-weight: bold;
+}
+
+#iphbyyecgs .gt_font_italic {
+  font-style: italic;
+}
+
+#iphbyyecgs .gt_super {
+  font-size: 65%;
+}
+
+#iphbyyecgs .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="iphbyyecgs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Kroger (KR) versus S&amp;P_1500: Gross (incl. Rf) monthly log return</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Ten years (2010 - 2019), n = 120 months</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0036</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0064</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.5587</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">5.77 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">SP_1500</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.6965</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.1691</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.1194</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.08 &times; 10<sup class='gt_super'>&minus;5</sup></td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/</td>
+    </tr>
+  </tfoot>
+  
+</table></div>
+<p>BT 20.17.3. Debra is an economist who is interested in the relationship between consumer spending and the gross domestic product (GDP). From the FRED database at the Fed’s Bank of St. Louis (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>) she collects quarterly data from 1980 through the first quarter of 2020; her series includes n = 161 quarters of data. She regresses consumer spending (C_SPEND), as the response (aka, dependent) variable against GDP as the explanatory (aka, independent) variable. Each series is not a level, but rather a seasonally adjusted percent change. The regression results are displayed below.</p>
+<pre class="r"><code>library(alfred)
+library(ggplot2)
+
+
+# startdate &lt;- &quot;1980-01-01&quot;
+# enddate &lt;- &quot;2020-01-01&quot;
+# startdate1 &lt;- &quot;1980-01-01&quot;
+# enddate1 &lt;- &quot;2020-01-01&quot;
+
+# gdp &lt;- get_fred_series(&quot;A191RP1Q027SBEA&quot;, &quot;GDP&quot;, observation_start = startdate1, observation_end = enddate1)
+# cspend &lt;- get_fred_series(&quot;DPCERL1Q225SBEA&quot;, &quot;C_Spend&quot;, observation_start = startdate1, observation_end = enddate1)
+# testing
+# cdebt &lt;- get_fred_series(&quot;CDSP&quot;, &quot;C_Debt&quot;, observation_start = startdate1, observation_end = enddate1)
+# df1 &lt;- cbind(gdp, cdebt)
+# df1 &lt;- df1[-3]
+
+# df2 &lt;- cbind(gdp, cspend)
+# df2 &lt;- df2[-3]
+# df2 &lt;- df2 %&gt;% rename(C_SPEND = C_Spend)
+# saving dataframe because series data changed in the meantime!
+# saveRDS(df2, &quot;t2-20-17-spend-versus-gdp.rds&quot;)
+
+con &lt;- url(&quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-spend-versus-gdp.rds&quot;)
+df2 &lt;- readRDS(con)
+close(con)
+
+ggplot(df2, aes(GDP, C_SPEND)) + 
+  geom_point() + 
+  geom_smooth(method = &quot;lm&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>model_spend &lt;- lm(C_SPEND ~ GDP, data = df2)
+summary(model_spend)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = C_SPEND ~ GDP, data = df2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.0025  -1.1513   0.2266   1.2048   4.6900 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.89995    0.31555   2.852  0.00492 ** 
+## GDP          0.36591    0.04993   7.329 1.11e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.155 on 159 degrees of freedom
+## Multiple R-squared:  0.2525, Adjusted R-squared:  0.2478 
+## F-statistic: 53.71 on 1 and 159 DF,  p-value: 1.107e-11</code></pre>
+<pre class="r"><code>df_fit_tidy &lt;- tidy(model_spend)
+
+sd(df2$GDP)</code></pre>
+<pre><code>## [1] 3.411722</code></pre>
+<pre class="r"><code>sd(df2$C_SPEND)</code></pre>
+<pre><code>## [1] 2.484429</code></pre>
+<pre class="r"><code>cor(df2$GDP, df2$C_SPEND)</code></pre>
+<pre><code>## [1] 0.5024882</code></pre>
+<pre class="r"><code>beta &lt;- df_fit_tidy$estimate[2]
+beta_r &lt;- round(beta,4)
+sd_gdp &lt;- round(sd(df2$GDP),3)
+sd_spend &lt;- round(sd(df2$C_SPEND),3)
+correlation_compute &lt;- beta_r * sd_gdp/sd_spend
+
+gt_table &lt;- gt(df_fit_tidy)
+
+gt_table &lt;- 
+  gt_table %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)&quot;,
+    subtitle = md(&quot;Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161&quot;)
+  ) %&gt;% 
+  tab_source_note(
+    source_note = md(&quot;Source: FRED at https://fred.stlouisfed.org/&quot;)
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic),
+    decimals = 4
+  ) %&gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&gt;% 
+  tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#axfjzmrutd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#axfjzmrutd .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#axfjzmrutd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#axfjzmrutd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#axfjzmrutd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#axfjzmrutd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#axfjzmrutd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#axfjzmrutd .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#axfjzmrutd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#axfjzmrutd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#axfjzmrutd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#axfjzmrutd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#axfjzmrutd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#axfjzmrutd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#axfjzmrutd .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#axfjzmrutd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#axfjzmrutd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#axfjzmrutd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#axfjzmrutd .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#axfjzmrutd .gt_left {
+  text-align: left;
+}
+
+#axfjzmrutd .gt_center {
+  text-align: center;
+}
+
+#axfjzmrutd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#axfjzmrutd .gt_font_normal {
+  font-weight: normal;
+}
+
+#axfjzmrutd .gt_font_bold {
+  font-weight: bold;
+}
+
+#axfjzmrutd .gt_font_italic {
+  font-style: italic;
+}
+
+#axfjzmrutd .gt_super {
+  font-size: 65%;
+}
+
+#axfjzmrutd .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="axfjzmrutd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.9000</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.3156</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.8520</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.92 &times; 10<sup class='gt_super'>&minus;3</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">GDP</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.3659</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0499</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.3285</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.11 &times; 10<sup class='gt_super'>&minus;11</sup></td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Source: FRED at https://fred.stlouisfed.org/</td>
+    </tr>
+  </tfoot>
+  
+</table></div>
+<pre class="r"><code>df_fit_tidy$p.value[2]</code></pre>
+<pre><code>## [1] 1.106954e-11</code></pre>
+<pre class="r"><code>y_intercept &lt;- df_fit_tidy$estimate[1]
+se_y_intercept &lt;- df_fit_tidy$std.error[1]
+ci_confidence = 0.95
+z_2s &lt;- qnorm((1 + ci_confidence)/2)
+
+ci_lower &lt;- y_intercept - se_y_intercept*z_2s
+ci_upper &lt;- y_intercept + se_y_intercept*z_2s
+ci_lower</code></pre>
+<pre><code>## [1] 0.2814779</code></pre>
+<pre class="r"><code>ci_upper</code></pre>
+<pre><code>## [1] 1.518425</code></pre>
+<pre class="r"><code>slope_c &lt;-df_fit_tidy$estimate[2]
+se_slope &lt;- df_fit_tidy$std.error[2]
+slope_ci_lower &lt;- slope_c - se_slope * z_2s
+slope_ci_upper &lt;- slope_c + se_slope * z_2s
+slope_ci_lower</code></pre>
+<pre><code>## [1] 0.2680529</code></pre>
+<pre class="r"><code>slope_ci_upper</code></pre>
+<pre><code>## [1] 0.463775</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/&amp;text=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/&amp;t=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%29&amp;body=/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/&amp;title=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%29%20/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set/&amp;title=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/david-harper/avatar_hu0b2aaa704e013efeae1586f958eb9d68_996912_270x270_fill_q90_lanczos_center.jpg" alt="David Harper">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">David Harper</a></h5>
+        <h6 class="card-subtitle">Founder &amp; CEO of Bionic Turtle</h6>
+        <p class="card-text">I teach financial risk and enjoy learning data science</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:david.harper@cox.net" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    <div id="commento"></div>
+
+<script src="https://cdn.commento.io/js/commento.js" defer></script>
+
+  
+</section>
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/">BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)</a></li>
+      
+      <li><a href="/post/bt-question-p1-t2-20-16-3-univariate-regression-monthly-rental-versus-footage/">BT Question P1-T2-20-16-3: Univariate regression: Monthly rental versus footage</a></li>
+      
+      <li><a href="/post/bt-question-p1-t2-20-16-2-univariate-regression-portfolio-versus-benchmark-returns/">BT Question P1-T2-20-16-2: Univariate regression: Portfolio versus benchmark returns</a></li>
+      
+      <li><a href="/post/2020/bt-question-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment-using-gt-package-to-display-table/">BT Question P1-T2-20-16-1: Univariate regression: Inflation versus unemployment (using gt package to display table)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+  
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
