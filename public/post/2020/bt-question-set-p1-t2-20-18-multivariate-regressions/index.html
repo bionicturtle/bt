@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="Learning objectivesConstruct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.Explain the steps needed to perform a hypothesis test in a linear regression.">
+  <meta name="description" content="Multiple regressionQuestion 1: Fama-frenchlibrary(tidyverse)library(broom)library(gt)intercept &lt;- .03intercept_sig &lt;- .01x1_mu &lt;- .04x1_sig &lt;- .01x1_beta &lt;- 0.4x2_mu &lt;- .03x2_sig &lt;- .01x2_beta &lt;- -0.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/">
+  <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/">
 
   
 
@@ -231,7 +231,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/">
+  <link rel="canonical" href="/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/">
 
   
   
@@ -247,15 +247,15 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="David&#39;s (bionicturtle) data blog">
-  <meta property="og:url" content="/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/">
-  <meta property="og:title" content="BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2) | David&#39;s (bionicturtle) data blog">
-  <meta property="og:description" content="Learning objectivesConstruct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.Explain the steps needed to perform a hypothesis test in a linear regression."><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/">
+  <meta property="og:title" content="BT Question Set P1-T2-20-18: Multivariate regressions | David&#39;s (bionicturtle) data blog">
+  <meta property="og:description" content="Multiple regressionQuestion 1: Fama-frenchlibrary(tidyverse)library(broom)library(gt)intercept &lt;- .03intercept_sig &lt;- .01x1_mu &lt;- .04x1_sig &lt;- .01x1_beta &lt;- 0.4x2_mu &lt;- .03x2_sig &lt;- .01x2_beta &lt;- -0."><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-09-03T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-09-17T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-09-03T23:02:00-07:00">
+    <meta property="article:modified_time" content="2020-09-17T17:10:19-07:00">
   
 
   
@@ -279,12 +279,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/"
+    "@id": "/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/"
   },
-  "headline": "BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)",
+  "headline": "BT Question Set P1-T2-20-18: Multivariate regressions",
   
-  "datePublished": "2020-09-03T00:00:00Z",
-  "dateModified": "2020-09-03T23:02:00-07:00",
+  "datePublished": "2020-09-17T00:00:00Z",
+  "dateModified": "2020-09-17T17:10:19-07:00",
   
   "author": {
     "@type": "Person",
@@ -299,7 +299,7 @@
       "url": "/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Learning objectives\r\rConstruct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.\rExplain the steps needed to perform a hypothesis test in a linear regression."
+  "description": "Multiple regression\rQuestion 1: Fama-french\rlibrary(tidyverse)\rlibrary(broom)\rlibrary(gt)\rintercept \u0026lt;- .03\rintercept_sig \u0026lt;- .01\rx1_mu \u0026lt;- .04\rx1_sig \u0026lt;- .01\rx1_beta \u0026lt;- 0.4\rx2_mu \u0026lt;- .03\rx2_sig \u0026lt;- .01\rx2_beta \u0026lt;- -0."
 }
 </script>
 
@@ -317,7 +317,7 @@
 
 
 
-  <title>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2) | David&#39;s (bionicturtle) data blog</title>
+  <title>BT Question Set P1-T2-20-18: Multivariate regressions | David&#39;s (bionicturtle) data blog</title>
 
 </head>
 
@@ -577,7 +577,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)</h1>
+  <h1>BT Question Set P1-T2-20-18: Multivariate regressions</h1>
 
   
 
@@ -598,7 +598,7 @@
           Last updated on
       
     
-    Sep 3, 2020
+    Sep 17, 2020
   </span>
   
 
@@ -607,7 +607,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    17 min read
+    16 min read
   </span>
   
 
@@ -650,98 +650,82 @@
       
 
 
-<div id="learning-objectives" class="section level2">
-<h2>Learning objectives</h2>
-<ul>
-<li>Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.</li>
-<li>Explain the steps needed to perform a hypothesis test in a linear regression.</li>
-<li>Describe the relationship between a t-statistic, its p-value, and a confidence interval.</li>
-</ul>
-<p>Let’s load some packages!</p>
+<div id="multiple-regression" class="section level2">
+<h2>Multiple regression</h2>
+<div id="question-1-fama-french" class="section level3">
+<h3>Question 1: Fama-french</h3>
 <pre class="r"><code>library(tidyverse)
-library(tidyquant)
-library(lubridate)
-library(readxl)
-library(timetk)
-library(tibbletime)
-library(quantmod)
-library(PerformanceAnalytics)
-library(scales)
 library(broom)
-library(gt)</code></pre>
-<div id="first-question" class="section level3">
-<h3>First question</h3>
-<p>BT 20.17.1. Below the results of a linear regression analysis are displayed. The dataset is monthly returns over a six-year period; i.e., n = 72 months. The gross returns of Apple’s stock (ticker: AAPL) were regressed against the S&amp;P 1500 Index (the S&amp;P 1500 is our proxy for the market). The explanatory variable is SP_1500 and the response (aka, dependent) variable is AAPL.</p>
-<p>Question: Which is nearest to the 90.0% confidence interval for the beta of Apple’s (AAPL) stock?</p>
-<pre class="r"><code>AAPL &lt;- tq_get(&#39;AAPL&#39;,
-               from = &quot;2009-01-01&quot;,
-               to = &quot;2020-01-01&quot;)
+library(gt)
 
-SP1500 &lt;- tq_get(&#39;SPTM&#39;,
-               from = &quot;2009-01-01&quot;,
-               to = &quot;2020-01-01&quot;)
+intercept &lt;- .03
+intercept_sig &lt;- .01
 
-AAPL &lt;- AAPL %&gt;% select(date, adjusted)
-SP1500 &lt;- SP1500 %&gt;% select(date, adjusted)
+x1_mu &lt;- .04
+x1_sig &lt;- .01
+x1_beta &lt;- 0.4
 
-AAPL_monthly &lt;- AAPL %&gt;% 
-  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
-SP1500_monthly &lt;- SP1500 %&gt;% 
-  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
+x2_mu &lt;- .03
+x2_sig &lt;- .01
+x2_beta &lt;- -0.6
 
-AAPL_monthly &lt;- AAPL_monthly %&gt;% mutate(
-  r_m_AAPL = log(adjusted/lag(adjusted)))
-SP1500_monthly &lt;-SP1500_monthly %&gt;% mutate(
-  r_m_SP = log(adjusted/lag(adjusted)))
+x3_mu &lt;- .03
+x3_sig &lt;- .01
+x3_beta &lt;- -0.3
 
-AAPL_monthly &lt;- AAPL_monthly %&gt;% 
-  rename(date_AAPL = date,
-         adj_AAPL = adjusted)
-SP1500_monthly &lt;- SP1500_monthly %&gt;% 
-  rename(date_SP = date,
-         adj_SP = adjusted)
+noise_mu &lt;- 0
+noise_sig &lt;- 0 # low value gets low p-value b/c low noise
 
-both_monthly &lt;- cbind(SP1500_monthly, AAPL_monthly)
+size &lt;- 96
+set.seed(18)
 
-both_72 &lt;- both_monthly[-c(1:60), ]
-both_72 &lt;- both_72 %&gt;% rename(r_SP_1500 = r_m_SP)
-saveRDS(both_72, &quot;t2-20-17-aapl-sp1500.rds&quot;)
-
-con &lt;- url(&quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-aapl-sp1500.rds&quot;)
-both_72 &lt;- readRDS(con)
-close(con)
+results &lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = rnorm(size, x1_mu, x1_sig),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = rnorm(size, x3_mu, x3_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
 
 
-model_72 &lt;- lm(r_m_AAPL ~ r_SP_1500, data = both_72)
-summary(model_72)</code></pre>
+results1 &lt;- results %&gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + noise
+)
+
+model &lt;- lm(y ~ x1 + x2 + x3, data = results1)
+summary(model)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+## lm(formula = y ~ x1 + x2 + x3, data = results1)
 ## 
 ## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.226290 -0.027060  0.002344  0.040667  0.131313 
+##        Min         1Q     Median         3Q        Max 
+## -0.0179934 -0.0063017 -0.0002194  0.0069123  0.0252648 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 0.007969   0.007477   1.066     0.29    
-## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.026900   0.005785   4.650 1.11e-05 ***
+## x1           0.501752   0.099805   5.027 2.44e-06 ***
+## x2          -0.702932   0.096522  -7.283 1.09e-10 ***
+## x3          -0.276534   0.102339  -2.702   0.0082 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.06123 on 70 degrees of freedom
-## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
-## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07</code></pre>
-<pre class="r"><code>p1_model_72 &lt;- both_72 %&gt;% ggplot(aes(r_SP_1500, r_m_AAPL)) +
-  geom_point() +
-  geom_smooth(method = &quot;lm&quot;)
+## Residual standard error: 0.00983 on 92 degrees of freedom
+## Multiple R-squared:  0.4619, Adjusted R-squared:  0.4444 
+## F-statistic: 26.33 on 3 and 92 DF,  p-value: 2.206e-12</code></pre>
+<pre class="r"><code>model_tidy &lt;- tidy(model)
+model_tidy[2,1] &lt;- &quot;MKT&quot;
+model_tidy[3,1] &lt;- &quot;SMB&quot;
+model_tidy[4,1] &lt;- &quot;HML&quot;
 
-model_72_tidy &lt;- tidy(model_72)
+gt_table_model &lt;- gt(model_tidy)
 
-gt_table_model_72 &lt;- gt(model_72_tidy)
-
-gt_table_model_72 &lt;- 
-  gt_table_model_72 %&gt;% 
+gt_table_model &lt;- 
+  gt_table_model %&gt;% 
   tab_options(
     table.font.size = 14
   ) %&gt;% 
@@ -750,11 +734,10 @@ gt_table_model_72 &lt;-
     locations = cells_body()
   ) %&gt;% 
   tab_header(
-    title = &quot;AAPL versus S&amp;P_1500: Gross (incl. Rf) monthly log return&quot;,
-    subtitle = md(&quot;Six years (2014 - 2019), n = 72 months&quot;)
-  ) %&gt;% 
-  tab_source_note(
-    source_note = &quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&quot;
+    title = &quot;Portfolio excess returns regressed against MKT + SMB + HML&quot;,
+    subtitle =&quot;i.e., Fama-French three-factor model&quot;
+  #) %&gt;% tab_source_note(
+  #   source_note = md(&quot;the source is ... FRED&quot;)
   ) %&gt;% cols_label(
     term = &quot;Coefficient&quot;,
     estimate = &quot;Estimate&quot;,
@@ -762,22 +745,512 @@ gt_table_model_72 &lt;-
     statistic = &quot;t-stat&quot;,
     p.value = &quot;p value&quot;
   ) %&gt;% fmt_number(
-    columns = vars(estimate, std.error, statistic),
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) %&gt;% fmt_scientific(
+    columns = vars(statistic, p.value),
+  ) %&gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pgiqepqpuz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pgiqepqpuz .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pgiqepqpuz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pgiqepqpuz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pgiqepqpuz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pgiqepqpuz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pgiqepqpuz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pgiqepqpuz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pgiqepqpuz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pgiqepqpuz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pgiqepqpuz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pgiqepqpuz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pgiqepqpuz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pgiqepqpuz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pgiqepqpuz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pgiqepqpuz .gt_left {
+  text-align: left;
+}
+
+#pgiqepqpuz .gt_center {
+  text-align: center;
+}
+
+#pgiqepqpuz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pgiqepqpuz .gt_font_normal {
+  font-weight: normal;
+}
+
+#pgiqepqpuz .gt_font_bold {
+  font-weight: bold;
+}
+
+#pgiqepqpuz .gt_font_italic {
+  font-style: italic;
+}
+
+#pgiqepqpuz .gt_super {
+  font-size: 65%;
+}
+
+#pgiqepqpuz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="pgiqepqpuz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Portfolio excess returns regressed against MKT + SMB + HML</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>i.e., Fama-French three-factor model</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.027</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.006</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.65</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.11 &times; 10<sup class='gt_super'>&minus;5</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">MKT</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.502</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.100</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">5.03</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.44 &times; 10<sup class='gt_super'>&minus;6</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">SMB</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.703</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.097</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;7.28</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.09 &times; 10<sup class='gt_super'>&minus;10</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">HML</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.277</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.102</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;2.70</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">8.20 &times; 10<sup class='gt_super'>&minus;3</sup></td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+</div>
+<div id="question-2-house-prices" class="section level3">
+<h3>Question 2: House Prices</h3>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &lt;- 40
+intercept_sig &lt;- .01
+
+x1_mu &lt;- 1200
+x1_sig &lt;- 30
+x1_beta &lt;- 0.35
+
+x2_mu &lt;- 4.5
+x2_sig &lt;- 2
+x2_beta &lt;- 10.0
+
+x3_mu &lt;- 15
+x3_sig &lt;- 4
+x3_beta &lt;- -8.0
+
+noise_mu &lt;- 0
+noise_sig &lt;- 20 # low value gets low p-value b/c low noise
+
+size &lt;- 96
+set.seed(43)
+
+results &lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = rnorm(size, x1_mu, x1_sig),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = rnorm(size, x3_mu, x3_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &lt;- results %&gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + noise
+)
+
+model &lt;- lm(y ~ x1 + x2 + x3, data = results1)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = results1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -40.088 -13.508  -1.795  13.819  41.934 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 110.95667   76.98277   1.441    0.153    
+## x1            0.29138    0.06283   4.638 1.16e-05 ***
+## x2            9.53971    0.85291  11.185  &lt; 2e-16 ***
+## x3           -8.06268    0.48275 -16.702  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.28 on 92 degrees of freedom
+## Multiple R-squared:  0.8378, Adjusted R-squared:  0.8325 
+## F-statistic: 158.4 on 3 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>model_tidy &lt;- tidy(model)
+model_tidy[2,1] &lt;- &quot;SQFEET&quot;
+model_tidy[3,1] &lt;- &quot;ROOMS&quot;
+model_tidy[4,1] &lt;- &quot;AGE&quot;
+
+gt_table_model &lt;- gt(model_tidy)
+
+gt_table_model &lt;- 
+  gt_table_model %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;House Price regressed against ft^2 (SQFEET) + ROOMS(#) + AGE(years)&quot;,
+    subtitle = md(&quot;House Price in Thousands **($000)** of dollars&quot;)
+  #) %&gt;% tab_source_note(
+  #   source_note = md(&quot;the source is ... FRED&quot;)
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
     decimals = 3
   ) %&gt;% fmt_scientific(
     columns = vars(p.value),
-  ) %&gt;% 
-  tab_options(
+  ) %&gt;% tab_options(
     heading.title.font.size = 14,
     heading.subtitle.font.size = 12
   )
 
-gt_table_model_72</code></pre>
+gt_table_model</code></pre>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pjsacxzwhl .gt_table {
+#vghvnzctdm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -802,7 +1275,7 @@ gt_table_model_72</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_heading {
+#vghvnzctdm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -814,7 +1287,7 @@ gt_table_model_72</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_title {
+#vghvnzctdm .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -824,7 +1297,7 @@ gt_table_model_72</code></pre>
   border-bottom-width: 0;
 }
 
-#pjsacxzwhl .gt_subtitle {
+#vghvnzctdm .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -834,13 +1307,13 @@ gt_table_model_72</code></pre>
   border-top-width: 0;
 }
 
-#pjsacxzwhl .gt_bottom_border {
+#vghvnzctdm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_col_headings {
+#vghvnzctdm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -855,7 +1328,7 @@ gt_table_model_72</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_col_heading {
+#vghvnzctdm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -875,7 +1348,7 @@ gt_table_model_72</code></pre>
   overflow-x: hidden;
 }
 
-#pjsacxzwhl .gt_column_spanner_outer {
+#vghvnzctdm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -887,15 +1360,15 @@ gt_table_model_72</code></pre>
   padding-right: 4px;
 }
 
-#pjsacxzwhl .gt_column_spanner_outer:first-child {
+#vghvnzctdm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pjsacxzwhl .gt_column_spanner_outer:last-child {
+#vghvnzctdm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pjsacxzwhl .gt_column_spanner {
+#vghvnzctdm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -907,7 +1380,7 @@ gt_table_model_72</code></pre>
   width: 100%;
 }
 
-#pjsacxzwhl .gt_group_heading {
+#vghvnzctdm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -929,7 +1402,7 @@ gt_table_model_72</code></pre>
   vertical-align: middle;
 }
 
-#pjsacxzwhl .gt_empty_group_heading {
+#vghvnzctdm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -944,15 +1417,15 @@ gt_table_model_72</code></pre>
   vertical-align: middle;
 }
 
-#pjsacxzwhl .gt_from_md > :first-child {
+#vghvnzctdm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pjsacxzwhl .gt_from_md > :last-child {
+#vghvnzctdm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pjsacxzwhl .gt_row {
+#vghvnzctdm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -971,7 +1444,7 @@ gt_table_model_72</code></pre>
   overflow-x: hidden;
 }
 
-#pjsacxzwhl .gt_stub {
+#vghvnzctdm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -983,7 +1456,7 @@ gt_table_model_72</code></pre>
   padding-left: 12px;
 }
 
-#pjsacxzwhl .gt_summary_row {
+#vghvnzctdm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -993,7 +1466,7 @@ gt_table_model_72</code></pre>
   padding-right: 5px;
 }
 
-#pjsacxzwhl .gt_first_summary_row {
+#vghvnzctdm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1003,7 +1476,7 @@ gt_table_model_72</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_grand_summary_row {
+#vghvnzctdm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1013,7 +1486,7 @@ gt_table_model_72</code></pre>
   padding-right: 5px;
 }
 
-#pjsacxzwhl .gt_first_grand_summary_row {
+#vghvnzctdm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1023,11 +1496,11 @@ gt_table_model_72</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_striped {
+#vghvnzctdm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pjsacxzwhl .gt_table_body {
+#vghvnzctdm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1036,7 +1509,7 @@ gt_table_model_72</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_footnotes {
+#vghvnzctdm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1050,13 +1523,13 @@ gt_table_model_72</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_footnote {
+#vghvnzctdm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#pjsacxzwhl .gt_sourcenotes {
+#vghvnzctdm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1070,52 +1543,52 @@ gt_table_model_72</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#pjsacxzwhl .gt_sourcenote {
+#vghvnzctdm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#pjsacxzwhl .gt_left {
+#vghvnzctdm .gt_left {
   text-align: left;
 }
 
-#pjsacxzwhl .gt_center {
+#vghvnzctdm .gt_center {
   text-align: center;
 }
 
-#pjsacxzwhl .gt_right {
+#vghvnzctdm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pjsacxzwhl .gt_font_normal {
+#vghvnzctdm .gt_font_normal {
   font-weight: normal;
 }
 
-#pjsacxzwhl .gt_font_bold {
+#vghvnzctdm .gt_font_bold {
   font-weight: bold;
 }
 
-#pjsacxzwhl .gt_font_italic {
+#vghvnzctdm .gt_font_italic {
   font-style: italic;
 }
 
-#pjsacxzwhl .gt_super {
+#vghvnzctdm .gt_super {
   font-size: 65%;
 }
 
-#pjsacxzwhl .gt_footnote_marks {
+#vghvnzctdm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="pjsacxzwhl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="vghvnzctdm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>AAPL versus S&amp;P_1500: Gross (incl. Rf) monthly log return</th>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>House Price regressed against ft^2 (SQFEET) + ROOMS(#) + AGE(years)</th>
     </tr>
     <tr>
-      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Six years (2014 - 2019), n = 72 months</th>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>House Price in Thousands <strong>($000)</strong> of dollars</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
@@ -1130,144 +1603,134 @@ gt_table_model_72</code></pre>
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.008</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.007</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">1.066</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">2.90 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+      <td class="gt_row gt_right" style="font-weight: bold;">110.957</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">76.983</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.441</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.53 &times; 10<sup class='gt_super'>&minus;1</sup></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">r_SP_1500</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">1.270</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.216</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">5.889</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">1.23 &times; 10<sup class='gt_super'>&minus;7</sup></td>
+      <td class="gt_row gt_left" style="font-weight: bold;">SQFEET</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.291</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.063</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.638</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.16 &times; 10<sup class='gt_super'>&minus;5</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">ROOMS</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">9.540</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.853</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">11.185</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.64 &times; 10<sup class='gt_super'>&minus;19</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AGE</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;8.063</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.483</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;16.702</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.33 &times; 10<sup class='gt_super'>&minus;29</sup></td>
     </tr>
   </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="5">Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/</td>
-    </tr>
-  </tfoot>
+  
   
 </table></div>
-<pre class="r"><code>p1_model_72</code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>summary(model_72)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
-## 
-## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.226290 -0.027060  0.002344  0.040667  0.131313 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 0.007969   0.007477   1.066     0.29    
-## r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.06123 on 70 degrees of freedom
-## Multiple R-squared:  0.3313, Adjusted R-squared:  0.3217 
-## F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07</code></pre>
-<pre class="r"><code>beta &lt;- model_72_tidy$estimate[2]
-se_beta &lt;- model_72_tidy$std.error[2]
-ci_confidence = 0.90
-z_2s &lt;- qnorm((1 + ci_confidence)/2)
-ci_lower &lt;- beta - se_beta*z_2s
-ci_upper &lt;- beta + se_beta*z_2s
-
-ci_lower</code></pre>
-<pre><code>## [1] 0.9149958</code></pre>
-<pre class="r"><code>ci_upper</code></pre>
-<pre><code>## [1] 1.624257</code></pre>
+<pre class="r"><code>mean(results1$y) # price</code></pre>
+<pre><code>## [1] 386.051</code></pre>
+<pre class="r"><code>mean(results1$x0) # intercept</code></pre>
+<pre><code>## [1] 40.0002</code></pre>
+<pre class="r"><code>mean(results1$x1) # sqfeet</code></pre>
+<pre><code>## [1] 1203.809</code></pre>
+<pre class="r"><code>mean(results1$x2) # rooms</code></pre>
+<pre><code>## [1] 4.548471</code></pre>
+<pre class="r"><code>mean(results1$x3) # age</code></pre>
+<pre><code>## [1] 14.76695</code></pre>
 </div>
-<div id="second-question" class="section level3">
-<h3>Second question</h3>
-<p>BT 20.17.2. Peter wants to add a low-beta stock to his portfolio. One candidate is Kroger’s stock (ticker: KR). As a proxy for the market, he uses the S&amp;P 1500. He wrangled gross monthly returns for KR and SP_1500 over ten years such that his sample size is 120 pairwise returns. The regression results are displayed below.</p>
-<p>Peters wants to make two decisions. In both cases, his test is a two-sided hypothesis test with 99.0% confidence. In the first test, the null hypothesis is that KR’s beta is zero. In the second test, the null hypothesis is that KR’s beta is one (1.0). Based on these regression results, which of the following is TRUE as a valid inference?</p>
-<pre class="r"><code>KR &lt;- tq_get(&#39;KR&#39;,
-               from = &quot;2009-01-01&quot;,
-               to = &quot;2020-01-01&quot;)
+<div id="question-3-insurance" class="section level3">
+<h3>Question 3: Insurance</h3>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+library(gt)
 
-SP1500 &lt;- tq_get(&#39;SPTM&#39;,
-               from = &quot;2009-01-01&quot;,
-               to = &quot;2020-01-01&quot;)
+intercept &lt;- 150
+intercept_sig &lt;- 40
 
-KR &lt;- KR %&gt;% select(date, adjusted)
-SP1500 &lt;- SP1500 %&gt;% select(date, adjusted)
+# age
+x1_mu &lt;- 38
+x1_sig &lt;- 7
+x1_beta &lt;- 50
 
-KR_monthly &lt;- KR %&gt;% 
-  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
-SP1500_monthly &lt;- SP1500 %&gt;% 
-  tq_transmute(select = adjusted, mutate = to.monthly, indexAt = &quot;lastof&quot;)
+# bmi
+x2_mu &lt;- 22
+x2_sig &lt;- 4
+x2_beta &lt;- 100
 
-KR_monthly &lt;- KR_monthly %&gt;% mutate(
-  r_m_KR = log(adjusted/lag(adjusted)))
+# smoker
+x3_mu &lt;- 15
+x3_sig &lt;- 0.5
+x3_beta &lt;- 535
 
-SP1500_monthly &lt;-SP1500_monthly %&gt;% mutate(
-  r_m_SP = log(adjusted/lag(adjusted)))
+# spend
+x4_mu &lt;- 500
+x4_sig &lt;- 250
+x4_beta &lt;- -0.4
 
-KR_monthly &lt;- KR_monthly %&gt;% 
-  rename(date_KR = date,
-         adj_KR = adjusted)
 
-SP1500_monthly &lt;- SP1500_monthly %&gt;% 
-  rename(date_SP = date,
-         adj_SP = adjusted)
+noise_mu &lt;- 0
+noise_sig &lt;- 300 # low value gets low p-value b/c low noise
 
-both_monthly &lt;- cbind(SP1500_monthly, KR_monthly)
+size &lt;- 43
+set.seed(12)
 
-# testing different relationships really for Q&amp;A properties
-# both_131 &lt;- both_monthly[-1, ]
-both_120 &lt;- both_monthly[-c(1:12), ]
-# both_108 &lt;- both_monthly[-c(1:24), ]
-# both_96 &lt;- both_monthly[-c(1:36), ]
-# both_84 &lt;- both_monthly[-c(1:48), ]
-# both_72 &lt;- both_monthly[-c(1:60), ]
+results &lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = round(rnorm(size, x1_mu, x1_sig)),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = round(runif(size)-.35), # smoker = 1, non = 0
+  x4 = rnorm(size, x4_mu, x4_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  x4_b = rep(x4_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
 
-both_120 &lt;- both_120 %&gt;% rename(SP_1500 = r_m_SP)
-saveRDS(both_120, &quot;t2-20-17-kroger-sp1500.rds&quot;)
 
-con &lt;- url(&quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-kroger-sp1500.rds&quot;)
-both_120 &lt;- readRDS(con)
-close(con)
+results1 &lt;- results %&gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + x4_b * x4 + noise
+)
 
-both_120 %&gt;% ggplot(aes(x = SP_1500, y = r_m_KR)) +
-  geom_point() +
-  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>model_120 &lt;- lm(r_m_KR ~ SP_1500, data = both_120)
-summary(model_120)</code></pre>
+model &lt;- lm(y ~ x1 + x2 + x3 + x4, data = results1)
+summary(model)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = r_m_KR ~ SP_1500, data = both_120)
+## lm(formula = y ~ x1 + x2 + x3 + x4, data = results1)
 ## 
 ## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.255113 -0.039050  0.009397  0.043573  0.203206 
+##     Min      1Q  Median      3Q     Max 
+## -635.96 -169.65   15.59  219.73  543.51 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 0.003594   0.006433   0.559    0.577    
-## SP_1500     0.696484   0.169073   4.119 7.08e-05 ***
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -324.2133   415.7736  -0.780 0.440348    
+## x1            56.9518     7.5517   7.542 4.60e-09 ***
+## x2           111.7571    11.9374   9.362 2.06e-11 ***
+## x3           454.0799   125.8293   3.609 0.000884 ***
+## x4            -0.5485     0.1793  -3.058 0.004064 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.06775 on 118 degrees of freedom
-## Multiple R-squared:  0.1257, Adjusted R-squared:  0.1183 
-## F-statistic: 16.97 on 1 and 118 DF,  p-value: 7.082e-05</code></pre>
-<pre class="r"><code>###
+## Residual standard error: 298.3 on 38 degrees of freedom
+## Multiple R-squared:  0.8215, Adjusted R-squared:  0.8027 
+## F-statistic: 43.71 on 4 and 38 DF,  p-value: 1.009e-13</code></pre>
+<pre class="r"><code>model_tidy &lt;- tidy(model)
+model_tidy[2,1] &lt;- &quot;AGE&quot;
+model_tidy[3,1] &lt;- &quot;BMI&quot;
+model_tidy[4,1] &lt;- &quot;SMOKER&quot;
+model_tidy[5,1] &lt;- &quot;CHARITY&quot;
 
-model_120_tidy &lt;- tidy(model_120)
+gt_table_model &lt;- gt(model_tidy)
 
-gt_table_model_120 &lt;- gt(model_120_tidy)
-
-gt_table_model_120 &lt;- 
-  gt_table_model_120 %&gt;% 
+gt_table_model &lt;- 
+  gt_table_model %&gt;% 
   tab_options(
     table.font.size = 14
   ) %&gt;% 
@@ -1276,11 +1739,14 @@ gt_table_model_120 &lt;-
     locations = cells_body()
   ) %&gt;% 
   tab_header(
-    title = &quot;Kroger (KR) versus S&amp;P_1500: Gross (incl. Rf) monthly log return&quot;,
-    subtitle = md(&quot;Ten years (2010 - 2019), n = 120 months&quot;)
-  ) %&gt;% 
-  tab_source_note(
-    source_note = &quot;Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/&quot;
+    title = &quot;Medical COST regressed against AGE + BMI + SMOKER(1/0) + CHARITY($)&quot;,
+    subtitle = md(&quot;Simulated dataset&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;Residual standard error: 295.2 on 38 degrees of freedom&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;Multiple R-squared:  0.8343,  Adjusted R-squared:  0.8168&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;F-statistic: 47.82 on 4 and 38 DF,  p-value: 2.486e-14&quot;)
   ) %&gt;% cols_label(
     term = &quot;Coefficient&quot;,
     estimate = &quot;Estimate&quot;,
@@ -1288,22 +1754,22 @@ gt_table_model_120 &lt;-
     statistic = &quot;t-stat&quot;,
     p.value = &quot;p value&quot;
   ) %&gt;% fmt_number(
-    columns = vars(estimate, std.error, statistic),
-    decimals = 4
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 2
   ) %&gt;% fmt_scientific(
     columns = vars(p.value),
-  ) %&gt;% 
-  tab_options(
+  ) %&gt;% tab_options(
     heading.title.font.size = 14,
     heading.subtitle.font.size = 12
   )
 
-gt_table_model_120</code></pre>
+
+gt_table_model</code></pre>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#izrtqykfua .gt_table {
+#iwuuabqqil .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1328,7 +1794,7 @@ gt_table_model_120</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_heading {
+#iwuuabqqil .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1340,7 +1806,7 @@ gt_table_model_120</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_title {
+#iwuuabqqil .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -1350,7 +1816,7 @@ gt_table_model_120</code></pre>
   border-bottom-width: 0;
 }
 
-#izrtqykfua .gt_subtitle {
+#iwuuabqqil .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -1360,13 +1826,13 @@ gt_table_model_120</code></pre>
   border-top-width: 0;
 }
 
-#izrtqykfua .gt_bottom_border {
+#iwuuabqqil .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_col_headings {
+#iwuuabqqil .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1381,7 +1847,7 @@ gt_table_model_120</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_col_heading {
+#iwuuabqqil .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1401,7 +1867,7 @@ gt_table_model_120</code></pre>
   overflow-x: hidden;
 }
 
-#izrtqykfua .gt_column_spanner_outer {
+#iwuuabqqil .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1413,15 +1879,15 @@ gt_table_model_120</code></pre>
   padding-right: 4px;
 }
 
-#izrtqykfua .gt_column_spanner_outer:first-child {
+#iwuuabqqil .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#izrtqykfua .gt_column_spanner_outer:last-child {
+#iwuuabqqil .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#izrtqykfua .gt_column_spanner {
+#iwuuabqqil .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1433,7 +1899,7 @@ gt_table_model_120</code></pre>
   width: 100%;
 }
 
-#izrtqykfua .gt_group_heading {
+#iwuuabqqil .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1455,7 +1921,7 @@ gt_table_model_120</code></pre>
   vertical-align: middle;
 }
 
-#izrtqykfua .gt_empty_group_heading {
+#iwuuabqqil .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1470,15 +1936,15 @@ gt_table_model_120</code></pre>
   vertical-align: middle;
 }
 
-#izrtqykfua .gt_from_md > :first-child {
+#iwuuabqqil .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#izrtqykfua .gt_from_md > :last-child {
+#iwuuabqqil .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#izrtqykfua .gt_row {
+#iwuuabqqil .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1497,7 +1963,7 @@ gt_table_model_120</code></pre>
   overflow-x: hidden;
 }
 
-#izrtqykfua .gt_stub {
+#iwuuabqqil .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1509,7 +1975,7 @@ gt_table_model_120</code></pre>
   padding-left: 12px;
 }
 
-#izrtqykfua .gt_summary_row {
+#iwuuabqqil .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1519,7 +1985,7 @@ gt_table_model_120</code></pre>
   padding-right: 5px;
 }
 
-#izrtqykfua .gt_first_summary_row {
+#iwuuabqqil .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1529,7 +1995,7 @@ gt_table_model_120</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_grand_summary_row {
+#iwuuabqqil .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1539,7 +2005,7 @@ gt_table_model_120</code></pre>
   padding-right: 5px;
 }
 
-#izrtqykfua .gt_first_grand_summary_row {
+#iwuuabqqil .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1549,11 +2015,11 @@ gt_table_model_120</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_striped {
+#iwuuabqqil .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#izrtqykfua .gt_table_body {
+#iwuuabqqil .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1562,7 +2028,7 @@ gt_table_model_120</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_footnotes {
+#iwuuabqqil .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1576,13 +2042,13 @@ gt_table_model_120</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_footnote {
+#iwuuabqqil .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#izrtqykfua .gt_sourcenotes {
+#iwuuabqqil .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1596,52 +2062,52 @@ gt_table_model_120</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#izrtqykfua .gt_sourcenote {
+#iwuuabqqil .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#izrtqykfua .gt_left {
+#iwuuabqqil .gt_left {
   text-align: left;
 }
 
-#izrtqykfua .gt_center {
+#iwuuabqqil .gt_center {
   text-align: center;
 }
 
-#izrtqykfua .gt_right {
+#iwuuabqqil .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#izrtqykfua .gt_font_normal {
+#iwuuabqqil .gt_font_normal {
   font-weight: normal;
 }
 
-#izrtqykfua .gt_font_bold {
+#iwuuabqqil .gt_font_bold {
   font-weight: bold;
 }
 
-#izrtqykfua .gt_font_italic {
+#iwuuabqqil .gt_font_italic {
   font-style: italic;
 }
 
-#izrtqykfua .gt_super {
+#iwuuabqqil .gt_super {
   font-size: 65%;
 }
 
-#izrtqykfua .gt_footnote_marks {
+#iwuuabqqil .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="izrtqykfua" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="iwuuabqqil" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Kroger (KR) versus S&amp;P_1500: Gross (incl. Rf) monthly log return</th>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Medical COST regressed against AGE + BMI + SMOKER(1/0) + CHARITY($)</th>
     </tr>
     <tr>
-      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Ten years (2010 - 2019), n = 120 months</th>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Simulated dataset</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
@@ -1656,528 +2122,65 @@ gt_table_model_120</code></pre>
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0036</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0064</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.5587</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">5.77 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;324.21</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">415.77</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.78</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.40 &times; 10<sup class='gt_super'>&minus;1</sup></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">SP_1500</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.6965</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.1691</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">4.1194</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">7.08 &times; 10<sup class='gt_super'>&minus;5</sup></td>
+      <td class="gt_row gt_left" style="font-weight: bold;">AGE</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">56.95</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.55</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.54</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.60 &times; 10<sup class='gt_super'>&minus;9</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">BMI</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">111.76</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">11.94</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">9.36</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.06 &times; 10<sup class='gt_super'>&minus;11</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">SMOKER</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">454.08</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">125.83</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">3.61</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">8.84 &times; 10<sup class='gt_super'>&minus;4</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">CHARITY</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.55</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.18</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;3.06</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.06 &times; 10<sup class='gt_super'>&minus;3</sup></td>
     </tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/</td>
+      <td class="gt_sourcenote" colspan="5">Residual standard error: 295.2 on 38 degrees of freedom</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Multiple R-squared:  0.8343,	Adjusted R-squared:  0.8168</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">F-statistic: 47.82 on 4 and 38 DF,  p-value: 2.486e-14</td>
     </tr>
   </tfoot>
   
 </table></div>
-</div>
-<div id="third-question" class="section level3">
-<h3>Third question</h3>
-<p>BT 20.17.3. Debra is an economist who is interested in the relationship between consumer spending and the gross domestic product (GDP). From the FRED database at the Fed’s Bank of St. Louis (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>) she collects quarterly data from 1980 through the first quarter of 2020; her series includes n = 161 quarters of data. She regresses consumer spending (C_SPEND), as the response (aka, dependent) variable against GDP as the explanatory (aka, independent) variable. Each series is not a level, but rather a seasonally adjusted percent change. The regression results are displayed below.</p>
-<pre class="r"><code>library(alfred)
-library(ggplot2)
-
-
-# startdate &lt;- &quot;1980-01-01&quot;
-# enddate &lt;- &quot;2020-01-01&quot;
-# startdate1 &lt;- &quot;1980-01-01&quot;
-# enddate1 &lt;- &quot;2020-01-01&quot;
-
-# gdp &lt;- get_fred_series(&quot;A191RP1Q027SBEA&quot;, &quot;GDP&quot;, observation_start = startdate1, observation_end = enddate1)
-# cspend &lt;- get_fred_series(&quot;DPCERL1Q225SBEA&quot;, &quot;C_Spend&quot;, observation_start = startdate1, observation_end = enddate1)
-# testing
-# cdebt &lt;- get_fred_series(&quot;CDSP&quot;, &quot;C_Debt&quot;, observation_start = startdate1, observation_end = enddate1)
-# df1 &lt;- cbind(gdp, cdebt)
-# df1 &lt;- df1[-3]
-
-# df2 &lt;- cbind(gdp, cspend)
-# df2 &lt;- df2[-3]
-# df2 &lt;- df2 %&gt;% rename(C_SPEND = C_Spend)
-# saving dataframe because series data changed in the meantime!
-# saveRDS(df2, &quot;t2-20-17-spend-versus-gdp.rds&quot;)
-
-con &lt;- url(&quot;http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-spend-versus-gdp.rds&quot;)
-df2 &lt;- readRDS(con)
-close(con)
-
-ggplot(df2, aes(GDP, C_SPEND)) + 
-  geom_point() + 
-  geom_smooth(method = &quot;lm&quot;)</code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/2020-09-03-bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>model_spend &lt;- lm(C_SPEND ~ GDP, data = df2)
-summary(model_spend)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = C_SPEND ~ GDP, data = df2)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -10.0025  -1.1513   0.2266   1.2048   4.6900 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.89995    0.31555   2.852  0.00492 ** 
-## GDP          0.36591    0.04993   7.329 1.11e-11 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 2.155 on 159 degrees of freedom
-## Multiple R-squared:  0.2525, Adjusted R-squared:  0.2478 
-## F-statistic: 53.71 on 1 and 159 DF,  p-value: 1.107e-11</code></pre>
-<pre class="r"><code>df_fit_tidy &lt;- tidy(model_spend)
-
-sd(df2$GDP)</code></pre>
-<pre><code>## [1] 3.411722</code></pre>
-<pre class="r"><code>sd(df2$C_SPEND)</code></pre>
-<pre><code>## [1] 2.484429</code></pre>
-<pre class="r"><code>cor(df2$GDP, df2$C_SPEND)</code></pre>
-<pre><code>## [1] 0.5024882</code></pre>
-<pre class="r"><code>beta &lt;- df_fit_tidy$estimate[2]
-beta_r &lt;- round(beta,4)
-sd_gdp &lt;- round(sd(df2$GDP),3)
-sd_spend &lt;- round(sd(df2$C_SPEND),3)
-correlation_compute &lt;- beta_r * sd_gdp/sd_spend
-
-gt_table &lt;- gt(df_fit_tidy)
-
-gt_table &lt;- 
-  gt_table %&gt;% 
-  tab_options(
-    table.font.size = 14
-  ) %&gt;% 
-  tab_style(
-    style = cell_text(weight = &quot;bold&quot;),
-    locations = cells_body()
-  ) %&gt;% 
-  tab_header(
-    title = &quot;Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)&quot;,
-    subtitle = md(&quot;Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161&quot;)
-  ) %&gt;% 
-  tab_source_note(
-    source_note = md(&quot;Source: FRED at https://fred.stlouisfed.org/&quot;)
-  ) %&gt;% cols_label(
-    term = &quot;Coefficient&quot;,
-    estimate = &quot;Estimate&quot;,
-    std.error = &quot;Std Error&quot;,
-    statistic = &quot;t-stat&quot;,
-    p.value = &quot;p value&quot;
-  ) %&gt;% fmt_number(
-    columns = vars(estimate, std.error, statistic),
-    decimals = 4
-  ) %&gt;% fmt_scientific(
-    columns = vars(p.value),
-  ) %&gt;% 
-  tab_options(
-    heading.title.font.size = 14,
-    heading.subtitle.font.size = 12
-  )
-
-gt_table</code></pre>
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#rslkcytkdt .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_title {
-  color: #333333;
-  font-size: 14px;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#rslkcytkdt .gt_subtitle {
-  color: #333333;
-  font-size: 12px;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 4px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#rslkcytkdt .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#rslkcytkdt .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#rslkcytkdt .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#rslkcytkdt .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#rslkcytkdt .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#rslkcytkdt .gt_group_heading {
-  padding: 8px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rslkcytkdt .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rslkcytkdt .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#rslkcytkdt .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#rslkcytkdt .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#rslkcytkdt .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 12px;
-}
-
-#rslkcytkdt .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rslkcytkdt .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rslkcytkdt .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#rslkcytkdt .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding: 4px;
-}
-
-#rslkcytkdt .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rslkcytkdt .gt_sourcenote {
-  font-size: 90%;
-  padding: 4px;
-}
-
-#rslkcytkdt .gt_left {
-  text-align: left;
-}
-
-#rslkcytkdt .gt_center {
-  text-align: center;
-}
-
-#rslkcytkdt .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#rslkcytkdt .gt_font_normal {
-  font-weight: normal;
-}
-
-#rslkcytkdt .gt_font_bold {
-  font-weight: bold;
-}
-
-#rslkcytkdt .gt_font_italic {
-  font-style: italic;
-}
-
-#rslkcytkdt .gt_super {
-  font-size: 65%;
-}
-
-#rslkcytkdt .gt_footnote_marks {
-  font-style: italic;
-  font-size: 65%;
-}
-</style>
-<div id="rslkcytkdt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)</th>
-    </tr>
-    <tr>
-      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161</th>
-    </tr>
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.9000</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.3156</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">2.8520</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">4.92 &times; 10<sup class='gt_super'>&minus;3</sup></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">GDP</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.3659</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0499</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">7.3285</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">1.11 &times; 10<sup class='gt_super'>&minus;11</sup></td>
-    </tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="5">Source: FRED at https://fred.stlouisfed.org/</td>
-    </tr>
-  </tfoot>
-  
-</table></div>
-<pre class="r"><code>df_fit_tidy$p.value[2]</code></pre>
-<pre><code>## [1] 1.106954e-11</code></pre>
-<pre class="r"><code>y_intercept &lt;- df_fit_tidy$estimate[1]
-se_y_intercept &lt;- df_fit_tidy$std.error[1]
-ci_confidence = 0.95
-z_2s &lt;- qnorm((1 + ci_confidence)/2)
-
-ci_lower &lt;- y_intercept - se_y_intercept*z_2s
-ci_upper &lt;- y_intercept + se_y_intercept*z_2s
-ci_lower</code></pre>
-<pre><code>## [1] 0.2814779</code></pre>
-<pre class="r"><code>ci_upper</code></pre>
-<pre><code>## [1] 1.518425</code></pre>
-<pre class="r"><code>slope_c &lt;-df_fit_tidy$estimate[2]
-se_slope &lt;- df_fit_tidy$std.error[2]
-slope_ci_lower &lt;- slope_c - se_slope * z_2s
-slope_ci_upper &lt;- slope_c + se_slope * z_2s
-slope_ci_lower</code></pre>
-<pre><code>## [1] 0.2680529</code></pre>
-<pre class="r"><code>slope_ci_upper</code></pre>
-<pre><code>## [1] 0.463775</code></pre>
+<pre class="r"><code>mean(results1$y) # cost</code></pre>
+<pre><code>## [1] 4150.588</code></pre>
+<pre class="r"><code>mean(results1$x0) # intercept</code></pre>
+<pre><code>## [1] 145.2152</code></pre>
+<pre class="r"><code>mean(results1$x1) # age</code></pre>
+<pre><code>## [1] 38.51163</code></pre>
+<pre class="r"><code>mean(results1$x2) # bmi</code></pre>
+<pre><code>## [1] 22.16166</code></pre>
+<pre class="r"><code>mean(results1$x3) # smoker</code></pre>
+<pre><code>## [1] 0.1627907</code></pre>
+<pre class="r"><code>mean(results1$x4) # charity</code></pre>
+<pre><code>## [1] 490.6912</code></pre>
 </div>
 </div>
 
@@ -2203,7 +2206,7 @@ slope_ci_lower</code></pre>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/&amp;text=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%20v2%29" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/&amp;text=BT%20Question%20Set%20P1-T2-20-18:%20Multivariate%20regressions" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -2216,7 +2219,7 @@ slope_ci_lower</code></pre>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/&amp;t=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%20v2%29" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/&amp;t=BT%20Question%20Set%20P1-T2-20-18:%20Multivariate%20regressions" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -2229,7 +2232,7 @@ slope_ci_lower</code></pre>
       
       
       <li>
-        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%20v2%29&amp;body=/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-18:%20Multivariate%20regressions&amp;body=/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -2242,7 +2245,7 @@ slope_ci_lower</code></pre>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/&amp;title=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%20v2%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/&amp;title=BT%20Question%20Set%20P1-T2-20-18:%20Multivariate%20regressions" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -2255,7 +2258,7 @@ slope_ci_lower</code></pre>
       
       
       <li>
-        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%20v2%29%20/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-18:%20Multivariate%20regressions%20/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -2268,7 +2271,7 @@ slope_ci_lower</code></pre>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/&amp;title=BT%20Question%20Set%20P1-T2-20-17:%20Univariate%20regressions%20continued%20%282nd%20set%20v2%29" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/&amp;title=BT%20Question%20Set%20P1-T2-20-18:%20Multivariate%20regressions" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -2430,7 +2433,7 @@ slope_ci_lower</code></pre>
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-18-multivariate-regressions/">BT Question Set P1-T2-20-18: Multivariate regressions</a></li>
+      <li><a href="/post/2020/bt-question-set-p1-t2-20-17-univariate-regressions-continued-2nd-set-v2/">BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)</a></li>
       
       <li><a href="/post/2020/bt-question-p1-t2-20-16-3-univariate-regression-monthly-rental-versus-footage/">BT Question P1-T2-20-16-3: Univariate regression: Monthly rental versus footage</a></li>
       
