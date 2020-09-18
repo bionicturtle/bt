@@ -1,0 +1,1555 @@
+---
+title: 'BT Question Set P1-T2-20-18: Multivariate regressions'
+author: David Harper
+date: '2020-09-17'
+slug: bt-question-set-p1-t2-20-18-multivariate-regressions
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-09-17T17:10:19-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div id="multiple-regression" class="section level2">
+<h2>Multiple regression</h2>
+<div id="question-1-fama-french" class="section level3">
+<h3>Question 1: Fama-french</h3>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &lt;- .03
+intercept_sig &lt;- .01
+
+x1_mu &lt;- .04
+x1_sig &lt;- .01
+x1_beta &lt;- 0.4
+
+x2_mu &lt;- .03
+x2_sig &lt;- .01
+x2_beta &lt;- -0.6
+
+x3_mu &lt;- .03
+x3_sig &lt;- .01
+x3_beta &lt;- -0.3
+
+noise_mu &lt;- 0
+noise_sig &lt;- 0 # low value gets low p-value b/c low noise
+
+size &lt;- 96
+set.seed(18)
+
+results &lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = rnorm(size, x1_mu, x1_sig),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = rnorm(size, x3_mu, x3_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &lt;- results %&gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + noise
+)
+
+model &lt;- lm(y ~ x1 + x2 + x3, data = results1)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = results1)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0179934 -0.0063017 -0.0002194  0.0069123  0.0252648 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.026900   0.005785   4.650 1.11e-05 ***
+## x1           0.501752   0.099805   5.027 2.44e-06 ***
+## x2          -0.702932   0.096522  -7.283 1.09e-10 ***
+## x3          -0.276534   0.102339  -2.702   0.0082 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.00983 on 92 degrees of freedom
+## Multiple R-squared:  0.4619, Adjusted R-squared:  0.4444 
+## F-statistic: 26.33 on 3 and 92 DF,  p-value: 2.206e-12</code></pre>
+<pre class="r"><code>model_tidy &lt;- tidy(model)
+model_tidy[2,1] &lt;- &quot;MKT&quot;
+model_tidy[3,1] &lt;- &quot;SMB&quot;
+model_tidy[4,1] &lt;- &quot;HML&quot;
+
+gt_table_model &lt;- gt(model_tidy)
+
+gt_table_model &lt;- 
+  gt_table_model %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;Portfolio excess returns regressed against MKT + SMB + HML&quot;,
+    subtitle =&quot;i.e., Fama-French three-factor model&quot;
+  #) %&gt;% tab_source_note(
+  #   source_note = md(&quot;the source is ... FRED&quot;)
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) %&gt;% fmt_scientific(
+    columns = vars(statistic, p.value),
+  ) %&gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pgiqepqpuz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pgiqepqpuz .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pgiqepqpuz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pgiqepqpuz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pgiqepqpuz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pgiqepqpuz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pgiqepqpuz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pgiqepqpuz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pgiqepqpuz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pgiqepqpuz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pgiqepqpuz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pgiqepqpuz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pgiqepqpuz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pgiqepqpuz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pgiqepqpuz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pgiqepqpuz .gt_left {
+  text-align: left;
+}
+
+#pgiqepqpuz .gt_center {
+  text-align: center;
+}
+
+#pgiqepqpuz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pgiqepqpuz .gt_font_normal {
+  font-weight: normal;
+}
+
+#pgiqepqpuz .gt_font_bold {
+  font-weight: bold;
+}
+
+#pgiqepqpuz .gt_font_italic {
+  font-style: italic;
+}
+
+#pgiqepqpuz .gt_super {
+  font-size: 65%;
+}
+
+#pgiqepqpuz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="pgiqepqpuz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Portfolio excess returns regressed against MKT + SMB + HML</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>i.e., Fama-French three-factor model</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.027</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.006</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.65</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.11 &times; 10<sup class='gt_super'>&minus;5</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">MKT</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.502</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.100</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">5.03</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.44 &times; 10<sup class='gt_super'>&minus;6</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">SMB</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.703</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.097</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;7.28</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.09 &times; 10<sup class='gt_super'>&minus;10</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">HML</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.277</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.102</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;2.70</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">8.20 &times; 10<sup class='gt_super'>&minus;3</sup></td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+</div>
+<div id="question-2-house-prices" class="section level3">
+<h3>Question 2: House Prices</h3>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &lt;- 40
+intercept_sig &lt;- .01
+
+x1_mu &lt;- 1200
+x1_sig &lt;- 30
+x1_beta &lt;- 0.35
+
+x2_mu &lt;- 4.5
+x2_sig &lt;- 2
+x2_beta &lt;- 10.0
+
+x3_mu &lt;- 15
+x3_sig &lt;- 4
+x3_beta &lt;- -8.0
+
+noise_mu &lt;- 0
+noise_sig &lt;- 20 # low value gets low p-value b/c low noise
+
+size &lt;- 96
+set.seed(43)
+
+results &lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = rnorm(size, x1_mu, x1_sig),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = rnorm(size, x3_mu, x3_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &lt;- results %&gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + noise
+)
+
+model &lt;- lm(y ~ x1 + x2 + x3, data = results1)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = results1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -40.088 -13.508  -1.795  13.819  41.934 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 110.95667   76.98277   1.441    0.153    
+## x1            0.29138    0.06283   4.638 1.16e-05 ***
+## x2            9.53971    0.85291  11.185  &lt; 2e-16 ***
+## x3           -8.06268    0.48275 -16.702  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.28 on 92 degrees of freedom
+## Multiple R-squared:  0.8378, Adjusted R-squared:  0.8325 
+## F-statistic: 158.4 on 3 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>model_tidy &lt;- tidy(model)
+model_tidy[2,1] &lt;- &quot;SQFEET&quot;
+model_tidy[3,1] &lt;- &quot;ROOMS&quot;
+model_tidy[4,1] &lt;- &quot;AGE&quot;
+
+gt_table_model &lt;- gt(model_tidy)
+
+gt_table_model &lt;- 
+  gt_table_model %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;House Price regressed against ft^2 (SQFEET) + ROOMS(#) + AGE(years)&quot;,
+    subtitle = md(&quot;House Price in Thousands **($000)** of dollars&quot;)
+  #) %&gt;% tab_source_note(
+  #   source_note = md(&quot;the source is ... FRED&quot;)
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) %&gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#vghvnzctdm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vghvnzctdm .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vghvnzctdm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vghvnzctdm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vghvnzctdm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vghvnzctdm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vghvnzctdm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vghvnzctdm .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vghvnzctdm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vghvnzctdm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vghvnzctdm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vghvnzctdm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vghvnzctdm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#vghvnzctdm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vghvnzctdm .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vghvnzctdm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vghvnzctdm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vghvnzctdm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vghvnzctdm .gt_left {
+  text-align: left;
+}
+
+#vghvnzctdm .gt_center {
+  text-align: center;
+}
+
+#vghvnzctdm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vghvnzctdm .gt_font_normal {
+  font-weight: normal;
+}
+
+#vghvnzctdm .gt_font_bold {
+  font-weight: bold;
+}
+
+#vghvnzctdm .gt_font_italic {
+  font-style: italic;
+}
+
+#vghvnzctdm .gt_super {
+  font-size: 65%;
+}
+
+#vghvnzctdm .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="vghvnzctdm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>House Price regressed against ft^2 (SQFEET) + ROOMS(#) + AGE(years)</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>House Price in Thousands <strong>($000)</strong> of dollars</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">110.957</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">76.983</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.441</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.53 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">SQFEET</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.291</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.063</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.638</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.16 &times; 10<sup class='gt_super'>&minus;5</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">ROOMS</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">9.540</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.853</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">11.185</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.64 &times; 10<sup class='gt_super'>&minus;19</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AGE</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;8.063</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.483</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;16.702</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">1.33 &times; 10<sup class='gt_super'>&minus;29</sup></td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<pre class="r"><code>mean(results1$y) # price</code></pre>
+<pre><code>## [1] 386.051</code></pre>
+<pre class="r"><code>mean(results1$x0) # intercept</code></pre>
+<pre><code>## [1] 40.0002</code></pre>
+<pre class="r"><code>mean(results1$x1) # sqfeet</code></pre>
+<pre><code>## [1] 1203.809</code></pre>
+<pre class="r"><code>mean(results1$x2) # rooms</code></pre>
+<pre><code>## [1] 4.548471</code></pre>
+<pre class="r"><code>mean(results1$x3) # age</code></pre>
+<pre><code>## [1] 14.76695</code></pre>
+</div>
+<div id="question-3-insurance" class="section level3">
+<h3>Question 3: Insurance</h3>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &lt;- 150
+intercept_sig &lt;- 40
+
+# age
+x1_mu &lt;- 38
+x1_sig &lt;- 7
+x1_beta &lt;- 50
+
+# bmi
+x2_mu &lt;- 22
+x2_sig &lt;- 4
+x2_beta &lt;- 100
+
+# smoker
+x3_mu &lt;- 15
+x3_sig &lt;- 0.5
+x3_beta &lt;- 535
+
+# spend
+x4_mu &lt;- 500
+x4_sig &lt;- 250
+x4_beta &lt;- -0.4
+
+
+noise_mu &lt;- 0
+noise_sig &lt;- 300 # low value gets low p-value b/c low noise
+
+size &lt;- 43
+set.seed(12)
+
+results &lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = round(rnorm(size, x1_mu, x1_sig)),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = round(runif(size)-.35), # smoker = 1, non = 0
+  x4 = rnorm(size, x4_mu, x4_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  x4_b = rep(x4_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &lt;- results %&gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + x4_b * x4 + noise
+)
+
+model &lt;- lm(y ~ x1 + x2 + x3 + x4, data = results1)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3 + x4, data = results1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -635.96 -169.65   15.59  219.73  543.51 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -324.2133   415.7736  -0.780 0.440348    
+## x1            56.9518     7.5517   7.542 4.60e-09 ***
+## x2           111.7571    11.9374   9.362 2.06e-11 ***
+## x3           454.0799   125.8293   3.609 0.000884 ***
+## x4            -0.5485     0.1793  -3.058 0.004064 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 298.3 on 38 degrees of freedom
+## Multiple R-squared:  0.8215, Adjusted R-squared:  0.8027 
+## F-statistic: 43.71 on 4 and 38 DF,  p-value: 1.009e-13</code></pre>
+<pre class="r"><code>model_tidy &lt;- tidy(model)
+model_tidy[2,1] &lt;- &quot;AGE&quot;
+model_tidy[3,1] &lt;- &quot;BMI&quot;
+model_tidy[4,1] &lt;- &quot;SMOKER&quot;
+model_tidy[5,1] &lt;- &quot;CHARITY&quot;
+
+gt_table_model &lt;- gt(model_tidy)
+
+gt_table_model &lt;- 
+  gt_table_model %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% 
+  tab_header(
+    title = &quot;Medical COST regressed against AGE + BMI + SMOKER(1/0) + CHARITY($)&quot;,
+    subtitle = md(&quot;Simulated dataset&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;Residual standard error: 295.2 on 38 degrees of freedom&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;Multiple R-squared:  0.8343,  Adjusted R-squared:  0.8168&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;F-statistic: 47.82 on 4 and 38 DF,  p-value: 2.486e-14&quot;)
+  ) %&gt;% cols_label(
+    term = &quot;Coefficient&quot;,
+    estimate = &quot;Estimate&quot;,
+    std.error = &quot;Std Error&quot;,
+    statistic = &quot;t-stat&quot;,
+    p.value = &quot;p value&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 2
+  ) %&gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+
+gt_table_model</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#iwuuabqqil .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iwuuabqqil .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iwuuabqqil .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iwuuabqqil .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iwuuabqqil .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iwuuabqqil .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iwuuabqqil .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iwuuabqqil .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iwuuabqqil .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iwuuabqqil .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iwuuabqqil .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iwuuabqqil .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iwuuabqqil .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#iwuuabqqil .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwuuabqqil .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwuuabqqil .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iwuuabqqil .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iwuuabqqil .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iwuuabqqil .gt_left {
+  text-align: left;
+}
+
+#iwuuabqqil .gt_center {
+  text-align: center;
+}
+
+#iwuuabqqil .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iwuuabqqil .gt_font_normal {
+  font-weight: normal;
+}
+
+#iwuuabqqil .gt_font_bold {
+  font-weight: bold;
+}
+
+#iwuuabqqil .gt_font_italic {
+  font-style: italic;
+}
+
+#iwuuabqqil .gt_super {
+  font-size: 65%;
+}
+
+#iwuuabqqil .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="iwuuabqqil" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Medical COST regressed against AGE + BMI + SMOKER(1/0) + CHARITY($)</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Simulated dataset</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;324.21</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">415.77</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.78</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.40 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AGE</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">56.95</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.55</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">7.54</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.60 &times; 10<sup class='gt_super'>&minus;9</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">BMI</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">111.76</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">11.94</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">9.36</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.06 &times; 10<sup class='gt_super'>&minus;11</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">SMOKER</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">454.08</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">125.83</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">3.61</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">8.84 &times; 10<sup class='gt_super'>&minus;4</sup></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">CHARITY</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;0.55</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.18</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">&minus;3.06</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">4.06 &times; 10<sup class='gt_super'>&minus;3</sup></td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Residual standard error: 295.2 on 38 degrees of freedom</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Multiple R-squared:  0.8343,	Adjusted R-squared:  0.8168</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">F-statistic: 47.82 on 4 and 38 DF,  p-value: 2.486e-14</td>
+    </tr>
+  </tfoot>
+  
+</table></div>
+<pre class="r"><code>mean(results1$y) # cost</code></pre>
+<pre><code>## [1] 4150.588</code></pre>
+<pre class="r"><code>mean(results1$x0) # intercept</code></pre>
+<pre><code>## [1] 145.2152</code></pre>
+<pre class="r"><code>mean(results1$x1) # age</code></pre>
+<pre><code>## [1] 38.51163</code></pre>
+<pre class="r"><code>mean(results1$x2) # bmi</code></pre>
+<pre><code>## [1] 22.16166</code></pre>
+<pre class="r"><code>mean(results1$x3) # smoker</code></pre>
+<pre><code>## [1] 0.1627907</code></pre>
+<pre class="r"><code>mean(results1$x4) # charity</code></pre>
+<pre><code>## [1] 490.6912</code></pre>
+</div>
+</div>

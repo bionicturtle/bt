@@ -5,12 +5,1556 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 03 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 17 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>BT Question Set P1-T2-20-18: Multivariate regressions</title>
+      <link>/post/bt-question-set-p1-t2-20-18-multivariate-regressions/</link>
+      <pubDate>Thu, 17 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-set-p1-t2-20-18-multivariate-regressions/</guid>
+      <description>
+
+
+&lt;div id=&#34;multiple-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multiple regression&lt;/h2&gt;
+&lt;div id=&#34;question-1-fama-french&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 1: Fama-french&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &amp;lt;- .03
+intercept_sig &amp;lt;- .01
+
+x1_mu &amp;lt;- .04
+x1_sig &amp;lt;- .01
+x1_beta &amp;lt;- 0.4
+
+x2_mu &amp;lt;- .03
+x2_sig &amp;lt;- .01
+x2_beta &amp;lt;- -0.6
+
+x3_mu &amp;lt;- .03
+x3_sig &amp;lt;- .01
+x3_beta &amp;lt;- -0.3
+
+noise_mu &amp;lt;- 0
+noise_sig &amp;lt;- 0 # low value gets low p-value b/c low noise
+
+size &amp;lt;- 96
+set.seed(18)
+
+results &amp;lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = rnorm(size, x1_mu, x1_sig),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = rnorm(size, x3_mu, x3_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &amp;lt;- results %&amp;gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + noise
+)
+
+model &amp;lt;- lm(y ~ x1 + x2 + x3, data = results1)
+summary(model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = results1)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0179934 -0.0063017 -0.0002194  0.0069123  0.0252648 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  0.026900   0.005785   4.650 1.11e-05 ***
+## x1           0.501752   0.099805   5.027 2.44e-06 ***
+## x2          -0.702932   0.096522  -7.283 1.09e-10 ***
+## x3          -0.276534   0.102339  -2.702   0.0082 ** 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.00983 on 92 degrees of freedom
+## Multiple R-squared:  0.4619, Adjusted R-squared:  0.4444 
+## F-statistic: 26.33 on 3 and 92 DF,  p-value: 2.206e-12&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_tidy &amp;lt;- tidy(model)
+model_tidy[2,1] &amp;lt;- &amp;quot;MKT&amp;quot;
+model_tidy[3,1] &amp;lt;- &amp;quot;SMB&amp;quot;
+model_tidy[4,1] &amp;lt;- &amp;quot;HML&amp;quot;
+
+gt_table_model &amp;lt;- gt(model_tidy)
+
+gt_table_model &amp;lt;- 
+  gt_table_model %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Portfolio excess returns regressed against MKT + SMB + HML&amp;quot;,
+    subtitle =&amp;quot;i.e., Fama-French three-factor model&amp;quot;
+  #) %&amp;gt;% tab_source_note(
+  #   source_note = md(&amp;quot;the source is ... FRED&amp;quot;)
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(statistic, p.value),
+  ) %&amp;gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#pgiqepqpuz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pgiqepqpuz .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pgiqepqpuz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pgiqepqpuz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pgiqepqpuz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pgiqepqpuz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pgiqepqpuz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pgiqepqpuz .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#pgiqepqpuz .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#pgiqepqpuz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pgiqepqpuz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pgiqepqpuz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pgiqepqpuz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pgiqepqpuz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pgiqepqpuz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pgiqepqpuz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pgiqepqpuz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pgiqepqpuz .gt_left {
+  text-align: left;
+}
+
+#pgiqepqpuz .gt_center {
+  text-align: center;
+}
+
+#pgiqepqpuz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pgiqepqpuz .gt_font_normal {
+  font-weight: normal;
+}
+
+#pgiqepqpuz .gt_font_bold {
+  font-weight: bold;
+}
+
+#pgiqepqpuz .gt_font_italic {
+  font-style: italic;
+}
+
+#pgiqepqpuz .gt_super {
+  font-size: 65%;
+}
+
+#pgiqepqpuz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;pgiqepqpuz&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Portfolio excess returns regressed against MKT + SMB + HML&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;i.e., Fama-French three-factor model&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.027&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.006&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.65&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.11 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;5&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;MKT&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.502&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.100&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.03&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.44 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;6&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;SMB&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;0.703&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.097&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;7.28&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.09 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;10&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;HML&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;0.277&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.102&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;2.70&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;8.20 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;3&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-2-house-prices&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 2: House Prices&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &amp;lt;- 40
+intercept_sig &amp;lt;- .01
+
+x1_mu &amp;lt;- 1200
+x1_sig &amp;lt;- 30
+x1_beta &amp;lt;- 0.35
+
+x2_mu &amp;lt;- 4.5
+x2_sig &amp;lt;- 2
+x2_beta &amp;lt;- 10.0
+
+x3_mu &amp;lt;- 15
+x3_sig &amp;lt;- 4
+x3_beta &amp;lt;- -8.0
+
+noise_mu &amp;lt;- 0
+noise_sig &amp;lt;- 20 # low value gets low p-value b/c low noise
+
+size &amp;lt;- 96
+set.seed(43)
+
+results &amp;lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = rnorm(size, x1_mu, x1_sig),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = rnorm(size, x3_mu, x3_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &amp;lt;- results %&amp;gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + noise
+)
+
+model &amp;lt;- lm(y ~ x1 + x2 + x3, data = results1)
+summary(model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = results1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -40.088 -13.508  -1.795  13.819  41.934 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) 110.95667   76.98277   1.441    0.153    
+## x1            0.29138    0.06283   4.638 1.16e-05 ***
+## x2            9.53971    0.85291  11.185  &amp;lt; 2e-16 ***
+## x3           -8.06268    0.48275 -16.702  &amp;lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 18.28 on 92 degrees of freedom
+## Multiple R-squared:  0.8378, Adjusted R-squared:  0.8325 
+## F-statistic: 158.4 on 3 and 92 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_tidy &amp;lt;- tidy(model)
+model_tidy[2,1] &amp;lt;- &amp;quot;SQFEET&amp;quot;
+model_tidy[3,1] &amp;lt;- &amp;quot;ROOMS&amp;quot;
+model_tidy[4,1] &amp;lt;- &amp;quot;AGE&amp;quot;
+
+gt_table_model &amp;lt;- gt(model_tidy)
+
+gt_table_model &amp;lt;- 
+  gt_table_model %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;House Price regressed against ft^2 (SQFEET) + ROOMS(#) + AGE(years)&amp;quot;,
+    subtitle = md(&amp;quot;House Price in Thousands **($000)** of dollars&amp;quot;)
+  #) %&amp;gt;% tab_source_note(
+  #   source_note = md(&amp;quot;the source is ... FRED&amp;quot;)
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table_model&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#vghvnzctdm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vghvnzctdm .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vghvnzctdm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vghvnzctdm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vghvnzctdm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vghvnzctdm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vghvnzctdm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vghvnzctdm .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vghvnzctdm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vghvnzctdm .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#vghvnzctdm .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#vghvnzctdm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vghvnzctdm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#vghvnzctdm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vghvnzctdm .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vghvnzctdm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vghvnzctdm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vghvnzctdm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vghvnzctdm .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vghvnzctdm .gt_left {
+  text-align: left;
+}
+
+#vghvnzctdm .gt_center {
+  text-align: center;
+}
+
+#vghvnzctdm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vghvnzctdm .gt_font_normal {
+  font-weight: normal;
+}
+
+#vghvnzctdm .gt_font_bold {
+  font-weight: bold;
+}
+
+#vghvnzctdm .gt_font_italic {
+  font-style: italic;
+}
+
+#vghvnzctdm .gt_super {
+  font-size: 65%;
+}
+
+#vghvnzctdm .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;vghvnzctdm&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;House Price regressed against ft^2 (SQFEET) + ROOMS(#) + AGE(years)&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;House Price in Thousands &lt;strong&gt;($000)&lt;/strong&gt; of dollars&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;110.957&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;76.983&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.441&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.53 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;SQFEET&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.291&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.063&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.638&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.16 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;5&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;ROOMS&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;9.540&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.853&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;11.185&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.64 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;19&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AGE&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;8.063&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.483&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;16.702&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;1.33 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;29&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$y) # price&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 386.051&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x0) # intercept&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 40.0002&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x1) # sqfeet&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1203.809&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x2) # rooms&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4.548471&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x3) # age&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 14.76695&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-3-insurance&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 3: Insurance&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(broom)
+library(gt)
+
+intercept &amp;lt;- 150
+intercept_sig &amp;lt;- 40
+
+# age
+x1_mu &amp;lt;- 38
+x1_sig &amp;lt;- 7
+x1_beta &amp;lt;- 50
+
+# bmi
+x2_mu &amp;lt;- 22
+x2_sig &amp;lt;- 4
+x2_beta &amp;lt;- 100
+
+# smoker
+x3_mu &amp;lt;- 15
+x3_sig &amp;lt;- 0.5
+x3_beta &amp;lt;- 535
+
+# spend
+x4_mu &amp;lt;- 500
+x4_sig &amp;lt;- 250
+x4_beta &amp;lt;- -0.4
+
+
+noise_mu &amp;lt;- 0
+noise_sig &amp;lt;- 300 # low value gets low p-value b/c low noise
+
+size &amp;lt;- 43
+set.seed(12)
+
+results &amp;lt;- tibble(
+  x0 = rnorm(size, intercept, intercept_sig),
+  x1 = round(rnorm(size, x1_mu, x1_sig)),
+  x2 = rnorm(size, x2_mu, x2_sig),
+  x3 = round(runif(size)-.35), # smoker = 1, non = 0
+  x4 = rnorm(size, x4_mu, x4_sig),
+  x1_b = rep(x1_beta, size),
+  x2_b = rep(x2_beta, size),
+  x3_b = rep(x3_beta, size),
+  x4_b = rep(x4_beta, size),
+  noise = rnorm(size, 0, noise_sig)
+)
+
+
+results1 &amp;lt;- results %&amp;gt;% mutate(
+  y = x0 +x1_b * x1 + x2_b * x2 + x3_b * x3 + x4_b * x4 + noise
+)
+
+model &amp;lt;- lm(y ~ x1 + x2 + x3 + x4, data = results1)
+summary(model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3 + x4, data = results1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -635.96 -169.65   15.59  219.73  543.51 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept) -324.2133   415.7736  -0.780 0.440348    
+## x1            56.9518     7.5517   7.542 4.60e-09 ***
+## x2           111.7571    11.9374   9.362 2.06e-11 ***
+## x3           454.0799   125.8293   3.609 0.000884 ***
+## x4            -0.5485     0.1793  -3.058 0.004064 ** 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 298.3 on 38 degrees of freedom
+## Multiple R-squared:  0.8215, Adjusted R-squared:  0.8027 
+## F-statistic: 43.71 on 4 and 38 DF,  p-value: 1.009e-13&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model_tidy &amp;lt;- tidy(model)
+model_tidy[2,1] &amp;lt;- &amp;quot;AGE&amp;quot;
+model_tidy[3,1] &amp;lt;- &amp;quot;BMI&amp;quot;
+model_tidy[4,1] &amp;lt;- &amp;quot;SMOKER&amp;quot;
+model_tidy[5,1] &amp;lt;- &amp;quot;CHARITY&amp;quot;
+
+gt_table_model &amp;lt;- gt(model_tidy)
+
+gt_table_model &amp;lt;- 
+  gt_table_model %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% 
+  tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% 
+  tab_header(
+    title = &amp;quot;Medical COST regressed against AGE + BMI + SMOKER(1/0) + CHARITY($)&amp;quot;,
+    subtitle = md(&amp;quot;Simulated dataset&amp;quot;)
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;Residual standard error: 295.2 on 38 degrees of freedom&amp;quot;)
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;Multiple R-squared:  0.8343,  Adjusted R-squared:  0.8168&amp;quot;)
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;F-statistic: 47.82 on 4 and 38 DF,  p-value: 2.486e-14&amp;quot;)
+  ) %&amp;gt;% cols_label(
+    term = &amp;quot;Coefficient&amp;quot;,
+    estimate = &amp;quot;Estimate&amp;quot;,
+    std.error = &amp;quot;Std Error&amp;quot;,
+    statistic = &amp;quot;t-stat&amp;quot;,
+    p.value = &amp;quot;p value&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(estimate, std.error, statistic, p.value),
+    decimals = 2
+  ) %&amp;gt;% fmt_scientific(
+    columns = vars(p.value),
+  ) %&amp;gt;% tab_options(
+    heading.title.font.size = 14,
+    heading.subtitle.font.size = 12
+  )
+
+
+gt_table_model&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#iwuuabqqil .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iwuuabqqil .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iwuuabqqil .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iwuuabqqil .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iwuuabqqil .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iwuuabqqil .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iwuuabqqil .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iwuuabqqil .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iwuuabqqil .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iwuuabqqil .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#iwuuabqqil .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#iwuuabqqil .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iwuuabqqil .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#iwuuabqqil .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwuuabqqil .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwuuabqqil .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iwuuabqqil .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iwuuabqqil .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iwuuabqqil .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iwuuabqqil .gt_left {
+  text-align: left;
+}
+
+#iwuuabqqil .gt_center {
+  text-align: center;
+}
+
+#iwuuabqqil .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iwuuabqqil .gt_font_normal {
+  font-weight: normal;
+}
+
+#iwuuabqqil .gt_font_bold {
+  font-weight: bold;
+}
+
+#iwuuabqqil .gt_font_italic {
+  font-style: italic;
+}
+
+#iwuuabqqil .gt_super {
+  font-size: 65%;
+}
+
+#iwuuabqqil .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;iwuuabqqil&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;Medical COST regressed against AGE + BMI + SMOKER(1/0) + CHARITY($)&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;5&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Simulated dataset&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Coefficient&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Estimate&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;Std Error&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;t-stat&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;p value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;(Intercept)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;324.21&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;415.77&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;0.78&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.40 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AGE&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;56.95&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.55&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;7.54&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.60 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;9&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;BMI&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;111.76&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;11.94&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;9.36&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.06 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;11&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;SMOKER&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;454.08&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;125.83&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.61&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;8.84 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;4&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;CHARITY&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;0.55&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.18&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;&amp;minus;3.06&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.06 &amp;times; 10&lt;sup class=&#39;gt_super&#39;&gt;&amp;minus;3&lt;/sup&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Residual standard error: 295.2 on 38 degrees of freedom&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;Multiple R-squared:  0.8343,	Adjusted R-squared:  0.8168&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;5&#34;&gt;F-statistic: 47.82 on 4 and 38 DF,  p-value: 2.486e-14&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$y) # cost&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4150.588&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x0) # intercept&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 145.2152&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x1) # age&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 38.51163&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x2) # bmi&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 22.16166&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x3) # smoker&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1627907&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results1$x4) # charity&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 490.6912&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>BT Question Set P1-T2-20-17: Univariate regressions continued (2nd set v2)</title>
