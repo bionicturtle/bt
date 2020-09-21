@@ -21,7 +21,7 @@ projects: []
 
 ## P1.T2.20.19. Regression diagnostics: omitted variables, heteroskedasticity, and multicollinearity
 
-### Question 1: Fama-french 2-facttor <- omitted variable
+### Question 1: Fama-french 2-factor <- omitted variable
 
 20.19.1. Jane manages a market-neutral equity fund for her investment management firm. The fund's market-neutral style implies (we will assume) that the fund's beta with respect to the market's excess return is zero. However, the fund does seek exposure to other factors. The size factor captures the excess return of small-capitalization stocks (SMB = "small minus big"). Jane tests her portfolio's exposure to the size factor by regressing the portfolio's excess return against the size factor returns. Her regression takes the form PORTFOLIO(i) = α + β1×SMB(i) + ε(i). The results of this single-variable (aka, simple) regression are displayed below.
 

@@ -86,8 +86,8 @@
 
 &lt;div id=&#34;p1.t2.20.19.-regression-diagnostics-omitted-variables-heteroskedasticity-and-multicollinearity&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;P1.T2.20.19. Regression diagnostics: omitted variables, heteroskedasticity, and multicollinearity&lt;/h2&gt;
-&lt;div id=&#34;question-1-fama-french-2-facttor---omitted-variable&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Question 1: Fama-french 2-facttor &amp;lt;- omitted variable&lt;/h3&gt;
+&lt;div id=&#34;question-1-fama-french-2-factor---omitted-variable&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 1: Fama-french 2-factor &amp;lt;- omitted variable&lt;/h3&gt;
 &lt;p&gt;20.19.1. Jane manages a market-neutral equity fund for her investment management firm. The fund’s market-neutral style implies (we will assume) that the fund’s beta with respect to the market’s excess return is zero. However, the fund does seek exposure to other factors. The size factor captures the excess return of small-capitalization stocks (SMB = “small minus big”). Jane tests her portfolio’s exposure to the size factor by regressing the portfolio’s excess return against the size factor returns. Her regression takes the form PORTFOLIO(i) = α + β1×SMB(i) + ε(i). The results of this single-variable (aka, simple) regression are displayed below.&lt;/p&gt;
 &lt;p&gt;… univariate regression output …&lt;/p&gt;
 &lt;p&gt;In this simple regression, we can observe that SMB’s coefficient is 0.6771 and significant. Jane is concerned that this simple regression might suffer from omitted variable bias. Specifically, she thinks the value factor has been omitted. The value factor captures the excess returns of value stocks (HML = “high book-to-market minus low book-to-market”)’. She confirms that the omitted variable, HML, is associated with her response variable. Further, the omitted variable, HML, is correlated to SMB. The correlation between HML and SMB is 0.30. Jane runs a multivariate regression with both explanatory variables, SMB and HML; in this regression, HML’s beta coefficient is 0.7240 such that the new term is β2×HML(i) = 0.7240×HML(i). Which of the following is nearest to the revised SMB coefficient; i.e., what is the revised β1?&lt;/p&gt;
@@ -1600,7 +1600,7 @@ gt_table_white&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# and the heteroskadisticity is visually VERY obvious!
 results_v2 %&amp;gt;% ggplot(aes(x = x1, y = y)) +
   geom_point()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-09-21-bt-question-set-p1-t2-20-19-regression-diagnostics-1st-set.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-09-21-bt-question-set-p1-t2-20-19-regression-diagnostics-1st-set.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-3-multicollinearity&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 3: Multicollinearity&lt;/h2&gt;
