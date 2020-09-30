@@ -83,6 +83,23 @@ plot(model_1, id.n = 0)
 
 model_1
 
-
-
 ```
+
+
+## What do the plot() diagnostics tell us?
+
+### Residuals vs Fitted 
+
+This plots residuals against the fitted values. We would like to see the residuals randomly scattered across the zero (which these are). The scatter pattern is relatively even suggesting homoskedasticity; i.e., we do not see a pattern that suggests heteroskedasticity. There are not many outliers. This is pretty good-looking residuals vs fitted plot suggestive of a decent linear regression. 
+
+### Normal Q-Q 
+
+If the distribution is normal, the plot will approximate along the straight line. But notice how this plot contains an obvious heavy-tail on the right side. 
+
+### Scale-location
+
+This plot is similiar to the Residuals vs Fitted plot, but the residuals are standardized. It is also used to evaluate heteroskedasticity. But, again, we do not perceive strong evidence of a non-constant variance. 
+
+### Residuals vs Leverage
+
+The red dashed line represents a Cook's distance of 0.5, but there are not observations outside of this line (i.e., in the upper-left) such that we do not have a case for outlier(s). 
