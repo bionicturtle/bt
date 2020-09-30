@@ -21,7 +21,17 @@ projects: []
 
 ### m-fold cross-validation 
 
-Following GARP's (sort of) CV approach
+Our question P1-T2-20-2 (located at https://www.bionicturtle.com/forum/threads/p1-t2-20-20-regression-diagnostics-outliers-cooks-distance-m-fold-cross-validation-and-residual-diagnostics.23497/) mimics GARP's approach in their Chapter 9; in particular their solution 9.14. However, it makes the mistake of using cross-validation to select the regression coefficients. The problem with this approach is simple: the entire dataset is not used to fit the model. 
+
+Here are two helpful resources:
+
+* Introduction to Data Science (Data Analysis and Prediction Algorithms with R) by Rafael A. Irizarry at https://rafalab.github.io/dsbook/cross-validation.html#k-fold-cross-validation 
+* The answer at https://stats.stackexchange.com/questions/52274/how-to-choose-a-predictive-model-after-k-fold-cross-validation
+
+In the stackexhange Bogdanovist explains that "the purpose of cross-validation is not to come up with our final model. We don't use these 5 instances of our trained model to do any real prediction. For that we want to use all the data we have to come up with the best model possible. The purpose of cross-validation is model checking, not model building."
+
+In this way training different linear regression coefficients is NOT training multiple models. In the example below, there are not three models, there is one model. The one model is the dead-simple univariate regression: lm(Y ~ X, data). The purpose of cross-validation is to estimate the error, it is NOT to calibrate the coefficients by using two-thirds (i.e., 6 of 9) of the dataset. 
+
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -77,8 +87,8 @@ model_cv <- train(
   )
 )
 
-# Note that the final model is a regression on the full dataset
-# Strictly CV is to estimate the out-of-sample error; the folder models are disposed
+# Notice how caret builds the final regression model on the full dataset. 
+# CV is to estimate the out-of-sample error; the folded models are "disposed"
 # We are not REALLY comparing three different models; there is only one model here
 # CV is to check the model not build the model
 # And intuitively: we want to use all the data to fit the model.
