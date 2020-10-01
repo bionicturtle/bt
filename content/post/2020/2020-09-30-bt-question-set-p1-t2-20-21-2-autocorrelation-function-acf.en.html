@@ -1,0 +1,60 @@
+---
+title: 'BT Question Set P1-T2-20-21-2: Autocorrelation function (ACF)'
+author: David
+date: '2020-09-30'
+slug: bt-question-set-p1-t2-20-21-2-autocorrelation-function-acf
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-09-30T19:00:39-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>20.21.2. Shown below is the autocorrelation function (ACF) for a time series object that contains the total quarterly beer production in Australia (in megalitres) from 1956:Q1 to 2010:Q2 (source: <a href="https://cran.r-project.org/web/packages/fpp2/index.html" class="uri">https://cran.r-project.org/web/packages/fpp2/index.html</a>).</p>
+<pre class="r"><code>library(forecast)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre class="r"><code># install.packages(&quot;fpp2&quot;)
+library(fpp2)</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------------------------------------------------------- fpp2 2.4 --</code></pre>
+<pre><code>## v ggplot2   3.3.2     v expsmooth 2.3  
+## v fma       2.4</code></pre>
+<pre><code>## </code></pre>
+<pre class="r"><code>beer2 &lt;- ausbeer
+beer2 &lt;- window(ausbeer, start=1992)
+
+acf_beer2 &lt;- ggAcf(beer2) + 
+  xlab(&quot;Lags&quot;) + 
+  theme_bw() +
+  geom_segment(size = 3) +
+  theme(
+    text = element_text(family = &quot;Calibri&quot;),
+    plot.title = element_blank(),
+    axis.title.x = element_text(size = 14, face = &quot;bold&quot;),
+    axis.title.y = element_text(size = 14, face = &quot;bold&quot;),
+    axis.text.x = element_text(size = 14, face = &quot;bold&quot;),
+    axis.text.y = element_text(size = 14, face= &quot;bold&quot;),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(color=&quot;grey&quot;),
+    panel.border = element_blank()
+  )
+
+acf_beer2</code></pre>
+<pre><code>## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
+## found in Windows font database</code></pre>
+<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database</code></pre>
+<pre><code>## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database</code></pre>
+<p><img src="/post/2020-09-30-bt-question-set-p1-t2-20-21-2-autocorrelation-function-acf.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>

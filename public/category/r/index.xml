@@ -5,12 +5,61 @@
     <link>/category/r/</link>
       <atom:link href="/category/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 25 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png</url>
       <title>R</title>
       <link>/category/r/</link>
     </image>
+    
+    <item>
+      <title>BT Question Set P1-T2-20-21-2: Autocorrelation function (ACF)</title>
+      <link>/post/2020/bt-question-set-p1-t2-20-21-2-autocorrelation-function-acf/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/post/2020/bt-question-set-p1-t2-20-21-2-autocorrelation-function-acf/</guid>
+      <description>
+
+
+&lt;p&gt;20.21.2. Shown below is the autocorrelation function (ACF) for a time series object that contains the total quarterly beer production in Australia (in megalitres) from 1956:Q1 to 2010:Q2 (source: &lt;a href=&#34;https://cran.r-project.org/web/packages/fpp2/index.html&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/web/packages/fpp2/index.html&lt;/a&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(forecast)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;quantmod&amp;#39;:
+##   method            from
+##   as.zoo.data.frame zoo&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;fpp2&amp;quot;)
+library(fpp2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------------------------------------------- fpp2 2.4 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2   3.3.2     v expsmooth 2.3  
+## v fma       2.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beer2 &amp;lt;- ausbeer
+beer2 &amp;lt;- window(ausbeer, start=1992)
+
+acf_beer2 &amp;lt;- ggAcf(beer2) + 
+  xlab(&amp;quot;Lags&amp;quot;) + 
+  theme_bw() +
+  geom_segment(size = 3) +
+  theme(
+    text = element_text(family = &amp;quot;Calibri&amp;quot;),
+    plot.title = element_blank(),
+    axis.title.x = element_text(size = 14, face = &amp;quot;bold&amp;quot;),
+    axis.title.y = element_text(size = 14, face = &amp;quot;bold&amp;quot;),
+    axis.text.x = element_text(size = 14, face = &amp;quot;bold&amp;quot;),
+    axis.text.y = element_text(size = 14, face= &amp;quot;bold&amp;quot;),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(color=&amp;quot;grey&amp;quot;),
+    panel.border = element_blank()
+  )
+
+acf_beer2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
+## found in Windows font database&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-09-30-bt-question-set-p1-t2-20-21-2-autocorrelation-function-acf.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>BT Question Set P1-T2-20-20-2: m-fold cross-validation</title>
