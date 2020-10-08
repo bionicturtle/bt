@@ -1,0 +1,116 @@
+---
+title: 'BT Question Set P1-T2-20-21-3: White Noise (WN) Process'
+author: David
+date: '2020-10-05'
+slug: bt-question-set-p1-t2-20-21-3-white-noise-wn-process
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-09-30T20:15:21-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div id="p1-t2-20-21-3-white-noise-wn-process" class="section level2">
+<h2>P1-T2-20-21-3: White Noise (WN) Process)</h2>
+<p>20.21.3. Barbara was delighted to learn that she can easily simulate white noise in R with a single command. She learned that she can use arima.sim(model = list(order = c(0,0,0)), n = 100) to generate white noise with an ARIMA(0,0,0) model over a length of 100 days. She wants the shocks to have a Poisson distribution so she uses the command arima.sim(model = list(order = c(0,0,0)), n = 100, rand.gen = function(n, …) rpois(n, lambda = 10)) which assumes a Poisson distribution. Below is a plot of the white noise (top panel) and its associated autocorrelation function (ACF, bottom panel).</p>
+<pre class="r"><code># Simulate a WN model with list(order = c(0, 0, 0))
+# white_noise &lt;- arima.sim(model = list(order = c(0,0,0)), n = 100)
+# white_noise_1_tb  &lt;- as_tibble(white_noise) %&gt;% rowid_to_column()
+# p1 &lt;- ggplot(white_noise_1_tb, aes(x = rowid, y = x)) + geom_line()
+# p2 &lt;- ggAcf(white_noise)
+# grid.arrange(p1, p2)
+
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(forecast)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre class="r"><code>library(patchwork)
+library(extrafont)</code></pre>
+<pre><code>## Registering fonts with R</code></pre>
+<pre class="r"><code>library(ggthemes)
+# library(ggfortify)
+# library(cowplot)
+
+set.seed(58)
+
+# Simulate a WN model with list(order = c(0, 0, 0))
+# dat_wn &lt;- arima.sim(model = list(order = c(0,0,0)), n = 100)
+dat_wn &lt;- arima.sim(model = list(order = c(0,0,0)), n = 100, 
+                         rand.gen = function(n, ...) rpois(n, lambda = 10))
+dat_wn_tbl &lt;- bind_cols(dat_wn) %&gt;% rowid_to_column() %&gt;% rename(value_y = ...1 )</code></pre>
+<pre><code>## New names:
+## * NA -&gt; ...1</code></pre>
+<pre class="r"><code>process_color = &quot;#266935&quot;
+p1 &lt;- dat_wn_tbl %&gt;% ggplot(aes(x = rowid, y = value_y)) +
+  geom_line(size= 1, color = process_color) +
+  ylab(&quot;Y Value&quot;) +
+  xlab(&quot;Process (100 days)&quot;) + 
+  theme_bw() + 
+  theme(
+    text = element_text(family = &quot;Calibri&quot;),
+    plot.title = element_blank(),
+    axis.title.x = element_text(size = 14, face = &quot;bold&quot;),
+    axis.title.y = element_text(size = 14, face = &quot;bold&quot;, color = process_color),
+    axis.text.x = element_text(size = 14, face = &quot;bold&quot;),
+    axis.text.y = element_text(size = 14, face= &quot;bold&quot;),
+    panel.background = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(color=&quot;grey&quot;),
+    panel.border = element_blank()
+  )
+
+#p2 &lt;- ggAcf(dat_wn)
+
+p2 &lt;- ggAcf(dat_wn) + 
+  xlab(&quot;Lags&quot;) + 
+  theme_bw() +
+  geom_segment(size = 3) +
+  theme(
+    text = element_text(family = &quot;Calibri&quot;),
+    plot.title = element_blank(),
+    axis.title.x = element_text(size = 14, face = &quot;bold&quot;),
+    axis.title.y = element_text(size = 14, face = &quot;bold&quot;),
+    axis.text.x = element_text(size = 14, face = &quot;bold&quot;),
+    axis.text.y = element_text(size = 14, face= &quot;bold&quot;),
+    panel.background = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(color=&quot;grey&quot;),
+    panel.border = element_blank()
+  )
+
+
+# grid.arrange(p1, p2)
+
+p1/p2</code></pre>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type ts. Defaulting to continuous.</code></pre>
+<p><img src="/post/2020-09-30-bt-question-set-p1-t2-20-21-3-white-noise-wn-process.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>s5 &lt;- arima.sim(model = list(order = c(0,0,0)), n = 100, 
+                         rand.gen = function(n, ...) rpois(n, lambda = 10))
+
+dat_rw &lt;- arima.sim(model = list(order = c(0,1,0)), n = 100)
+dat_rw_tbl &lt;- bind_cols(dat_rw) %&gt;% rowid_to_column() %&gt;% rename(value_y = ...1 )</code></pre>
+<pre><code>## New names:
+## * NA -&gt; ...1</code></pre>
+<pre class="r"><code>dat_rw_tbl %&gt;% ggplot(aes(x = rowid, y = value_y)) + geom_line()</code></pre>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type ts. Defaulting to continuous.</code></pre>
+<p><img src="/post/2020-09-30-bt-question-set-p1-t2-20-21-3-white-noise-wn-process.en_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+</div>
