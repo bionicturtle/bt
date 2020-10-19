@@ -24,7 +24,7 @@ Learning objectives
 * Define and describe the properties of autoregressive moving average (ARMA) processes. 
 * Describe the application of AR, MA and ARMA processes.
 
-Let's load packages
+Let's load some packages
 
 ```{r}
 library(tidyverse)

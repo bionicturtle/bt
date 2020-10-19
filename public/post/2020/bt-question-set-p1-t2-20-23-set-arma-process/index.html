@@ -654,7 +654,7 @@
 <li>Define and describe the properties of autoregressive moving average (ARMA) processes.</li>
 <li>Describe the application of AR, MA and ARMA processes.</li>
 </ul>
-<p>Let’s load packages</p>
+<p>Let’s load some packages</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
@@ -707,7 +707,7 @@ p4 &lt;- ggPacf(AR) +
 
 # Please note plot is shrunk to 86% on copy/paste
 p3 / p4</code></pre>
-<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>20.23.2. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?</p>
 <pre class="r"><code>set.seed(19)
 
@@ -741,7 +741,7 @@ p6 &lt;- ggPacf(MA) +
 
 # Please note plot is shrunk to 86% on copy/paste
 p5 / p6</code></pre>
-<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>20.23.3. An ARMA(1,1) process evolves according to Y(t) = ẟ + ϕ<em>Y(t-1) + θ</em>ε(t-1) + ε(t). The plot below contains two 300-step ARMA(1,1) processes that differ only in their coefficients …</p>
 <p>Which of the following statements is TRUE about the two ARMA(1,1) simulations above?</p>
 <ol style="list-style-type: lower-alpha">
@@ -801,7 +801,7 @@ time_arma %&gt;% ggplot(aes(x = rowid)) +
     color = &quot;Legend&quot;
   ) +
   scale_color_manual(values = colors)</code></pre>
-<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>arma_11_1_mulr = arma_11_1_mu/(1 - ar_11_1)
 arma_11_2_mulr = arma_11_2_mu/(1 - ar_11_2)
 
@@ -812,7 +812,7 @@ arma_11_2_mulr = arma_11_2_mu/(1 - ar_11_2)
 # mean_arma_22 = mu_arma_22/(1 - 0.4 - 0.2)
 
 acf2(ARMA_11_1)</code></pre>
-<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre><code>##      [,1]  [,2] [,3]  [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
 ## ACF  0.86  0.65 0.50  0.40 0.33 0.29  0.24  0.18  0.11  0.03 -0.05 -0.12 -0.16
 ## PACF 0.86 -0.39 0.28 -0.11 0.07 0.05 -0.07 -0.06 -0.01 -0.13 -0.06 -0.01 -0.03
@@ -823,7 +823,7 @@ acf2(ARMA_11_1)</code></pre>
 ## ACF   0.05  0.07  0.11
 ## PACF -0.05  0.13  0.07</code></pre>
 <pre class="r"><code>acf2(ARMA_11_2)</code></pre>
-<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<p><img src="/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
 ## ACF  0.52 0.45 0.46 0.43 0.37 0.35  0.30  0.25  0.20  0.22  0.16  0.09  0.09
 ## PACF 0.52 0.24 0.24 0.12 0.05 0.04 -0.02 -0.04 -0.05  0.05 -0.04 -0.08  0.00

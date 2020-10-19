@@ -26,7 +26,7 @@
 &lt;li&gt;Define and describe the properties of autoregressive moving average (ARMA) processes.&lt;/li&gt;
 &lt;li&gt;Describe the application of AR, MA and ARMA processes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let’s load packages&lt;/p&gt;
+&lt;p&gt;Let’s load some packages&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
@@ -79,7 +79,7 @@ p4 &amp;lt;- ggPacf(AR) +
 
 # Please note plot is shrunk to 86% on copy/paste
 p3 / p4&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;20.23.2. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(19)
 
@@ -113,7 +113,7 @@ p6 &amp;lt;- ggPacf(MA) +
 
 # Please note plot is shrunk to 86% on copy/paste
 p5 / p6&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;20.23.3. An ARMA(1,1) process evolves according to Y(t) = ẟ + ϕ&lt;em&gt;Y(t-1) + θ&lt;/em&gt;ε(t-1) + ε(t). The plot below contains two 300-step ARMA(1,1) processes that differ only in their coefficients …&lt;/p&gt;
 &lt;p&gt;Which of the following statements is TRUE about the two ARMA(1,1) simulations above?&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
@@ -173,7 +173,7 @@ time_arma %&amp;gt;% ggplot(aes(x = rowid)) +
     color = &amp;quot;Legend&amp;quot;
   ) +
   scale_color_manual(values = colors)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;arma_11_1_mulr = arma_11_1_mu/(1 - ar_11_1)
 arma_11_2_mulr = arma_11_2_mu/(1 - ar_11_2)
 
@@ -184,7 +184,7 @@ arma_11_2_mulr = arma_11_2_mu/(1 - ar_11_2)
 # mean_arma_22 = mu_arma_22/(1 - 0.4 - 0.2)
 
 acf2(ARMA_11_1)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;##      [,1]  [,2] [,3]  [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
 ## ACF  0.86  0.65 0.50  0.40 0.33 0.29  0.24  0.18  0.11  0.03 -0.05 -0.12 -0.16
 ## PACF 0.86 -0.39 0.28 -0.11 0.07 0.05 -0.07 -0.06 -0.01 -0.13 -0.06 -0.01 -0.03
@@ -195,7 +195,7 @@ acf2(ARMA_11_1)&lt;/code&gt;&lt;/pre&gt;
 ## ACF   0.05  0.07  0.11
 ## PACF -0.05  0.13  0.07&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;acf2(ARMA_11_2)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;##      [,1] [,2] [,3] [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
 ## ACF  0.52 0.45 0.46 0.43 0.37 0.35  0.30  0.25  0.20  0.22  0.16  0.09  0.09
 ## PACF 0.52 0.24 0.24 0.12 0.05 0.04 -0.02 -0.04 -0.05  0.05 -0.04 -0.08  0.00
