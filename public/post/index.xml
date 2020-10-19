@@ -5,7 +5,7 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
@@ -13,10 +13,206 @@
     </image>
     
     <item>
+      <title>BT Question Set P1-T2-20-23 set: ARMA process</title>
+      <link>/post/2020/bt-question-set-p1-t2-20-23-set-arma-process/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>/post/2020/bt-question-set-p1-t2-20-23-set-arma-process/</guid>
+      <description>
+
+
+&lt;p&gt;Learning objectives&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explain mean reversion and calculate a mean-reverting level.&lt;/li&gt;
+&lt;li&gt;Define and describe the properties of autoregressive moving average (ARMA) processes.&lt;/li&gt;
+&lt;li&gt;Describe the application of AR, MA and ARMA processes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s load packages&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(forecast) # incl ggACF()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;quantmod&amp;#39;:
+##   method            from
+##   as.zoo.data.frame zoo&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# library(cowplot)
+library(patchwork)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;20.23.1. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(66)
+
+AR_param_1 = 1.4
+AR_param_2 = -0.7
+AR_intercept = 0
+AR_n &amp;lt;- 1000
+
+theme_set(theme_bw())
+
+# arima.sim model c(p, d, q)
+# p = AR order
+# d = difference
+# q = MA order
+# Generate an AR(2) with parameters, AR_param_1 and AR_param_2
+AR &amp;lt;- arima.sim(model=list(order=c(2,0,0), ar = c(AR_param_1, AR_param_2)), n = AR_n, mean = AR_intercept)
+
+p3 &amp;lt;- ggAcf(AR) + 
+  geom_segment(size = 3) +
+  labs(
+    title = &amp;quot;autocorrelation function (ACF)&amp;quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    axis.title.x = element_blank(),
+    panel.grid = element_blank()
+  )
+p4 &amp;lt;- ggPacf(AR) + 
+  geom_segment(size = 3) +
+  labs(
+    title = &amp;quot;partial autocorrelation function (PACF)&amp;quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    panel.grid = element_blank()
+  )
+
+# Please note plot is shrunk to 86% on copy/paste
+p3 / p4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;20.23.2. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(19)
+
+MA_n = 1000
+MA_mean = 0
+MA_weight_1 = 0.4
+MA_weight_2 = 0.6
+MA_weight_3 = 0.8
+
+# # Generate an MA(3) with weights MA_weight_1, MA_weight_2, and MA_weight_3
+MA &amp;lt;- arima.sim(model=list(order = c(0,0,3), ma = c(MA_weight_1, MA_weight_2, MA_weight_3)), n = MA_n, mean = MA_mean)
+
+p5 &amp;lt;- ggAcf(MA) + 
+  geom_segment(size = 3) +
+  # geom_hline(yintercept = c(ci2, -ci2), color = &amp;quot;darkblue&amp;quot;, linetype = &amp;quot;dashed&amp;quot;, size = 2 ) +
+  labs(
+    title = &amp;quot;autocorrelation function (ACF)&amp;quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    axis.title.x = element_blank(),
+    panel.grid = element_blank()
+  )
+p6 &amp;lt;- ggPacf(MA) + 
+  geom_segment(size = 3) +
+  labs(
+    title = &amp;quot;partial autocorrelation function (PACF)&amp;quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    panel.grid = element_blank()
+  )
+
+# Please note plot is shrunk to 86% on copy/paste
+p5 / p6&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;20.23.3. An ARMA(1,1) process evolves according to Y(t) = ẟ + ϕ&lt;em&gt;Y(t-1) + θ&lt;/em&gt;ε(t-1) + ε(t). The plot below contains two 300-step ARMA(1,1) processes that differ only in their coefficients …&lt;/p&gt;
+&lt;p&gt;Which of the following statements is TRUE about the two ARMA(1,1) simulations above?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Both of the ARMA(1,1) processes are likely to exhibit slow decay in both the ACF and PACF&lt;/li&gt;
+&lt;li&gt;Both of the ARMA(1,1) processes are likely to cut off sharply at lag 1 in both the ACF and PACF&lt;/li&gt;
+&lt;li&gt;The first ARMA(1,1) process (i.e., plotted with a red dashed line) cannot be covariance-stationary&lt;/li&gt;
+&lt;li&gt;The unconditional mean of both ARMA(1,1) processes must be zero because all ARMA(1,1) have a long-run mean of zero&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(astsa)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;astsa&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:forecast&amp;#39;:
+## 
+##     gas&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(9)
+
+ar_11_1 = 0.8
+ma_11_1 = 0.6
+arma_11_1_mu = 2
+sim_n = 300
+
+ar_11_2 = 0.9
+ma_11_2 = -0.5
+arma_11_2_mu = -3
+
+# ar_22 = c(1.4, -0.6)
+# ma_22 = c(0.9, 0.6)
+
+ARMA_11_1 &amp;lt;- arima.sim(model=list(order = c(1, 0, 1), ar = ar_11_1, ma = ma_11_1), n = sim_n) + arma_11_1_mu
+ARMA_11_2 &amp;lt;- arima.sim(model=list(order = c(1, 0, 1), ar = ar_11_2, ma = ma_11_2), n = sim_n) + arma_11_2_mu
+# ARMA_22 &amp;lt;- arima.sim(model=list(order = c(2, 0, 2), ar = ar_22, ma = ma_22), n = 200)
+
+# ts.plot(ARMA_11, ARMA_22)
+
+time_arma &amp;lt;- bind_cols(ARMA_11_1, ARMA_11_2) %&amp;gt;% rowid_to_column() %&amp;gt;% 
+  rename(y_ARMA_11_1 = ...1, y_ARMA_11_2 = ...2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## New names:
+## * NA -&amp;gt; ...1
+## * NA -&amp;gt; ...2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw())
+
+colors &amp;lt;- c(&amp;quot;First ARMA(1,1)&amp;quot; = &amp;quot;darkred&amp;quot;, &amp;quot;Second ARMA(1,1)&amp;quot; = &amp;quot;steelblue&amp;quot;)
+
+time_arma %&amp;gt;% ggplot(aes(x = rowid)) + 
+  geom_line(aes(y = y_ARMA_11_1, color = &amp;quot;First ARMA(1,1)&amp;quot;), size = 1, linetype = &amp;quot;longdash&amp;quot;) +
+  geom_line(aes(y = y_ARMA_11_2, color = &amp;quot;Second ARMA(1,1)&amp;quot;), size = 1) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1)) + 
+  theme(
+    axis.title.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.text.x = element_text(size = 12, face = &amp;quot;bold&amp;quot;),
+    axis.text.y = element_text(size = 12, face = &amp;quot;bold&amp;quot;),
+    legend.position = &amp;quot;right&amp;quot;,
+    legend.text = element_text(size = 12)
+  ) + labs(
+    title = &amp;quot;Two different ARMA(1,1) time-series simulations&amp;quot;,
+    color = &amp;quot;Legend&amp;quot;
+  ) +
+  scale_color_manual(values = colors)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;arma_11_1_mulr = arma_11_1_mu/(1 - ar_11_1)
+arma_11_2_mulr = arma_11_2_mu/(1 - ar_11_2)
+
+# mu_arma_22 = 10
+#ARMA_22 &amp;lt;- arima.sim(model=list(order = c(2, 0, 2), ar = c(0.4, 0.2), ma = c(0.5,0.6)), n = 200, mean = mu_arma_22)
+# ts.plot(ARMA_22)
+# acf2(ARMA_22)
+# mean_arma_22 = mu_arma_22/(1 - 0.4 - 0.2)
+
+acf2(ARMA_11_1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##      [,1]  [,2] [,3]  [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
+## ACF  0.86  0.65 0.50  0.40 0.33 0.29  0.24  0.18  0.11  0.03 -0.05 -0.12 -0.16
+## PACF 0.86 -0.39 0.28 -0.11 0.07 0.05 -0.07 -0.06 -0.01 -0.13 -0.06 -0.01 -0.03
+##      [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
+## ACF  -0.17 -0.17 -0.15 -0.12 -0.10 -0.11 -0.13 -0.15 -0.14 -0.08 -0.02  0.03
+## PACF  0.01  0.03  0.06  0.00  0.01 -0.08 -0.03 -0.05  0.10  0.06  0.00  0.04
+##      [,26] [,27] [,28]
+## ACF   0.05  0.07  0.11
+## PACF -0.05  0.13  0.07&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;acf2(ARMA_11_2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##      [,1] [,2] [,3] [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
+## ACF  0.52 0.45 0.46 0.43 0.37 0.35  0.30  0.25  0.20  0.22  0.16  0.09  0.09
+## PACF 0.52 0.24 0.24 0.12 0.05 0.04 -0.02 -0.04 -0.05  0.05 -0.04 -0.08  0.00
+##      [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
+## ACF   0.10  0.13  0.08  0.09  0.08  0.07  0.05  0.00 -0.04 -0.04 -0.04 -0.08
+## PACF  0.03  0.10 -0.01  0.04 -0.01  0.01 -0.04 -0.09 -0.09 -0.04 -0.01 -0.06
+##      [,26] [,27] [,28]
+## ACF  -0.09 -0.11 -0.14
+## PACF  0.00 -0.01 -0.03&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>BT Question Set P1-T2-20-22-2: AR versus MA process</title>
-      <link>/post/bt-question-set-p1-t2-20-22-2-ar-versus-ma-process/</link>
+      <link>/post/2020/bt-question-set-p1-t2-20-22-2-ar-versus-ma-process/</link>
       <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>/post/bt-question-set-p1-t2-20-22-2-ar-versus-ma-process/</guid>
+      <guid>/post/2020/bt-question-set-p1-t2-20-22-2-ar-versus-ma-process/</guid>
       <description>
 
 
@@ -91,9 +287,9 @@ lr_mean_AR&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>BT Question Set P1-T2-20-21-3: White Noise (WN) Process</title>
-      <link>/post/bt-question-set-p1-t2-20-21-3-white-noise-wn-process/</link>
+      <link>/post/2020/bt-question-set-p1-t2-20-21-3-white-noise-wn-process/</link>
       <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>/post/bt-question-set-p1-t2-20-21-3-white-noise-wn-process/</guid>
+      <guid>/post/2020/bt-question-set-p1-t2-20-21-3-white-noise-wn-process/</guid>
       <description>
 
 

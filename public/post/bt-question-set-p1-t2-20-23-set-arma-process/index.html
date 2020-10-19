@@ -30,10 +30,11 @@
   
     
   
-  <meta name="description" content="BT Question 20.20.320.20.3. Patrick generated a simple regression line for a sample of 50 pairwise observations. After generating the regression model, he ran R’s built-in plot(model) function which produces a standard set of regression diagnostics.">
+  <meta name="description" content="Learning objectives
+Explain mean reversion and calculate a mean-reverting level.Define and describe the properties of autoregressive moving average (ARMA) processes.Describe the application of AR, MA and ARMA processes.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/">
+  <link rel="alternate" hreflang="en-us" href="/post/bt-question-set-p1-t2-20-23-set-arma-process/">
 
   
 
@@ -231,7 +232,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/">
+  <link rel="canonical" href="/post/bt-question-set-p1-t2-20-23-set-arma-process/">
 
   
   
@@ -247,15 +248,16 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="David&#39;s (bionicturtle) data blog">
-  <meta property="og:url" content="/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/">
-  <meta property="og:title" content="BT Question P1-T2-20-20-3: Regression diagnostic plots | David&#39;s (bionicturtle) data blog">
-  <meta property="og:description" content="BT Question 20.20.320.20.3. Patrick generated a simple regression line for a sample of 50 pairwise observations. After generating the regression model, he ran R’s built-in plot(model) function which produces a standard set of regression diagnostics."><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="/post/bt-question-set-p1-t2-20-23-set-arma-process/">
+  <meta property="og:title" content="BT Question Set P1-T2-20-23 set: ARMA process | David&#39;s (bionicturtle) data blog">
+  <meta property="og:description" content="Learning objectives
+Explain mean reversion and calculate a mean-reverting level.Define and describe the properties of autoregressive moving average (ARMA) processes.Describe the application of AR, MA and ARMA processes."><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-09-24T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-10-16T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-09-24T10:00:13-07:00">
+    <meta property="article:modified_time" content="2020-10-16T12:24:09-07:00">
   
 
   
@@ -279,12 +281,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/"
+    "@id": "/post/bt-question-set-p1-t2-20-23-set-arma-process/"
   },
-  "headline": "BT Question P1-T2-20-20-3: Regression diagnostic plots",
+  "headline": "BT Question Set P1-T2-20-23 set: ARMA process",
   
-  "datePublished": "2020-09-24T00:00:00Z",
-  "dateModified": "2020-09-24T10:00:13-07:00",
+  "datePublished": "2020-10-16T00:00:00Z",
+  "dateModified": "2020-10-16T12:24:09-07:00",
   
   "author": {
     "@type": "Person",
@@ -299,7 +301,7 @@
       "url": "/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "BT Question 20.20.3\r20.20.3. Patrick generated a simple regression line for a sample of 50 pairwise observations. After generating the regression model, he ran R’s built-in plot(model) function which produces a standard set of regression diagnostics."
+  "description": "Learning objectives\n\rExplain mean reversion and calculate a mean-reverting level.\rDefine and describe the properties of autoregressive moving average (ARMA) processes.\rDescribe the application of AR, MA and ARMA processes."
 }
 </script>
 
@@ -317,7 +319,7 @@
 
 
 
-  <title>BT Question P1-T2-20-20-3: Regression diagnostic plots | David&#39;s (bionicturtle) data blog</title>
+  <title>BT Question Set P1-T2-20-23 set: ARMA process | David&#39;s (bionicturtle) data blog</title>
 
 </head>
 
@@ -577,7 +579,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>BT Question P1-T2-20-20-3: Regression diagnostic plots</h1>
+  <h1>BT Question Set P1-T2-20-23 set: ARMA process</h1>
 
   
 
@@ -598,7 +600,7 @@
           Last updated on
       
     
-    Sep 24, 2020
+    Oct 16, 2020
   </span>
   
 
@@ -607,7 +609,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    5 min read
   </span>
   
 
@@ -616,10 +618,6 @@
   
 
   
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
   
 
 </div>
@@ -650,9 +648,13 @@
       
 
 
-<div id="bt-question-20.20.3" class="section level2">
-<h2>BT Question 20.20.3</h2>
-<p>20.20.3. Patrick generated a simple regression line for a sample of 50 pairwise observations. After generating the regression model, he ran R’s built-in plot(model) function which produces a standard set of regression diagnostics. These four plots are displayed below.</p>
+<p>Learning objectives</p>
+<ul>
+<li>Explain mean reversion and calculate a mean-reverting level.</li>
+<li>Define and describe the properties of autoregressive moving average (ARMA) processes.</li>
+<li>Describe the application of AR, MA and ARMA processes.</li>
+</ul>
+<p>Let’s load packages</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
@@ -662,109 +664,175 @@
 <pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(broom)
-library(gt)
-library(ggrepel)
+<pre class="r"><code>library(forecast) # incl ggACF()</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre class="r"><code># library(cowplot)
+library(patchwork)</code></pre>
+<p>20.23.1. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?</p>
+<pre class="r"><code>set.seed(66)
 
-intercept &lt;- 4
-intercept_sig &lt;- 1
+AR_param_1 = 1.4
+AR_param_2 = -0.7
+AR_intercept = 0
+AR_n &lt;- 1000
 
-x1_mu &lt;- 5
-x1_sig &lt;- 1
-x1_beta &lt;- 0.3
+theme_set(theme_bw())
 
-noise_mu &lt;- 0
-noise_sig &lt;- 5 # low value gets low p-value b/c low noise
+# arima.sim model c(p, d, q)
+# p = AR order
+# d = difference
+# q = MA order
+# Generate an AR(2) with parameters, AR_param_1 and AR_param_2
+AR &lt;- arima.sim(model=list(order=c(2,0,0), ar = c(AR_param_1, AR_param_2)), n = AR_n, mean = AR_intercept)
 
-size &lt;- 50
-set.seed(25)
+p3 &lt;- ggAcf(AR) + 
+  geom_segment(size = 3) +
+  labs(
+    title = &quot;autocorrelation function (ACF)&quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    axis.title.x = element_blank(),
+    panel.grid = element_blank()
+  )
+p4 &lt;- ggPacf(AR) + 
+  geom_segment(size = 3) +
+  labs(
+    title = &quot;partial autocorrelation function (PACF)&quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    panel.grid = element_blank()
+  )
 
-rho_noise_x1 &lt;- 0.7
+# Please note plot is shrunk to 86% on copy/paste
+p3 / p4</code></pre>
+<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>20.23.2. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?</p>
+<pre class="r"><code>set.seed(19)
 
-x1_start = 0
-x1_end = 5
-x1_step = (x1_end - x1_start)/size
+MA_n = 1000
+MA_mean = 0
+MA_weight_1 = 0.4
+MA_weight_2 = 0.6
+MA_weight_3 = 0.8
 
-results &lt;- tibble(
-  x0_sn = rnorm(size),
-  x1_sn = rnorm(size),
-  x2_sn = rnorm(size), # needed to retain to preserve simulation results!
-  e = rnorm(size),
-  # 
-  x0 = intercept + x0_sn * intercept_sig,
-  x1 = seq(x1_start, x1_end - x1_step, by = x1_step),
-  e_sigma = rpois(size,2), 
-  x1_b = rep(x1_beta, size),
-)
+# # Generate an MA(3) with weights MA_weight_1, MA_weight_2, and MA_weight_3
+MA &lt;- arima.sim(model=list(order = c(0,0,3), ma = c(MA_weight_1, MA_weight_2, MA_weight_3)), n = MA_n, mean = MA_mean)
 
-results1 &lt;- results %&gt;% mutate(
-  y = x0 + (x1_b * x1) + (e * e_sigma)
-)
+p5 &lt;- ggAcf(MA) + 
+  geom_segment(size = 3) +
+  # geom_hline(yintercept = c(ci2, -ci2), color = &quot;darkblue&quot;, linetype = &quot;dashed&quot;, size = 2 ) +
+  labs(
+    title = &quot;autocorrelation function (ACF)&quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    axis.title.x = element_blank(),
+    panel.grid = element_blank()
+  )
+p6 &lt;- ggPacf(MA) + 
+  geom_segment(size = 3) +
+  labs(
+    title = &quot;partial autocorrelation function (PACF)&quot;
+  ) + theme(
+    plot.title = element_text(size = 12),
+    panel.grid = element_blank()
+  )
 
-model_1 &lt;- lm(y ~ x1, data = results1)
-summary(model_1)</code></pre>
+# Please note plot is shrunk to 86% on copy/paste
+p5 / p6</code></pre>
+<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>20.23.3. An ARMA(1,1) process evolves according to Y(t) = ẟ + ϕ<em>Y(t-1) + θ</em>ε(t-1) + ε(t). The plot below contains two 300-step ARMA(1,1) processes that differ only in their coefficients …</p>
+<p>Which of the following statements is TRUE about the two ARMA(1,1) simulations above?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Both of the ARMA(1,1) processes are likely to exhibit slow decay in both the ACF and PACF</li>
+<li>Both of the ARMA(1,1) processes are likely to cut off sharply at lag 1 in both the ACF and PACF</li>
+<li>The first ARMA(1,1) process (i.e., plotted with a red dashed line) cannot be covariance-stationary</li>
+<li>The unconditional mean of both ARMA(1,1) processes must be zero because all ARMA(1,1) have a long-run mean of zero</li>
+</ol>
+<pre class="r"><code>library(astsa)</code></pre>
 <pre><code>## 
-## Call:
-## lm(formula = y ~ x1, data = results1)
+## Attaching package: &#39;astsa&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:forecast&#39;:
 ## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -8.2138 -1.7154 -0.6175  0.8984 11.1858 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   3.9116     0.9257   4.225 0.000106 ***
-## x1            0.4636     0.3256   1.424 0.160933    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.322 on 48 degrees of freedom
-## Multiple R-squared:  0.04053,    Adjusted R-squared:  0.02054 
-## F-statistic: 2.028 on 1 and 48 DF,  p-value: 0.1609</code></pre>
-<pre class="r"><code># model_tidy_1 &lt;- tidy(model_1)
-# model_tidy_1[2,1] &lt;- &quot;Factor&quot;
+##     gas</code></pre>
+<pre class="r"><code>set.seed(9)
 
-# plot(model_1)
-# autoplot(model_1) # + 
-# geom_text(vjust=-1, label=rownames(results1))
+ar_11_1 = 0.8
+ma_11_1 = 0.6
+arma_11_1_mu = 2
+sim_n = 300
 
-# mean(results1$y) # price
-# mean(results1$x0) # intercept
-# mean(results1$x1) # sqfeet
+ar_11_2 = 0.9
+ma_11_2 = -0.5
+arma_11_2_mu = -3
 
-par(mfrow = c(2,2))
-plot(model_1, id.n = 0) </code></pre>
-<p><img src="/post/2020/2020-09-24-bt-question-p1-t2-20-20-3-regression-diagnostic-plots.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code># id.n: number of points to be labelled in each plot, starting with the most extreme.
+# ar_22 = c(1.4, -0.6)
+# ma_22 = c(0.9, 0.6)
 
-model_1</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ x1, data = results1)
-## 
-## Coefficients:
-## (Intercept)           x1  
-##      3.9116       0.4636</code></pre>
-</div>
-<div id="what-do-the-plot-diagnostics-tell-us" class="section level2">
-<h2>What do the plot() diagnostics tell us?</h2>
-<div id="residuals-vs-fitted" class="section level3">
-<h3>Residuals vs Fitted</h3>
-<p>This plots residuals against the fitted values. We would like to see the residuals randomly scattered across the zero (which these are). The scatter pattern is relatively even suggesting homoskedasticity; i.e., we do not see a pattern that suggests heteroskedasticity. There are not many outliers. This is pretty good-looking residuals vs fitted plot suggestive of a decent linear regression.</p>
-</div>
-<div id="normal-q-q" class="section level3">
-<h3>Normal Q-Q</h3>
-<p>If the distribution is normal, the plot will approximate along the straight line. But notice how this plot contains an obvious heavy-tail on the right side.</p>
-</div>
-<div id="scale-location" class="section level3">
-<h3>Scale-location</h3>
-<p>This plot is similiar to the Residuals vs Fitted plot, but the residuals are standardized. It is also used to evaluate heteroskedasticity. But, again, we do not perceive strong evidence of a non-constant variance.</p>
-</div>
-<div id="residuals-vs-leverage" class="section level3">
-<h3>Residuals vs Leverage</h3>
-<p>The red dashed line represents a Cook’s distance of 0.5, but there are not observations outside of this line (i.e., in the upper-left) such that we do not have a case for outlier(s).</p>
-</div>
-</div>
+ARMA_11_1 &lt;- arima.sim(model=list(order = c(1, 0, 1), ar = ar_11_1, ma = ma_11_1), n = sim_n) + arma_11_1_mu
+ARMA_11_2 &lt;- arima.sim(model=list(order = c(1, 0, 1), ar = ar_11_2, ma = ma_11_2), n = sim_n) + arma_11_2_mu
+# ARMA_22 &lt;- arima.sim(model=list(order = c(2, 0, 2), ar = ar_22, ma = ma_22), n = 200)
+
+# ts.plot(ARMA_11, ARMA_22)
+
+time_arma &lt;- bind_cols(ARMA_11_1, ARMA_11_2) %&gt;% rowid_to_column() %&gt;% 
+  rename(y_ARMA_11_1 = ...1, y_ARMA_11_2 = ...2)</code></pre>
+<pre><code>## New names:
+## * NA -&gt; ...1
+## * NA -&gt; ...2</code></pre>
+<pre class="r"><code>theme_set(theme_bw())
+
+colors &lt;- c(&quot;First ARMA(1,1)&quot; = &quot;darkred&quot;, &quot;Second ARMA(1,1)&quot; = &quot;steelblue&quot;)
+
+time_arma %&gt;% ggplot(aes(x = rowid)) + 
+  geom_line(aes(y = y_ARMA_11_1, color = &quot;First ARMA(1,1)&quot;), size = 1, linetype = &quot;longdash&quot;) +
+  geom_line(aes(y = y_ARMA_11_2, color = &quot;Second ARMA(1,1)&quot;), size = 1) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1)) + 
+  theme(
+    axis.title.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.text.x = element_text(size = 12, face = &quot;bold&quot;),
+    axis.text.y = element_text(size = 12, face = &quot;bold&quot;),
+    legend.position = &quot;right&quot;,
+    legend.text = element_text(size = 12)
+  ) + labs(
+    title = &quot;Two different ARMA(1,1) time-series simulations&quot;,
+    color = &quot;Legend&quot;
+  ) +
+  scale_color_manual(values = colors)</code></pre>
+<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>arma_11_1_mulr = arma_11_1_mu/(1 - ar_11_1)
+arma_11_2_mulr = arma_11_2_mu/(1 - ar_11_2)
+
+# mu_arma_22 = 10
+#ARMA_22 &lt;- arima.sim(model=list(order = c(2, 0, 2), ar = c(0.4, 0.2), ma = c(0.5,0.6)), n = 200, mean = mu_arma_22)
+# ts.plot(ARMA_22)
+# acf2(ARMA_22)
+# mean_arma_22 = mu_arma_22/(1 - 0.4 - 0.2)
+
+acf2(ARMA_11_1)</code></pre>
+<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre><code>##      [,1]  [,2] [,3]  [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
+## ACF  0.86  0.65 0.50  0.40 0.33 0.29  0.24  0.18  0.11  0.03 -0.05 -0.12 -0.16
+## PACF 0.86 -0.39 0.28 -0.11 0.07 0.05 -0.07 -0.06 -0.01 -0.13 -0.06 -0.01 -0.03
+##      [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
+## ACF  -0.17 -0.17 -0.15 -0.12 -0.10 -0.11 -0.13 -0.15 -0.14 -0.08 -0.02  0.03
+## PACF  0.01  0.03  0.06  0.00  0.01 -0.08 -0.03 -0.05  0.10  0.06  0.00  0.04
+##      [,26] [,27] [,28]
+## ACF   0.05  0.07  0.11
+## PACF -0.05  0.13  0.07</code></pre>
+<pre class="r"><code>acf2(ARMA_11_2)</code></pre>
+<p><img src="/post/2020-10-16-bt-question-set-p1-t2-20-23-set-arma-process.en_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12] [,13]
+## ACF  0.52 0.45 0.46 0.43 0.37 0.35  0.30  0.25  0.20  0.22  0.16  0.09  0.09
+## PACF 0.52 0.24 0.24 0.12 0.05 0.04 -0.02 -0.04 -0.05  0.05 -0.04 -0.08  0.00
+##      [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
+## ACF   0.10  0.13  0.08  0.09  0.08  0.07  0.05  0.00 -0.04 -0.04 -0.04 -0.08
+## PACF  0.03  0.10 -0.01  0.04 -0.01  0.01 -0.04 -0.09 -0.09 -0.04 -0.01 -0.06
+##      [,26] [,27] [,28]
+## ACF  -0.09 -0.11 -0.14
+## PACF  0.00 -0.01 -0.03</code></pre>
 
     </div>
 
@@ -774,6 +842,12 @@ model_1</code></pre>
 
 
 
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/r/">R</a>
+  
+</div>
 
 
 
@@ -788,7 +862,7 @@ model_1</code></pre>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/&amp;text=BT%20Question%20P1-T2-20-20-3:%20Regression%20diagnostic%20plots" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/bt-question-set-p1-t2-20-23-set-arma-process/&amp;text=BT%20Question%20Set%20P1-T2-20-23%20set:%20ARMA%20process" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -801,7 +875,7 @@ model_1</code></pre>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/&amp;t=BT%20Question%20P1-T2-20-20-3:%20Regression%20diagnostic%20plots" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/bt-question-set-p1-t2-20-23-set-arma-process/&amp;t=BT%20Question%20Set%20P1-T2-20-23%20set:%20ARMA%20process" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -814,7 +888,7 @@ model_1</code></pre>
       
       
       <li>
-        <a href="mailto:?subject=BT%20Question%20P1-T2-20-20-3:%20Regression%20diagnostic%20plots&amp;body=/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-23%20set:%20ARMA%20process&amp;body=/post/bt-question-set-p1-t2-20-23-set-arma-process/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -827,7 +901,7 @@ model_1</code></pre>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/&amp;title=BT%20Question%20P1-T2-20-20-3:%20Regression%20diagnostic%20plots" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/bt-question-set-p1-t2-20-23-set-arma-process/&amp;title=BT%20Question%20Set%20P1-T2-20-23%20set:%20ARMA%20process" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -840,7 +914,7 @@ model_1</code></pre>
       
       
       <li>
-        <a href="whatsapp://send?text=BT%20Question%20P1-T2-20-20-3:%20Regression%20diagnostic%20plots%20/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-23%20set:%20ARMA%20process%20/post/bt-question-set-p1-t2-20-23-set-arma-process/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -853,7 +927,7 @@ model_1</code></pre>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/2020/bt-question-p1-t2-20-20-3-regression-diagnostic-plots/&amp;title=BT%20Question%20P1-T2-20-20-3:%20Regression%20diagnostic%20plots" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/bt-question-set-p1-t2-20-23-set-arma-process/&amp;title=BT%20Question%20Set%20P1-T2-20-23%20set:%20ARMA%20process" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1010,23 +1084,6 @@ model_1</code></pre>
 
 
   
-  
-  <div class="article-widget content-widget-hr">
-    <h3>Related</h3>
-    <ul>
-      
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-22-2-ar-versus-ma-process/">BT Question Set P1-T2-20-22-2: AR versus MA process</a></li>
-      
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-21-3-white-noise-wn-process/">BT Question Set P1-T2-20-21-3: White Noise (WN) Process</a></li>
-      
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-21-2-autocorrelation-function-acf/">BT Question Set P1-T2-20-21-2: Autocorrelation function (ACF)</a></li>
-      
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-20-2-m-fold-cross-validation/">BT Question Set P1-T2-20-20-2: m-fold cross-validation</a></li>
-      
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-19-regression-diagnostics-1st-set/">BT Question Set P1-T2-20-19: Regression diagnostics (1st set)</a></li>
-      
-    </ul>
-  </div>
   
 
 
