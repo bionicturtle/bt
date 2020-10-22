@@ -1,0 +1,1758 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="David Harper">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#4caf50">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="David&#39;s (bionicturtle) data blog">
+  <meta property="og:url" content="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">
+  <meta property="og:title" content="BT Question Set P1-T2-20-24-2: Box-Pierce | David&#39;s (bionicturtle) data blog">
+  <meta property="og:description" content="20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?"><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-10-20T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-10-21T20:09:22-07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/"
+  },
+  "headline": "BT Question Set P1-T2-20-24-2: Box-Pierce",
+  
+  "datePublished": "2020-10-20T00:00:00Z",
+  "dateModified": "2020-10-21T20:09:22-07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "David Harper"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "David's (bionicturtle) data blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>BT Question Set P1-T2-20-24-2: Box-Pierce | David&#39;s (bionicturtle) data blog</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">David&#39;s (bionicturtle) data blog</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">David&#39;s (bionicturtle) data blog</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>BT Question Set P1-T2-20-24-2: Box-Pierce</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Oct 21, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p>20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?). She then performs a typical transformation on the raw data: she takes the difference of the natural log of the quarterly GPD values. This plot is displayed in the lower panel. Because LN[GDP(t)] - LN(GDP(t-1)] = LN[GDP(t)/GDP(t-1)], this lower panel plots continuously compounded returns (aka, monthly log returns). First differencing the log returns occasionally renders the non-stationary trend into a stationary process.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(scales)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre class="r"><code>library(forecast)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre class="r"><code>library(tseries)
+library(ggthemes)
+library(ggfortify)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggfortify&#39;:
+##   method                 from    
+##   autoplot.Arima         forecast
+##   autoplot.acf           forecast
+##   autoplot.ar            forecast
+##   autoplot.bats          forecast
+##   autoplot.decomposed.ts forecast
+##   autoplot.ets           forecast
+##   autoplot.forecast      forecast
+##   autoplot.stl           forecast
+##   autoplot.ts            forecast
+##   fitted.ar              forecast
+##   fortify.ts             forecast
+##   residuals.ar           forecast</code></pre>
+<pre class="r"><code>library(fpp2)</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------------------------------------------------------- fpp2 2.4 --</code></pre>
+<pre><code>## v fma       2.4     v expsmooth 2.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------------------- fpp2_conflicts --
+## x scales::discard() masks purrr::discard()</code></pre>
+<pre class="r"><code>library(gt)
+library(astsa)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;astsa&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:fma&#39;:
+## 
+##     chicken, sales</code></pre>
+<pre><code>## The following object is masked from &#39;package:fpp2&#39;:
+## 
+##     oil</code></pre>
+<pre><code>## The following object is masked from &#39;package:forecast&#39;:
+## 
+##     gas</code></pre>
+<pre class="r"><code>library(patchwork)
+# library(gridExtra)
+
+gdp_log &lt;- diff(log(gdp))
+
+# ts.plot(gdp)
+# ts.plot(gdp_log)
+
+p1_gdp &lt;- autoplot(gdp, size = 1.3) + labs(
+  title = &quot;US GDP, Quarterly (billion) 1947 to 2018&quot;
+) + theme_classic() + theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  axis.text.x = element_blank(),
+  axis.text.y = element_text(size = 11, face = &quot;bold&quot;)
+) + scale_y_continuous(labels = dollar_format())</code></pre>
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
+## replace the existing scale.</code></pre>
+<pre class="r"><code>p2_gdp_log &lt;- autoplot(gdp_log, size = 1.3) + labs(
+  title = bquote(&quot;LN(&quot;~GDP[t]~ &quot;) - LN(&quot;~GDP[t-1]~&quot;)&quot;)
+) + theme_classic() + theme(
+  axis.title.y = element_blank(),
+  axis.text.x = element_text(size = 11, face = &quot;bold&quot;),
+  axis.text.y = element_text(size = 11, face = &quot;bold&quot;)
+) + scale_y_continuous(labels = label_percent(accuracy = .1))</code></pre>
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
+## replace the existing scale.</code></pre>
+<pre class="r"><code>patchwork &lt;- p1_gdp / p2_gdp_log
+patchwork + plot_annotation(
+  caption = &quot;Source: https://tradingeconomics.com/united-states/gdp (via astsa package)&quot;
+  )</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>(on to the Box-Pierce…)</p>
+<p>She then fits an autoregressive, AR(1), and moving average, MA(1), model to the log return series. This gives her three models: the log return series (called “diff_logs”), an AR(1) model, and an MA(1) model. She conducts a Box-Pierce test on each of these models; the test of the AR(1) and MA(1) is a test of the residuals. She selects two lags for the test, h = 10 and h = 20. The results of her Box-Pierce test are displayed below.</p>
+<p>… Box-Pierce gt table (below) here …</p>
+<p>If we assume her desired confidence level is 95.0%, which of the following statements is a TRUE statement with respect to an interpretation of her Box-Pierce test of the three models?</p>
+<ol style="list-style-type: lower-alpha">
+<li>None of the residuals are white noise; i.e., neither the transformed log returns nor AR(1) nor MA(1) is a candidate model</li>
+<li>The AR(1) is a candidate because its residuals appear to be approximately white noise</li>
+<li>The MA(a) is a candidate because its residuals appear to be approximately white noise</li>
+<li>All of the residuals are white noise; i.e., all three models are candidates</li>
+</ol>
+<pre class="r"><code># install.packages(&quot;kableExtra&quot;)
+# install.packages(&quot;gapminder&quot;)
+
+ar1_gdp_log &lt;- sarima(gdp_log, p = 1, d = 0, q = 0)</code></pre>
+<pre><code>## initial  value -4.673186 
+## iter   2 value -4.742918
+## iter   3 value -4.742921
+## iter   4 value -4.742923
+## iter   5 value -4.742925
+## iter   6 value -4.742925
+## iter   6 value -4.742925
+## final  value -4.742925 
+## converged
+## initial  value -4.742229 
+## iter   2 value -4.742234
+## iter   3 value -4.742245
+## iter   3 value -4.742245
+## iter   3 value -4.742245
+## final  value -4.742245 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ma1_gdp_log &lt;- sarima(gdp_log, p = 0, d = 0, q = 1)</code></pre>
+<pre><code>## initial  value -4.672758 
+## iter   2 value -4.716609
+## iter   3 value -4.723220
+## iter   4 value -4.723481
+## iter   5 value -4.723483
+## iter   5 value -4.723483
+## iter   5 value -4.723483
+## final  value -4.723483 
+## converged
+## initial  value -4.723444 
+## iter   1 value -4.723444
+## final  value -4.723444 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code>ma2_gdp_log &lt;- sarima(gdp_log, p = 0, d = 0, q = 2)</code></pre>
+<pre><code>## initial  value -4.672758 
+## iter   2 value -4.749239
+## iter   3 value -4.750696
+## iter   4 value -4.750723
+## iter   5 value -4.750724
+## iter   6 value -4.750725
+## iter   7 value -4.750725
+## iter   7 value -4.750725
+## iter   7 value -4.750725
+## final  value -4.750725 
+## converged
+## initial  value -4.751078 
+## iter   2 value -4.751080
+## iter   3 value -4.751080
+## iter   4 value -4.751081
+## iter   5 value -4.751081
+## iter   5 value -4.751081
+## iter   5 value -4.751081
+## final  value -4.751081 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<pre class="r"><code>h_values &lt;- c(10, 20)
+
+# diff of logs
+model = &quot;diff_logs&quot;
+results_log_list &lt;- h_values %&gt;% map(~Box.test(gdp_log, lag = .))
+log_statistic &lt;- results_log_list %&gt;% map_dbl(&quot;statistic&quot;)
+log_p.value &lt;- results_log_list %&gt;% map_dbl(&quot;p.value&quot;)
+log_cols &lt;- data.frame(cbind(h_values, log_statistic, log_p.value))
+log_all &lt;- cbind(model, log_cols)
+log_all &lt;- log_all %&gt;% rename(
+  &#39;h (lags)&#39; = h_values,
+  statistic = log_statistic,
+  &#39;p-value&#39; = log_p.value
+)
+
+# AR(1)
+model = &quot;AR(1)&quot;
+results_ar1_list &lt;- h_values %&gt;% map(~Box.test(ar1_gdp_log$fit$residuals, lag = .))
+ar1_statistic &lt;- results_ar1_list %&gt;% map_dbl(&quot;statistic&quot;)
+ar1_p.value &lt;- results_ar1_list %&gt;% map_dbl(&quot;p.value&quot;)
+ar1_cols &lt;- data.frame(cbind(h_values, ar1_statistic, ar1_p.value))
+ar1_all &lt;- cbind(model, ar1_cols)
+ar1_all &lt;- ar1_all %&gt;% rename(
+  &#39;h (lags)&#39; = h_values,
+  statistic = ar1_statistic,
+  &#39;p-value&#39; = ar1_p.value
+)
+
+# MA(1)
+model = &quot;MA(1)&quot;
+results_ma1_list &lt;- h_values %&gt;% map(~Box.test(ma1_gdp_log$fit$residuals, lag = .))
+ma1_statistic &lt;- results_ma1_list %&gt;% map_dbl(&quot;statistic&quot;)
+ma1_p.value &lt;- results_ma1_list %&gt;% map_dbl(&quot;p.value&quot;)
+ma1_cols &lt;- data.frame(cbind(h_values, ma1_statistic, ma1_p.value))
+ma1_all &lt;- cbind(model, ma1_cols)
+ma1_all &lt;- ma1_all %&gt;% rename(
+  &#39;h (lags)&#39; = h_values,
+  statistic = ma1_statistic,
+  &#39;p-value&#39; = ma1_p.value
+)
+
+models_all &lt;- rbind(log_all, ar1_all, ma1_all)
+models_gt &lt;- gt(models_all)
+
+models_gt &lt;- 
+  models_gt %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% tab_style(
+    style = cell_text(color = &quot;cadetblue&quot;),
+    locations = cells_column_labels(
+      columns = vars(model, &#39;h (lags)&#39;, statistic, &#39;p-value&#39;)
+    )
+  ) %&gt;% tab_header(
+    title = md(&quot;**Box-Pierce test statistics and p-values**&quot;),
+    subtitle = &quot;AR(1) and MA(1) at lags of h = 10 and 20&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(statistic, &#39;p-value&#39;),
+    decimals = 4
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;AR(1) and MA(1) are tests of residuals&quot;)
+  ) %&gt;% cols_width(
+    vars(model, &#39;h (lags)&#39;) ~ px(80),
+    vars(statistic, &#39;p-value&#39;) ~ px(90)
+  ) %&gt;% cols_label (
+    model = md(&quot;**model**&quot;),
+    &#39;h (lags)&#39; = md(&quot;**h (lags)**&quot;),
+    statistic = md(&quot;**test stat**&quot;),
+    &#39;p-value&#39; = md(&quot;**p-value**&quot;)
+  ) %&gt;% cols_align(
+    align = &quot;center&quot;,
+    columns = vars(&#39;h (lags)&#39;)
+  ) %&gt;% tab_options(
+    heading.title.font.size = 16,
+    heading.subtitle.font.size = 14
+  )
+
+models_gt</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#cvqxjzfqya .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cvqxjzfqya .gt_subtitle {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cvqxjzfqya .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cvqxjzfqya .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cvqxjzfqya .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cvqxjzfqya .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cvqxjzfqya .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cvqxjzfqya .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cvqxjzfqya .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cvqxjzfqya .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#cvqxjzfqya .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cvqxjzfqya .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cvqxjzfqya .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cvqxjzfqya .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cvqxjzfqya .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cvqxjzfqya .gt_left {
+  text-align: left;
+}
+
+#cvqxjzfqya .gt_center {
+  text-align: center;
+}
+
+#cvqxjzfqya .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cvqxjzfqya .gt_font_normal {
+  font-weight: normal;
+}
+
+#cvqxjzfqya .gt_font_bold {
+  font-weight: bold;
+}
+
+#cvqxjzfqya .gt_font_italic {
+  font-style: italic;
+}
+
+#cvqxjzfqya .gt_super {
+  font-size: 65%;
+}
+
+#cvqxjzfqya .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="cvqxjzfqya" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:80px;"/>
+    <col style="width:80px;"/>
+    <col style="width:90px;"/>
+    <col style="width:90px;"/>
+  </colgroup>
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal" style><strong>Box-Pierce test statistics and p-values</strong></th>
+    </tr>
+    <tr>
+      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>AR(1) and MA(1) at lags of h = 10 and 20</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: cadetblue;"><strong>model</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="color: cadetblue;"><strong>h (lags)</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: cadetblue;"><strong>test stat</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: cadetblue;"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">diff_logs</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">62.6228</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0000</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">diff_logs</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">80.1439</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0000</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">15.5465</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.1134</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">30.3091</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0650</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">MA(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">24.3689</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0067</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">MA(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">39.6618</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0055</td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="4">AR(1) and MA(1) are tests of residuals</td>
+    </tr>
+  </tfoot>
+  
+</table></div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/r/">R</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;text=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;t=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce&amp;body=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;title=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce%20/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;title=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/david-harper/avatar_hu0b2aaa704e013efeae1586f958eb9d68_996912_270x270_fill_q90_lanczos_center.jpg" alt="David Harper">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">David Harper</a></h5>
+        <h6 class="card-subtitle">Founder &amp; CEO of Bionic Turtle</h6>
+        <p class="card-text">I teach financial risk and enjoy learning data science</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:david.harper@cox.net" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/bionicturtle" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    <div id="commento"></div>
+
+<script src="https://cdn.commento.io/js/commento.js" defer></script>
+
+  
+</section>
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/bt-question-set-p1-t2-20-24-3-aic-and-bic/">BT Question Set P1-T2-20-24-3: AIC and BIC</a></li>
+      
+      <li><a href="/post/2020/bt-question-set-p1-t2-20-23-set-arma-process/">BT Question Set P1-T2-20-23 set: ARMA process</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+  
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
     <link>/tag/r/</link>
       <atom:link href="/tag/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png</url>
       <title>R</title>
@@ -13,10 +13,725 @@
     </image>
     
     <item>
+      <title>BT Question Set P1-T2-20-24-3: AIC and BIC</title>
+      <link>/post/bt-question-set-p1-t2-20-24-3-aic-and-bic/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-set-p1-t2-20-24-3-aic-and-bic/</guid>
+      <description>
+
+
+&lt;p&gt;20.24.3. Eric is a commodity analyst who fit four different candidate AR(p) models to a series of oil prices. For each of the candidate models, he then retrieved the Akaike information criterion (AIC) and the Bayesian information criterion (BIC). The results are displayed below.&lt;/p&gt;
+&lt;p&gt;.. AIC and BIC values (table below) goes here …&lt;/p&gt;
+&lt;p&gt;As Eric interprets the results of these criteria (i.e., the AIC and BIC values), which of the following statements is TRUE?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Both criteria (AIC and BIC) favor the AR(1) model&lt;/li&gt;
+&lt;li&gt;Both criteria (AIC and BIC) favor the AR(2) model&lt;/li&gt;
+&lt;li&gt;As both criteria are insignificant, any AR(p) model is a bad fit&lt;/li&gt;
+&lt;li&gt;The criteria disagree and therefore the AIC’s preference should prevail because it prefers fewer lags&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(scales)
+library(gridExtra)
+library(forecast)
+library(tseries)
+library(fpp2)
+library(gt)
+library(astsa)
+
+# 175
+set.seed(175)
+ar2 &amp;lt;- arima.sim(model=list(order=c(2,0,0),ar = c(1.5,-.75)),n = 500)
+ma2 &amp;lt;- arima.sim(model=list(order=c(0,0,2),ma = c(1.5,-.75)),n = 500)
+
+ar1_fit &amp;lt;- sarima(ar2, p = 1, d = 0, q = 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 1.185288 
+## iter   2 value 0.473121
+## iter   3 value 0.473113
+## iter   4 value 0.473112
+## iter   5 value 0.473108
+## iter   6 value 0.473099
+## iter   7 value 0.473095
+## iter   8 value 0.473094
+## iter   9 value 0.473092
+## iter  10 value 0.473087
+## iter  11 value 0.473080
+## iter  12 value 0.473076
+## iter  13 value 0.473075
+## iter  14 value 0.473075
+## iter  15 value 0.473075
+## iter  16 value 0.473074
+## iter  17 value 0.473073
+## iter  18 value 0.473073
+## iter  19 value 0.473073
+## iter  20 value 0.473073
+## iter  21 value 0.473072
+## iter  22 value 0.473072
+## iter  23 value 0.473072
+## iter  24 value 0.473072
+## iter  25 value 0.473072
+## iter  26 value 0.473072
+## iter  27 value 0.473072
+## iter  27 value 0.473072
+## iter  27 value 0.473072
+## final  value 0.473072 
+## converged
+## initial  value 0.475632 
+## iter   2 value 0.475627
+## iter   3 value 0.475615
+## iter   4 value 0.475613
+## iter   5 value 0.475597
+## iter   6 value 0.475583
+## iter   7 value 0.475579
+## iter   8 value 0.475574
+## iter   9 value 0.475573
+## iter  10 value 0.475570
+## iter  11 value 0.475569
+## iter  12 value 0.475569
+## iter  13 value 0.475569
+## iter  13 value 0.475569
+## iter  13 value 0.475569
+## final  value 0.475569 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar2_fit &amp;lt;- sarima(ar2, p = 2, d = 0, q = 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 1.186082 
+## iter   2 value 1.063752
+## iter   3 value 0.611728
+## iter   4 value 0.360300
+## iter   5 value 0.180452
+## iter   6 value 0.026222
+## iter   7 value 0.023222
+## iter   8 value 0.022348
+## iter   9 value 0.022310
+## iter  10 value 0.022284
+## iter  11 value 0.022258
+## iter  12 value 0.022258
+## iter  13 value 0.022258
+## iter  14 value 0.022258
+## iter  15 value 0.022258
+## iter  16 value 0.022258
+## iter  17 value 0.022258
+## iter  17 value 0.022258
+## iter  17 value 0.022258
+## final  value 0.022258 
+## converged
+## initial  value 0.028108 
+## iter   2 value 0.028095
+## iter   3 value 0.028087
+## iter   4 value 0.028086
+## iter   5 value 0.028086
+## iter   6 value 0.028085
+## iter   7 value 0.028085
+## iter   8 value 0.028085
+## iter   8 value 0.028085
+## final  value 0.028085 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar3_fit &amp;lt;- sarima(ar2, p = 3, d = 0, q = 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 1.187086 
+## iter   2 value 0.966297
+## iter   3 value 0.720122
+## iter   4 value 0.651535
+## iter   5 value 0.270365
+## iter   6 value 0.157749
+## iter   7 value 0.106223
+## iter   8 value 0.068752
+## iter   9 value 0.027592
+## iter  10 value 0.020453
+## iter  11 value 0.020449
+## iter  12 value 0.020445
+## iter  13 value 0.020430
+## iter  14 value 0.020418
+## iter  15 value 0.020418
+## iter  16 value 0.020418
+## iter  17 value 0.020418
+## iter  18 value 0.020418
+## iter  19 value 0.020418
+## iter  20 value 0.020418
+## iter  20 value 0.020418
+## iter  20 value 0.020418
+## final  value 0.020418 
+## converged
+## initial  value 0.027093 
+## iter   2 value 0.027090
+## iter   3 value 0.027084
+## iter   4 value 0.027079
+## iter   5 value 0.027079
+## iter   6 value 0.027078
+## iter   7 value 0.027078
+## iter   8 value 0.027078
+## iter   8 value 0.027078
+## iter   8 value 0.027078
+## final  value 0.027078 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar4_fit &amp;lt;- sarima(ar2, p = 4, d = 0, q = 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 1.187677 
+## iter   2 value 1.182760
+## iter   3 value 0.389837
+## iter   4 value 0.312734
+## iter   5 value 0.257361
+## iter   6 value 0.134886
+## iter   7 value 0.042493
+## iter   8 value 0.035479
+## iter   9 value 0.028843
+## iter  10 value 0.020356
+## iter  11 value 0.020308
+## iter  12 value 0.020305
+## iter  13 value 0.020305
+## iter  14 value 0.020305
+## iter  15 value 0.020304
+## iter  16 value 0.020304
+## iter  17 value 0.020304
+## iter  18 value 0.020304
+## iter  19 value 0.020304
+## iter  20 value 0.020304
+## iter  21 value 0.020304
+## iter  22 value 0.020304
+## iter  22 value 0.020304
+## iter  22 value 0.020304
+## final  value 0.020304 
+## converged
+## initial  value 0.026957 
+## iter   2 value 0.026941
+## iter   3 value 0.026940
+## iter   4 value 0.026938
+## iter   5 value 0.026937
+## iter   6 value 0.026936
+## iter   7 value 0.026936
+## iter   8 value 0.026936
+## iter   9 value 0.026936
+## iter   9 value 0.026936
+## iter   9 value 0.026936
+## final  value 0.026936 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-4.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ma1_fit &amp;lt;- sarima(ma2, p = 0, d = 0, q = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 0.620720 
+## iter   2 value 0.616967
+## iter   3 value 0.616503
+## iter   4 value 0.616503
+## iter   4 value 0.616503
+## iter   4 value 0.616503
+## final  value 0.616503 
+## converged
+## initial  value 0.616515 
+## iter   2 value 0.616515
+## iter   2 value 0.616515
+## iter   2 value 0.616515
+## final  value 0.616515 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ma2_fit &amp;lt;- sarima(ma2, p = 0, d = 0, q = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 0.620720 
+## iter   2 value 0.601563
+## iter   3 value 0.601097
+## iter   4 value 0.601053
+## iter   5 value 0.601053
+## iter   5 value 0.601053
+## iter   5 value 0.601053
+## final  value 0.601053 
+## converged
+## initial  value 0.601132 
+## iter   2 value 0.601132
+## iter   2 value 0.601132
+## iter   2 value 0.601132
+## final  value 0.601132 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-6.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ma3_fit &amp;lt;- sarima(ma2, p = 0, d = 0, q = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 0.620720 
+## iter   2 value 0.601584
+## iter   3 value 0.601080
+## iter   4 value 0.600978
+## iter   5 value 0.600977
+## iter   5 value 0.600977
+## iter   5 value 0.600977
+## final  value 0.600977 
+## converged
+## initial  value 0.601058 
+## iter   2 value 0.601058
+## iter   3 value 0.601058
+## iter   3 value 0.601058
+## iter   3 value 0.601058
+## final  value 0.601058 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-7.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ma4_fit &amp;lt;- sarima(ma2, p = 0, d = 0, q = 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value 0.620720 
+## iter   2 value 0.599626
+## iter   3 value 0.599377
+## iter   4 value 0.599342
+## iter   5 value 0.599340
+## iter   6 value 0.599340
+## iter   7 value 0.599340
+## iter   7 value 0.599340
+## iter   7 value 0.599340
+## final  value 0.599340 
+## converged
+## initial  value 0.599424 
+## iter   2 value 0.599424
+## iter   3 value 0.599424
+## iter   3 value 0.599424
+## iter   3 value 0.599424
+## final  value 0.599424 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-8.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(&amp;quot;AIC&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;AIC&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar1_fit$AIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.801016&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar2_fit$AIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.910047&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar3_fit$AIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.912034&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar4_fit$AIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.915749&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(&amp;quot;BIC&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;BIC&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar1_fit$BIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.826304&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar2_fit$BIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.943764&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar3_fit$BIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.95418&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ar4_fit$BIC&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.966324&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AIC_ar2 &amp;lt;- c(ar1_fit$AIC, ar2_fit$AIC, ar3_fit$AIC, ar4_fit$AIC)
+BIC_ar2 &amp;lt;- c(ar1_fit$BIC, ar2_fit$BIC, ar3_fit$BIC, ar4_fit$BIC)
+AIC_BIC_ar2 &amp;lt;- cbind(AIC_ar2, BIC_ar2) %&amp;gt;% data.frame()
+models &amp;lt;- c(&amp;quot;AR(1)&amp;quot;, &amp;quot;AR(2)&amp;quot;, &amp;quot;AR(3)&amp;quot;, &amp;quot;AR(4)&amp;quot;)
+models_AIC_BIC &amp;lt;- cbind(models, AIC_BIC_ar2)
+
+models_AIC_BIC_gt &amp;lt;- gt(models_AIC_BIC)
+
+models_AIC_BIC_gt &amp;lt;- 
+  models_AIC_BIC_gt %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  # ) %&amp;gt;% tab_style(
+  #  style = cell_text(color = &amp;quot;cadetblue&amp;quot;),
+  #  locations = cells_column_labels(
+  #    columns = vars(model, &amp;#39;h (lags)&amp;#39;, statistic, &amp;#39;p-value&amp;#39;)
+  #  )
+  ) %&amp;gt;% tab_header(
+    title = md(&amp;quot;**AIC and BIC values**&amp;quot;),
+    subtitle = &amp;quot;Four candidate models: AR(1) ... AR(4)&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(AIC_ar2, BIC_ar2),
+    decimals = 5
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;AIC = Akaike information criterion&amp;quot;)
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;BIC = Bayesian information criterion&amp;quot;)
+  # ) %&amp;gt;% cols_width(
+  #  vars(model) ~ px(70),
+  #  vars(statistic, &amp;#39;p-value&amp;#39;) ~ px(90)
+  ) %&amp;gt;% cols_label (
+    models = md(&amp;quot;**model**&amp;quot;),
+    AIC_ar2 = md(&amp;quot;**AIC**&amp;quot;),
+    BIC_ar2 = md(&amp;quot;**BIC**&amp;quot;)
+  ) %&amp;gt;% tab_options(
+    heading.title.font.size = 16,
+    heading.subtitle.font.size = 14
+  )
+
+models_AIC_BIC_gt&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#lrwmjdgnlm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lrwmjdgnlm .gt_subtitle {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lrwmjdgnlm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lrwmjdgnlm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lrwmjdgnlm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lrwmjdgnlm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lrwmjdgnlm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lrwmjdgnlm .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lrwmjdgnlm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lrwmjdgnlm .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#lrwmjdgnlm .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#lrwmjdgnlm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lrwmjdgnlm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#lrwmjdgnlm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrwmjdgnlm .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrwmjdgnlm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lrwmjdgnlm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#lrwmjdgnlm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lrwmjdgnlm .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#lrwmjdgnlm .gt_left {
+  text-align: left;
+}
+
+#lrwmjdgnlm .gt_center {
+  text-align: center;
+}
+
+#lrwmjdgnlm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lrwmjdgnlm .gt_font_normal {
+  font-weight: normal;
+}
+
+#lrwmjdgnlm .gt_font_bold {
+  font-weight: bold;
+}
+
+#lrwmjdgnlm .gt_font_italic {
+  font-style: italic;
+}
+
+#lrwmjdgnlm .gt_super {
+  font-size: 65%;
+}
+
+#lrwmjdgnlm .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;lrwmjdgnlm&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;3&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;&lt;strong&gt;AIC and BIC values&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;3&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;Four candidate models: AR(1) ... AR(4)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;model&lt;/strong&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;AIC&lt;/strong&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;BIC&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AR(1)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.80102&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.82630&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AR(2)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.91005&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.94376&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AR(3)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.91203&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.95418&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AR(4)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.91575&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;2.96632&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;3&#34;&gt;AIC = Akaike information criterion&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;3&#34;&gt;BIC = Bayesian information criterion&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>BT Question Set P1-T2-20-24-2: Box-Pierce</title>
-      <link>/post/bt-question-set-p1-t2-20-24-2-box-pierce/</link>
+      <link>/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>/post/bt-question-set-p1-t2-20-24-2-box-pierce/</guid>
+      <guid>/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/</guid>
       <description>
 
 
