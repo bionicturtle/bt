@@ -5,12 +5,671 @@
     <link>/tag/r/</link>
       <atom:link href="/tag/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png</url>
       <title>R</title>
       <link>/tag/r/</link>
     </image>
+    
+    <item>
+      <title>BT Question Set P1-T2-20-24-2: Box-Pierce</title>
+      <link>/post/bt-question-set-p1-t2-20-24-2-box-pierce/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>/post/bt-question-set-p1-t2-20-24-2-box-pierce/</guid>
+      <description>
+
+
+&lt;p&gt;20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?). She then performs a typical transformation on the raw data: she takes the difference of the natural log of the quarterly GPD values. This plot is displayed in the lower panel. Because LN[GDP(t)] - LN(GDP(t-1)] = LN[GDP(t)/GDP(t-1)], this lower panel plots continuously compounded returns (aka, monthly log returns). First differencing the log returns occasionally renders the non-stationary trend into a stationary process.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(scales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(forecast)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;quantmod&amp;#39;:
+##   method            from
+##   as.zoo.data.frame zoo&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tseries)
+library(ggthemes)
+library(ggfortify)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 methods overwritten by &amp;#39;ggfortify&amp;#39;:
+##   method                 from    
+##   autoplot.Arima         forecast
+##   autoplot.acf           forecast
+##   autoplot.ar            forecast
+##   autoplot.bats          forecast
+##   autoplot.decomposed.ts forecast
+##   autoplot.ets           forecast
+##   autoplot.forecast      forecast
+##   autoplot.stl           forecast
+##   autoplot.ts            forecast
+##   fitted.ar              forecast
+##   fortify.ts             forecast
+##   residuals.ar           forecast&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(fpp2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------------------------------------------- fpp2 2.4 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v fma       2.4     v expsmooth 2.3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------------------------------------------- fpp2_conflicts --
+## x scales::discard() masks purrr::discard()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gt)
+library(astsa)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;astsa&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:fma&amp;#39;:
+## 
+##     chicken, sales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:fpp2&amp;#39;:
+## 
+##     oil&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:forecast&amp;#39;:
+## 
+##     gas&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(patchwork)
+# library(gridExtra)
+
+gdp_log &amp;lt;- diff(log(gdp))
+
+# ts.plot(gdp)
+# ts.plot(gdp_log)
+
+p1_gdp &amp;lt;- autoplot(gdp, size = 1.3) + labs(
+  title = &amp;quot;US GDP, Quarterly (billion) 1947 to 2018&amp;quot;
+) + theme_classic() + theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  axis.text.x = element_blank(),
+  axis.text.y = element_text(size = 11, face = &amp;quot;bold&amp;quot;)
+) + scale_y_continuous(labels = dollar_format())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Scale for &amp;#39;y&amp;#39; is already present. Adding another scale for &amp;#39;y&amp;#39;, which will
+## replace the existing scale.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p2_gdp_log &amp;lt;- autoplot(gdp_log, size = 1.3) + labs(
+  title = bquote(&amp;quot;LN(&amp;quot;~GDP[t]~ &amp;quot;) - LN(&amp;quot;~GDP[t-1]~&amp;quot;)&amp;quot;)
+) + theme_classic() + theme(
+  axis.title.y = element_blank(),
+  axis.text.x = element_text(size = 11, face = &amp;quot;bold&amp;quot;),
+  axis.text.y = element_text(size = 11, face = &amp;quot;bold&amp;quot;)
+) + scale_y_continuous(labels = label_percent(accuracy = .1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Scale for &amp;#39;y&amp;#39; is already present. Adding another scale for &amp;#39;y&amp;#39;, which will
+## replace the existing scale.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;patchwork &amp;lt;- p1_gdp / p2_gdp_log
+patchwork + plot_annotation(
+  caption = &amp;quot;Source: https://tradingeconomics.com/united-states/gdp (via astsa package)&amp;quot;
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(on to the Box-Pierce…)&lt;/p&gt;
+&lt;p&gt;She then fits an autoregressive, AR(1), and moving average, MA(1), model to the log return series. This gives her three models: the log return series (called “diff_logs”), an AR(1) model, and an MA(1) model. She conducts a Box-Pierce test on each of these models; the test of the AR(1) and MA(1) is a test of the residuals. She selects two lags for the test, h = 10 and h = 20. The results of her Box-Pierce test are displayed below.&lt;/p&gt;
+&lt;p&gt;… Box-Pierce gt table (below) here …&lt;/p&gt;
+&lt;p&gt;If we assume her desired confidence level is 95.0%, which of the following statements is a TRUE statement with respect to an interpretation of her Box-Pierce test of the three models?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;None of the residuals are white noise; i.e., neither the transformed log returns nor AR(1) nor MA(1) is a candidate model&lt;/li&gt;
+&lt;li&gt;The AR(1) is a candidate because its residuals appear to be approximately white noise&lt;/li&gt;
+&lt;li&gt;The MA(a) is a candidate because its residuals appear to be approximately white noise&lt;/li&gt;
+&lt;li&gt;All of the residuals are white noise; i.e., all three models are candidates&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;kableExtra&amp;quot;)
+# install.packages(&amp;quot;gapminder&amp;quot;)
+
+ar1_gdp_log &amp;lt;- sarima(gdp_log, p = 1, d = 0, q = 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value -4.673186 
+## iter   2 value -4.742918
+## iter   3 value -4.742921
+## iter   4 value -4.742923
+## iter   5 value -4.742925
+## iter   6 value -4.742925
+## iter   6 value -4.742925
+## final  value -4.742925 
+## converged
+## initial  value -4.742229 
+## iter   2 value -4.742234
+## iter   3 value -4.742245
+## iter   3 value -4.742245
+## iter   3 value -4.742245
+## final  value -4.742245 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ma1_gdp_log &amp;lt;- sarima(gdp_log, p = 0, d = 0, q = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value -4.672758 
+## iter   2 value -4.716609
+## iter   3 value -4.723220
+## iter   4 value -4.723481
+## iter   5 value -4.723483
+## iter   5 value -4.723483
+## iter   5 value -4.723483
+## final  value -4.723483 
+## converged
+## initial  value -4.723444 
+## iter   1 value -4.723444
+## final  value -4.723444 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ma2_gdp_log &amp;lt;- sarima(gdp_log, p = 0, d = 0, q = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## initial  value -4.672758 
+## iter   2 value -4.749239
+## iter   3 value -4.750696
+## iter   4 value -4.750723
+## iter   5 value -4.750724
+## iter   6 value -4.750725
+## iter   7 value -4.750725
+## iter   7 value -4.750725
+## iter   7 value -4.750725
+## final  value -4.750725 
+## converged
+## initial  value -4.751078 
+## iter   2 value -4.751080
+## iter   3 value -4.751080
+## iter   4 value -4.751081
+## iter   5 value -4.751081
+## iter   5 value -4.751081
+## iter   5 value -4.751081
+## final  value -4.751081 
+## converged&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;h_values &amp;lt;- c(10, 20)
+
+# diff of logs
+model = &amp;quot;diff_logs&amp;quot;
+results_log_list &amp;lt;- h_values %&amp;gt;% map(~Box.test(gdp_log, lag = .))
+log_statistic &amp;lt;- results_log_list %&amp;gt;% map_dbl(&amp;quot;statistic&amp;quot;)
+log_p.value &amp;lt;- results_log_list %&amp;gt;% map_dbl(&amp;quot;p.value&amp;quot;)
+log_cols &amp;lt;- data.frame(cbind(h_values, log_statistic, log_p.value))
+log_all &amp;lt;- cbind(model, log_cols)
+log_all &amp;lt;- log_all %&amp;gt;% rename(
+  &amp;#39;h (lags)&amp;#39; = h_values,
+  statistic = log_statistic,
+  &amp;#39;p-value&amp;#39; = log_p.value
+)
+
+# AR(1)
+model = &amp;quot;AR(1)&amp;quot;
+results_ar1_list &amp;lt;- h_values %&amp;gt;% map(~Box.test(ar1_gdp_log$fit$residuals, lag = .))
+ar1_statistic &amp;lt;- results_ar1_list %&amp;gt;% map_dbl(&amp;quot;statistic&amp;quot;)
+ar1_p.value &amp;lt;- results_ar1_list %&amp;gt;% map_dbl(&amp;quot;p.value&amp;quot;)
+ar1_cols &amp;lt;- data.frame(cbind(h_values, ar1_statistic, ar1_p.value))
+ar1_all &amp;lt;- cbind(model, ar1_cols)
+ar1_all &amp;lt;- ar1_all %&amp;gt;% rename(
+  &amp;#39;h (lags)&amp;#39; = h_values,
+  statistic = ar1_statistic,
+  &amp;#39;p-value&amp;#39; = ar1_p.value
+)
+
+# MA(1)
+model = &amp;quot;MA(1)&amp;quot;
+results_ma1_list &amp;lt;- h_values %&amp;gt;% map(~Box.test(ma1_gdp_log$fit$residuals, lag = .))
+ma1_statistic &amp;lt;- results_ma1_list %&amp;gt;% map_dbl(&amp;quot;statistic&amp;quot;)
+ma1_p.value &amp;lt;- results_ma1_list %&amp;gt;% map_dbl(&amp;quot;p.value&amp;quot;)
+ma1_cols &amp;lt;- data.frame(cbind(h_values, ma1_statistic, ma1_p.value))
+ma1_all &amp;lt;- cbind(model, ma1_cols)
+ma1_all &amp;lt;- ma1_all %&amp;gt;% rename(
+  &amp;#39;h (lags)&amp;#39; = h_values,
+  statistic = ma1_statistic,
+  &amp;#39;p-value&amp;#39; = ma1_p.value
+)
+
+models_all &amp;lt;- rbind(log_all, ar1_all, ma1_all)
+models_gt &amp;lt;- gt(models_all)
+
+models_gt &amp;lt;- 
+  models_gt %&amp;gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&amp;gt;% tab_style(
+    style = cell_text(weight = &amp;quot;bold&amp;quot;),
+    locations = cells_body()
+  ) %&amp;gt;% tab_style(
+    style = cell_text(color = &amp;quot;cadetblue&amp;quot;),
+    locations = cells_column_labels(
+      columns = vars(model, &amp;#39;h (lags)&amp;#39;, statistic, &amp;#39;p-value&amp;#39;)
+    )
+  ) %&amp;gt;% tab_header(
+    title = md(&amp;quot;**Box-Pierce test statistics and p-values**&amp;quot;),
+    subtitle = &amp;quot;AR(1) and MA(1) at lags of h = 10 and 20&amp;quot;
+  ) %&amp;gt;% fmt_number(
+    columns = vars(statistic, &amp;#39;p-value&amp;#39;),
+    decimals = 4
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]&amp;quot;)
+  ) %&amp;gt;% tab_source_note(
+    source_note = md(&amp;quot;AR(1) and MA(1) are tests of residuals&amp;quot;)
+  ) %&amp;gt;% cols_width(
+    vars(model, &amp;#39;h (lags)&amp;#39;) ~ px(80),
+    vars(statistic, &amp;#39;p-value&amp;#39;) ~ px(90)
+  ) %&amp;gt;% cols_label (
+    model = md(&amp;quot;**model**&amp;quot;),
+    &amp;#39;h (lags)&amp;#39; = md(&amp;quot;**h (lags)**&amp;quot;),
+    statistic = md(&amp;quot;**test stat**&amp;quot;),
+    &amp;#39;p-value&amp;#39; = md(&amp;quot;**p-value**&amp;quot;)
+  ) %&amp;gt;% cols_align(
+    align = &amp;quot;center&amp;quot;,
+    columns = vars(&amp;#39;h (lags)&amp;#39;)
+  ) %&amp;gt;% tab_options(
+    heading.title.font.size = 16,
+    heading.subtitle.font.size = 14
+  )
+
+models_gt&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#cvqxjzfqya .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cvqxjzfqya .gt_subtitle {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cvqxjzfqya .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cvqxjzfqya .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cvqxjzfqya .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cvqxjzfqya .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cvqxjzfqya .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#cvqxjzfqya .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#cvqxjzfqya .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cvqxjzfqya .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#cvqxjzfqya .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cvqxjzfqya .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cvqxjzfqya .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cvqxjzfqya .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cvqxjzfqya .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cvqxjzfqya .gt_left {
+  text-align: left;
+}
+
+#cvqxjzfqya .gt_center {
+  text-align: center;
+}
+
+#cvqxjzfqya .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cvqxjzfqya .gt_font_normal {
+  font-weight: normal;
+}
+
+#cvqxjzfqya .gt_font_bold {
+  font-weight: bold;
+}
+
+#cvqxjzfqya .gt_font_italic {
+  font-style: italic;
+}
+
+#cvqxjzfqya .gt_super {
+  font-size: 65%;
+}
+
+#cvqxjzfqya .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;cvqxjzfqya&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34; style=&#34;table-layout: fixed;; width: 0px&#34;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&#34;width:80px;&#34;/&gt;
+    &lt;col style=&#34;width:80px;&#34;/&gt;
+    &lt;col style=&#34;width:90px;&#34;/&gt;
+    &lt;col style=&#34;width:90px;&#34;/&gt;
+  &lt;/colgroup&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;4&#34; class=&#34;gt_heading gt_title gt_font_normal&#34; style&gt;&lt;strong&gt;Box-Pierce test statistics and p-values&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;4&#34; class=&#34;gt_heading gt_subtitle gt_font_normal gt_bottom_border&#34; style&gt;AR(1) and MA(1) at lags of h = 10 and 20&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34; style=&#34;color: cadetblue;&#34;&gt;&lt;strong&gt;model&lt;/strong&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_center&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34; style=&#34;color: cadetblue;&#34;&gt;&lt;strong&gt;h (lags)&lt;/strong&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34; style=&#34;color: cadetblue;&#34;&gt;&lt;strong&gt;test stat&lt;/strong&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34; style=&#34;color: cadetblue;&#34;&gt;&lt;strong&gt;p-value&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;diff_logs&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34; style=&#34;font-weight: bold;&#34;&gt;10&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;62.6228&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;diff_logs&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34; style=&#34;font-weight: bold;&#34;&gt;20&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;80.1439&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AR(1)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34; style=&#34;font-weight: bold;&#34;&gt;10&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;15.5465&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.1134&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;AR(1)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34; style=&#34;font-weight: bold;&#34;&gt;20&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;30.3091&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0650&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;MA(1)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34; style=&#34;font-weight: bold;&#34;&gt;10&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;24.3689&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0067&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;MA(1)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34; style=&#34;font-weight: bold;&#34;&gt;20&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;39.6618&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;0.0055&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot class=&#34;gt_sourcenotes&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;4&#34;&gt;Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_sourcenote&#34; colspan=&#34;4&#34;&gt;AR(1) and MA(1) are tests of residuals&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  
+&lt;/table&gt;&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>BT Question Set P1-T2-20-23 set: ARMA process</title>

@@ -1,0 +1,670 @@
+---
+title: 'BT Question Set P1-T2-20-24-2: Box-Pierce'
+author: David Harper
+date: '2020-10-20'
+slug: bt-question-set-p1-t2-20-24-2-box-pierce
+categories: []
+tags:
+  - R
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-10-21T20:09:22-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?). She then performs a typical transformation on the raw data: she takes the difference of the natural log of the quarterly GPD values. This plot is displayed in the lower panel. Because LN[GDP(t)] - LN(GDP(t-1)] = LN[GDP(t)/GDP(t-1)], this lower panel plots continuously compounded returns (aka, monthly log returns). First differencing the log returns occasionally renders the non-stationary trend into a stationary process.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(scales)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre class="r"><code>library(forecast)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre class="r"><code>library(tseries)
+library(ggthemes)
+library(ggfortify)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggfortify&#39;:
+##   method                 from    
+##   autoplot.Arima         forecast
+##   autoplot.acf           forecast
+##   autoplot.ar            forecast
+##   autoplot.bats          forecast
+##   autoplot.decomposed.ts forecast
+##   autoplot.ets           forecast
+##   autoplot.forecast      forecast
+##   autoplot.stl           forecast
+##   autoplot.ts            forecast
+##   fitted.ar              forecast
+##   fortify.ts             forecast
+##   residuals.ar           forecast</code></pre>
+<pre class="r"><code>library(fpp2)</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------------------------------------------------------- fpp2 2.4 --</code></pre>
+<pre><code>## v fma       2.4     v expsmooth 2.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------------------- fpp2_conflicts --
+## x scales::discard() masks purrr::discard()</code></pre>
+<pre class="r"><code>library(gt)
+library(astsa)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;astsa&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:fma&#39;:
+## 
+##     chicken, sales</code></pre>
+<pre><code>## The following object is masked from &#39;package:fpp2&#39;:
+## 
+##     oil</code></pre>
+<pre><code>## The following object is masked from &#39;package:forecast&#39;:
+## 
+##     gas</code></pre>
+<pre class="r"><code>library(patchwork)
+# library(gridExtra)
+
+gdp_log &lt;- diff(log(gdp))
+
+# ts.plot(gdp)
+# ts.plot(gdp_log)
+
+p1_gdp &lt;- autoplot(gdp, size = 1.3) + labs(
+  title = &quot;US GDP, Quarterly (billion) 1947 to 2018&quot;
+) + theme_classic() + theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  axis.text.x = element_blank(),
+  axis.text.y = element_text(size = 11, face = &quot;bold&quot;)
+) + scale_y_continuous(labels = dollar_format())</code></pre>
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
+## replace the existing scale.</code></pre>
+<pre class="r"><code>p2_gdp_log &lt;- autoplot(gdp_log, size = 1.3) + labs(
+  title = bquote(&quot;LN(&quot;~GDP[t]~ &quot;) - LN(&quot;~GDP[t-1]~&quot;)&quot;)
+) + theme_classic() + theme(
+  axis.title.y = element_blank(),
+  axis.text.x = element_text(size = 11, face = &quot;bold&quot;),
+  axis.text.y = element_text(size = 11, face = &quot;bold&quot;)
+) + scale_y_continuous(labels = label_percent(accuracy = .1))</code></pre>
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
+## replace the existing scale.</code></pre>
+<pre class="r"><code>patchwork &lt;- p1_gdp / p2_gdp_log
+patchwork + plot_annotation(
+  caption = &quot;Source: https://tradingeconomics.com/united-states/gdp (via astsa package)&quot;
+  )</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>(on to the Box-Pierce…)</p>
+<p>She then fits an autoregressive, AR(1), and moving average, MA(1), model to the log return series. This gives her three models: the log return series (called “diff_logs”), an AR(1) model, and an MA(1) model. She conducts a Box-Pierce test on each of these models; the test of the AR(1) and MA(1) is a test of the residuals. She selects two lags for the test, h = 10 and h = 20. The results of her Box-Pierce test are displayed below.</p>
+<p>… Box-Pierce gt table (below) here …</p>
+<p>If we assume her desired confidence level is 95.0%, which of the following statements is a TRUE statement with respect to an interpretation of her Box-Pierce test of the three models?</p>
+<ol style="list-style-type: lower-alpha">
+<li>None of the residuals are white noise; i.e., neither the transformed log returns nor AR(1) nor MA(1) is a candidate model</li>
+<li>The AR(1) is a candidate because its residuals appear to be approximately white noise</li>
+<li>The MA(a) is a candidate because its residuals appear to be approximately white noise</li>
+<li>All of the residuals are white noise; i.e., all three models are candidates</li>
+</ol>
+<pre class="r"><code># install.packages(&quot;kableExtra&quot;)
+# install.packages(&quot;gapminder&quot;)
+
+ar1_gdp_log &lt;- sarima(gdp_log, p = 1, d = 0, q = 0)</code></pre>
+<pre><code>## initial  value -4.673186 
+## iter   2 value -4.742918
+## iter   3 value -4.742921
+## iter   4 value -4.742923
+## iter   5 value -4.742925
+## iter   6 value -4.742925
+## iter   6 value -4.742925
+## final  value -4.742925 
+## converged
+## initial  value -4.742229 
+## iter   2 value -4.742234
+## iter   3 value -4.742245
+## iter   3 value -4.742245
+## iter   3 value -4.742245
+## final  value -4.742245 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ma1_gdp_log &lt;- sarima(gdp_log, p = 0, d = 0, q = 1)</code></pre>
+<pre><code>## initial  value -4.672758 
+## iter   2 value -4.716609
+## iter   3 value -4.723220
+## iter   4 value -4.723481
+## iter   5 value -4.723483
+## iter   5 value -4.723483
+## iter   5 value -4.723483
+## final  value -4.723483 
+## converged
+## initial  value -4.723444 
+## iter   1 value -4.723444
+## final  value -4.723444 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code>ma2_gdp_log &lt;- sarima(gdp_log, p = 0, d = 0, q = 2)</code></pre>
+<pre><code>## initial  value -4.672758 
+## iter   2 value -4.749239
+## iter   3 value -4.750696
+## iter   4 value -4.750723
+## iter   5 value -4.750724
+## iter   6 value -4.750725
+## iter   7 value -4.750725
+## iter   7 value -4.750725
+## iter   7 value -4.750725
+## final  value -4.750725 
+## converged
+## initial  value -4.751078 
+## iter   2 value -4.751080
+## iter   3 value -4.751080
+## iter   4 value -4.751081
+## iter   5 value -4.751081
+## iter   5 value -4.751081
+## iter   5 value -4.751081
+## final  value -4.751081 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<pre class="r"><code>h_values &lt;- c(10, 20)
+
+# diff of logs
+model = &quot;diff_logs&quot;
+results_log_list &lt;- h_values %&gt;% map(~Box.test(gdp_log, lag = .))
+log_statistic &lt;- results_log_list %&gt;% map_dbl(&quot;statistic&quot;)
+log_p.value &lt;- results_log_list %&gt;% map_dbl(&quot;p.value&quot;)
+log_cols &lt;- data.frame(cbind(h_values, log_statistic, log_p.value))
+log_all &lt;- cbind(model, log_cols)
+log_all &lt;- log_all %&gt;% rename(
+  &#39;h (lags)&#39; = h_values,
+  statistic = log_statistic,
+  &#39;p-value&#39; = log_p.value
+)
+
+# AR(1)
+model = &quot;AR(1)&quot;
+results_ar1_list &lt;- h_values %&gt;% map(~Box.test(ar1_gdp_log$fit$residuals, lag = .))
+ar1_statistic &lt;- results_ar1_list %&gt;% map_dbl(&quot;statistic&quot;)
+ar1_p.value &lt;- results_ar1_list %&gt;% map_dbl(&quot;p.value&quot;)
+ar1_cols &lt;- data.frame(cbind(h_values, ar1_statistic, ar1_p.value))
+ar1_all &lt;- cbind(model, ar1_cols)
+ar1_all &lt;- ar1_all %&gt;% rename(
+  &#39;h (lags)&#39; = h_values,
+  statistic = ar1_statistic,
+  &#39;p-value&#39; = ar1_p.value
+)
+
+# MA(1)
+model = &quot;MA(1)&quot;
+results_ma1_list &lt;- h_values %&gt;% map(~Box.test(ma1_gdp_log$fit$residuals, lag = .))
+ma1_statistic &lt;- results_ma1_list %&gt;% map_dbl(&quot;statistic&quot;)
+ma1_p.value &lt;- results_ma1_list %&gt;% map_dbl(&quot;p.value&quot;)
+ma1_cols &lt;- data.frame(cbind(h_values, ma1_statistic, ma1_p.value))
+ma1_all &lt;- cbind(model, ma1_cols)
+ma1_all &lt;- ma1_all %&gt;% rename(
+  &#39;h (lags)&#39; = h_values,
+  statistic = ma1_statistic,
+  &#39;p-value&#39; = ma1_p.value
+)
+
+models_all &lt;- rbind(log_all, ar1_all, ma1_all)
+models_gt &lt;- gt(models_all)
+
+models_gt &lt;- 
+  models_gt %&gt;% 
+  tab_options(
+    table.font.size = 14
+  ) %&gt;% tab_style(
+    style = cell_text(weight = &quot;bold&quot;),
+    locations = cells_body()
+  ) %&gt;% tab_style(
+    style = cell_text(color = &quot;cadetblue&quot;),
+    locations = cells_column_labels(
+      columns = vars(model, &#39;h (lags)&#39;, statistic, &#39;p-value&#39;)
+    )
+  ) %&gt;% tab_header(
+    title = md(&quot;**Box-Pierce test statistics and p-values**&quot;),
+    subtitle = &quot;AR(1) and MA(1) at lags of h = 10 and 20&quot;
+  ) %&gt;% fmt_number(
+    columns = vars(statistic, &#39;p-value&#39;),
+    decimals = 4
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]&quot;)
+  ) %&gt;% tab_source_note(
+    source_note = md(&quot;AR(1) and MA(1) are tests of residuals&quot;)
+  ) %&gt;% cols_width(
+    vars(model, &#39;h (lags)&#39;) ~ px(80),
+    vars(statistic, &#39;p-value&#39;) ~ px(90)
+  ) %&gt;% cols_label (
+    model = md(&quot;**model**&quot;),
+    &#39;h (lags)&#39; = md(&quot;**h (lags)**&quot;),
+    statistic = md(&quot;**test stat**&quot;),
+    &#39;p-value&#39; = md(&quot;**p-value**&quot;)
+  ) %&gt;% cols_align(
+    align = &quot;center&quot;,
+    columns = vars(&#39;h (lags)&#39;)
+  ) %&gt;% tab_options(
+    heading.title.font.size = 16,
+    heading.subtitle.font.size = 14
+  )
+
+models_gt</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#cvqxjzfqya .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cvqxjzfqya .gt_subtitle {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cvqxjzfqya .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cvqxjzfqya .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cvqxjzfqya .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cvqxjzfqya .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cvqxjzfqya .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cvqxjzfqya .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cvqxjzfqya .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cvqxjzfqya .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cvqxjzfqya .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#cvqxjzfqya .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cvqxjzfqya .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cvqxjzfqya .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cvqxjzfqya .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cvqxjzfqya .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cvqxjzfqya .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cvqxjzfqya .gt_left {
+  text-align: left;
+}
+
+#cvqxjzfqya .gt_center {
+  text-align: center;
+}
+
+#cvqxjzfqya .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cvqxjzfqya .gt_font_normal {
+  font-weight: normal;
+}
+
+#cvqxjzfqya .gt_font_bold {
+  font-weight: bold;
+}
+
+#cvqxjzfqya .gt_font_italic {
+  font-style: italic;
+}
+
+#cvqxjzfqya .gt_super {
+  font-size: 65%;
+}
+
+#cvqxjzfqya .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="cvqxjzfqya" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:80px;"/>
+    <col style="width:80px;"/>
+    <col style="width:90px;"/>
+    <col style="width:90px;"/>
+  </colgroup>
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal" style><strong>Box-Pierce test statistics and p-values</strong></th>
+    </tr>
+    <tr>
+      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>AR(1) and MA(1) at lags of h = 10 and 20</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: cadetblue;"><strong>model</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="color: cadetblue;"><strong>h (lags)</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: cadetblue;"><strong>test stat</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: cadetblue;"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">diff_logs</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">62.6228</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0000</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">diff_logs</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">80.1439</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0000</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">15.5465</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.1134</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">30.3091</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0650</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">MA(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">24.3689</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0067</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-weight: bold;">MA(1)</td>
+      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">39.6618</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">0.0055</td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="4">AR(1) and MA(1) are tests of residuals</td>
+    </tr>
+  </tfoot>
+  
+</table></div>
