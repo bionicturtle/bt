@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?">
+  <meta name="description" content="20.24.3. Eric is a commodity analyst who fit four different candidate AR(p) models to a series of oil prices. For each of the candidate models, he then retrieved the Akaike information criterion (AIC) and the Bayesian information criterion (BIC).">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">
+  <link rel="alternate" hreflang="en-us" href="/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/">
 
   
 
@@ -231,7 +231,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">
+  <link rel="canonical" href="/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/">
 
   
   
@@ -247,15 +247,15 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="David&#39;s (bionicturtle) data blog">
-  <meta property="og:url" content="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">
-  <meta property="og:title" content="BT Question Set P1-T2-20-24-2: Box-Pierce | David&#39;s (bionicturtle) data blog">
-  <meta property="og:description" content="20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?"><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/">
+  <meta property="og:title" content="BT Question Set P1-T2-20-24-3: AIC and BIC | David&#39;s (bionicturtle) data blog">
+  <meta property="og:description" content="20.24.3. Eric is a commodity analyst who fit four different candidate AR(p) models to a series of oil prices. For each of the candidate models, he then retrieved the Akaike information criterion (AIC) and the Bayesian information criterion (BIC)."><meta property="og:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-10-20T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-10-21T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-10-21T20:09:22-07:00">
+    <meta property="article:modified_time" content="2020-10-21T20:25:01-07:00">
   
 
   
@@ -279,12 +279,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/"
+    "@id": "/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/"
   },
-  "headline": "BT Question Set P1-T2-20-24-2: Box-Pierce",
+  "headline": "BT Question Set P1-T2-20-24-3: AIC and BIC",
   
-  "datePublished": "2020-10-20T00:00:00Z",
-  "dateModified": "2020-10-21T20:09:22-07:00",
+  "datePublished": "2020-10-21T00:00:00Z",
+  "dateModified": "2020-10-21T20:25:01-07:00",
   
   "author": {
     "@type": "Person",
@@ -299,7 +299,7 @@
       "url": "/images/icon_hu77a30fa54a1153d827111821c0262bf2_25270_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?"
+  "description": "20.24.3. Eric is a commodity analyst who fit four different candidate AR(p) models to a series of oil prices. For each of the candidate models, he then retrieved the Akaike information criterion (AIC) and the Bayesian information criterion (BIC)."
 }
 </script>
 
@@ -317,7 +317,7 @@
 
 
 
-  <title>BT Question Set P1-T2-20-24-2: Box-Pierce | David&#39;s (bionicturtle) data blog</title>
+  <title>BT Question Set P1-T2-20-24-3: AIC and BIC | David&#39;s (bionicturtle) data blog</title>
 
 </head>
 
@@ -577,7 +577,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>BT Question Set P1-T2-20-24-2: Box-Pierce</h1>
+  <h1>BT Question Set P1-T2-20-24-3: AIC and BIC</h1>
 
   
 
@@ -607,7 +607,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    9 min read
+    10 min read
   </span>
   
 
@@ -646,252 +646,331 @@
       
 
 
-<p>20.24.2. Elizabeth is an economist tasked with modeling quarterly gross domestic product (GDP) in the United States. She starts with the plots displayed below. The raw data is displayed in the upper; she observes this GDP trend is obviously not stationary (why?). She then performs a typical transformation on the raw data: she takes the difference of the natural log of the quarterly GPD values. This plot is displayed in the lower panel. Because LN[GDP(t)] - LN(GDP(t-1)] = LN[GDP(t)/GDP(t-1)], this lower panel plots continuously compounded returns (aka, monthly log returns). First differencing the log returns occasionally renders the non-stationary trend into a stationary process.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
-<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.3     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(scales)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
-<pre class="r"><code>library(forecast)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
-##   method            from
-##   as.zoo.data.frame zoo</code></pre>
-<pre class="r"><code>library(tseries)
-library(ggthemes)
-library(ggfortify)</code></pre>
-<pre><code>## Registered S3 methods overwritten by &#39;ggfortify&#39;:
-##   method                 from    
-##   autoplot.Arima         forecast
-##   autoplot.acf           forecast
-##   autoplot.ar            forecast
-##   autoplot.bats          forecast
-##   autoplot.decomposed.ts forecast
-##   autoplot.ets           forecast
-##   autoplot.forecast      forecast
-##   autoplot.stl           forecast
-##   autoplot.ts            forecast
-##   fitted.ar              forecast
-##   fortify.ts             forecast
-##   residuals.ar           forecast</code></pre>
-<pre class="r"><code>library(fpp2)</code></pre>
-<pre><code>## -- Attaching packages ---------------------------------------------------------------------------------------- fpp2 2.4 --</code></pre>
-<pre><code>## v fma       2.4     v expsmooth 2.3</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------------------------------------------------- fpp2_conflicts --
-## x scales::discard() masks purrr::discard()</code></pre>
-<pre class="r"><code>library(gt)
-library(astsa)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;astsa&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:fma&#39;:
-## 
-##     chicken, sales</code></pre>
-<pre><code>## The following object is masked from &#39;package:fpp2&#39;:
-## 
-##     oil</code></pre>
-<pre><code>## The following object is masked from &#39;package:forecast&#39;:
-## 
-##     gas</code></pre>
-<pre class="r"><code>library(patchwork)
-# library(gridExtra)
-
-gdp_log &lt;- diff(log(gdp))
-
-# ts.plot(gdp)
-# ts.plot(gdp_log)
-
-p1_gdp &lt;- autoplot(gdp, size = 1.3) + labs(
-  title = &quot;US GDP, Quarterly (billion) 1947 to 2018&quot;
-) + theme_classic() + theme(
-  axis.title.x = element_blank(),
-  axis.title.y = element_blank(),
-  axis.text.x = element_blank(),
-  axis.text.y = element_text(size = 11, face = &quot;bold&quot;)
-) + scale_y_continuous(labels = dollar_format())</code></pre>
-<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
-## replace the existing scale.</code></pre>
-<pre class="r"><code>p2_gdp_log &lt;- autoplot(gdp_log, size = 1.3) + labs(
-  title = bquote(&quot;LN(&quot;~GDP[t]~ &quot;) - LN(&quot;~GDP[t-1]~&quot;)&quot;)
-) + theme_classic() + theme(
-  axis.title.y = element_blank(),
-  axis.text.x = element_text(size = 11, face = &quot;bold&quot;),
-  axis.text.y = element_text(size = 11, face = &quot;bold&quot;)
-) + scale_y_continuous(labels = label_percent(accuracy = .1))</code></pre>
-<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
-## replace the existing scale.</code></pre>
-<pre class="r"><code>patchwork &lt;- p1_gdp / p2_gdp_log
-patchwork + plot_annotation(
-  caption = &quot;Source: https://tradingeconomics.com/united-states/gdp (via astsa package)&quot;
-  )</code></pre>
-<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>(on to the Box-Pierce…)</p>
-<p>She then fits an autoregressive, AR(1), and moving average, MA(1), model to the log return series. This gives her three models: the log return series (called “diff_logs”), an AR(1) model, and an MA(1) model. She conducts a Box-Pierce test on each of these models; the test of the AR(1) and MA(1) is a test of the residuals. She selects two lags for the test, h = 10 and h = 20. The results of her Box-Pierce test are displayed below.</p>
-<p>… Box-Pierce gt table (below) here …</p>
-<p>If we assume her desired confidence level is 95.0%, which of the following statements is a TRUE statement with respect to an interpretation of her Box-Pierce test of the three models?</p>
+<p>20.24.3. Eric is a commodity analyst who fit four different candidate AR(p) models to a series of oil prices. For each of the candidate models, he then retrieved the Akaike information criterion (AIC) and the Bayesian information criterion (BIC). The results are displayed below.</p>
+<p>.. AIC and BIC values (table below) goes here …</p>
+<p>As Eric interprets the results of these criteria (i.e., the AIC and BIC values), which of the following statements is TRUE?</p>
 <ol style="list-style-type: lower-alpha">
-<li>None of the residuals are white noise; i.e., neither the transformed log returns nor AR(1) nor MA(1) is a candidate model</li>
-<li>The AR(1) is a candidate because its residuals appear to be approximately white noise</li>
-<li>The MA(a) is a candidate because its residuals appear to be approximately white noise</li>
-<li>All of the residuals are white noise; i.e., all three models are candidates</li>
+<li>Both criteria (AIC and BIC) favor the AR(1) model</li>
+<li>Both criteria (AIC and BIC) favor the AR(2) model</li>
+<li>As both criteria are insignificant, any AR(p) model is a bad fit</li>
+<li>The criteria disagree and therefore the AIC’s preference should prevail because it prefers fewer lags</li>
 </ol>
-<pre class="r"><code># install.packages(&quot;kableExtra&quot;)
-# install.packages(&quot;gapminder&quot;)
+<pre class="r"><code>library(tidyverse)
+library(scales)
+library(gridExtra)
+library(forecast)
+library(tseries)
+library(fpp2)
+library(gt)
+library(astsa)
 
-ar1_gdp_log &lt;- sarima(gdp_log, p = 1, d = 0, q = 0)</code></pre>
-<pre><code>## initial  value -4.673186 
-## iter   2 value -4.742918
-## iter   3 value -4.742921
-## iter   4 value -4.742923
-## iter   5 value -4.742925
-## iter   6 value -4.742925
-## iter   6 value -4.742925
-## final  value -4.742925 
+# 175
+set.seed(175)
+ar2 &lt;- arima.sim(model=list(order=c(2,0,0),ar = c(1.5,-.75)),n = 500)
+ma2 &lt;- arima.sim(model=list(order=c(0,0,2),ma = c(1.5,-.75)),n = 500)
+
+ar1_fit &lt;- sarima(ar2, p = 1, d = 0, q = 0)</code></pre>
+<pre><code>## initial  value 1.185288 
+## iter   2 value 0.473121
+## iter   3 value 0.473113
+## iter   4 value 0.473112
+## iter   5 value 0.473108
+## iter   6 value 0.473099
+## iter   7 value 0.473095
+## iter   8 value 0.473094
+## iter   9 value 0.473092
+## iter  10 value 0.473087
+## iter  11 value 0.473080
+## iter  12 value 0.473076
+## iter  13 value 0.473075
+## iter  14 value 0.473075
+## iter  15 value 0.473075
+## iter  16 value 0.473074
+## iter  17 value 0.473073
+## iter  18 value 0.473073
+## iter  19 value 0.473073
+## iter  20 value 0.473073
+## iter  21 value 0.473072
+## iter  22 value 0.473072
+## iter  23 value 0.473072
+## iter  24 value 0.473072
+## iter  25 value 0.473072
+## iter  26 value 0.473072
+## iter  27 value 0.473072
+## iter  27 value 0.473072
+## iter  27 value 0.473072
+## final  value 0.473072 
 ## converged
-## initial  value -4.742229 
-## iter   2 value -4.742234
-## iter   3 value -4.742245
-## iter   3 value -4.742245
-## iter   3 value -4.742245
-## final  value -4.742245 
+## initial  value 0.475632 
+## iter   2 value 0.475627
+## iter   3 value 0.475615
+## iter   4 value 0.475613
+## iter   5 value 0.475597
+## iter   6 value 0.475583
+## iter   7 value 0.475579
+## iter   8 value 0.475574
+## iter   9 value 0.475573
+## iter  10 value 0.475570
+## iter  11 value 0.475569
+## iter  12 value 0.475569
+## iter  13 value 0.475569
+## iter  13 value 0.475569
+## iter  13 value 0.475569
+## final  value 0.475569 
 ## converged</code></pre>
-<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>ma1_gdp_log &lt;- sarima(gdp_log, p = 0, d = 0, q = 1)</code></pre>
-<pre><code>## initial  value -4.672758 
-## iter   2 value -4.716609
-## iter   3 value -4.723220
-## iter   4 value -4.723481
-## iter   5 value -4.723483
-## iter   5 value -4.723483
-## iter   5 value -4.723483
-## final  value -4.723483 
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>ar2_fit &lt;- sarima(ar2, p = 2, d = 0, q = 0)</code></pre>
+<pre><code>## initial  value 1.186082 
+## iter   2 value 1.063752
+## iter   3 value 0.611728
+## iter   4 value 0.360300
+## iter   5 value 0.180452
+## iter   6 value 0.026222
+## iter   7 value 0.023222
+## iter   8 value 0.022348
+## iter   9 value 0.022310
+## iter  10 value 0.022284
+## iter  11 value 0.022258
+## iter  12 value 0.022258
+## iter  13 value 0.022258
+## iter  14 value 0.022258
+## iter  15 value 0.022258
+## iter  16 value 0.022258
+## iter  17 value 0.022258
+## iter  17 value 0.022258
+## iter  17 value 0.022258
+## final  value 0.022258 
 ## converged
-## initial  value -4.723444 
-## iter   1 value -4.723444
-## final  value -4.723444 
+## initial  value 0.028108 
+## iter   2 value 0.028095
+## iter   3 value 0.028087
+## iter   4 value 0.028086
+## iter   5 value 0.028086
+## iter   6 value 0.028085
+## iter   7 value 0.028085
+## iter   8 value 0.028085
+## iter   8 value 0.028085
+## final  value 0.028085 
 ## converged</code></pre>
-<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
-<pre class="r"><code>ma2_gdp_log &lt;- sarima(gdp_log, p = 0, d = 0, q = 2)</code></pre>
-<pre><code>## initial  value -4.672758 
-## iter   2 value -4.749239
-## iter   3 value -4.750696
-## iter   4 value -4.750723
-## iter   5 value -4.750724
-## iter   6 value -4.750725
-## iter   7 value -4.750725
-## iter   7 value -4.750725
-## iter   7 value -4.750725
-## final  value -4.750725 
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre class="r"><code>ar3_fit &lt;- sarima(ar2, p = 3, d = 0, q = 0)</code></pre>
+<pre><code>## initial  value 1.187086 
+## iter   2 value 0.966297
+## iter   3 value 0.720122
+## iter   4 value 0.651535
+## iter   5 value 0.270365
+## iter   6 value 0.157749
+## iter   7 value 0.106223
+## iter   8 value 0.068752
+## iter   9 value 0.027592
+## iter  10 value 0.020453
+## iter  11 value 0.020449
+## iter  12 value 0.020445
+## iter  13 value 0.020430
+## iter  14 value 0.020418
+## iter  15 value 0.020418
+## iter  16 value 0.020418
+## iter  17 value 0.020418
+## iter  18 value 0.020418
+## iter  19 value 0.020418
+## iter  20 value 0.020418
+## iter  20 value 0.020418
+## iter  20 value 0.020418
+## final  value 0.020418 
 ## converged
-## initial  value -4.751078 
-## iter   2 value -4.751080
-## iter   3 value -4.751080
-## iter   4 value -4.751081
-## iter   5 value -4.751081
-## iter   5 value -4.751081
-## iter   5 value -4.751081
-## final  value -4.751081 
+## initial  value 0.027093 
+## iter   2 value 0.027090
+## iter   3 value 0.027084
+## iter   4 value 0.027079
+## iter   5 value 0.027079
+## iter   6 value 0.027078
+## iter   7 value 0.027078
+## iter   8 value 0.027078
+## iter   8 value 0.027078
+## iter   8 value 0.027078
+## final  value 0.027078 
 ## converged</code></pre>
-<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-2-box-pierce.en_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
-<pre class="r"><code>h_values &lt;- c(10, 20)
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<pre class="r"><code>ar4_fit &lt;- sarima(ar2, p = 4, d = 0, q = 0)</code></pre>
+<pre><code>## initial  value 1.187677 
+## iter   2 value 1.182760
+## iter   3 value 0.389837
+## iter   4 value 0.312734
+## iter   5 value 0.257361
+## iter   6 value 0.134886
+## iter   7 value 0.042493
+## iter   8 value 0.035479
+## iter   9 value 0.028843
+## iter  10 value 0.020356
+## iter  11 value 0.020308
+## iter  12 value 0.020305
+## iter  13 value 0.020305
+## iter  14 value 0.020305
+## iter  15 value 0.020304
+## iter  16 value 0.020304
+## iter  17 value 0.020304
+## iter  18 value 0.020304
+## iter  19 value 0.020304
+## iter  20 value 0.020304
+## iter  21 value 0.020304
+## iter  22 value 0.020304
+## iter  22 value 0.020304
+## iter  22 value 0.020304
+## final  value 0.020304 
+## converged
+## initial  value 0.026957 
+## iter   2 value 0.026941
+## iter   3 value 0.026940
+## iter   4 value 0.026938
+## iter   5 value 0.026937
+## iter   6 value 0.026936
+## iter   7 value 0.026936
+## iter   8 value 0.026936
+## iter   9 value 0.026936
+## iter   9 value 0.026936
+## iter   9 value 0.026936
+## final  value 0.026936 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<pre class="r"><code>ma1_fit &lt;- sarima(ma2, p = 0, d = 0, q = 1)</code></pre>
+<pre><code>## initial  value 0.620720 
+## iter   2 value 0.616967
+## iter   3 value 0.616503
+## iter   4 value 0.616503
+## iter   4 value 0.616503
+## iter   4 value 0.616503
+## final  value 0.616503 
+## converged
+## initial  value 0.616515 
+## iter   2 value 0.616515
+## iter   2 value 0.616515
+## iter   2 value 0.616515
+## final  value 0.616515 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
+<pre class="r"><code>ma2_fit &lt;- sarima(ma2, p = 0, d = 0, q = 2)</code></pre>
+<pre><code>## initial  value 0.620720 
+## iter   2 value 0.601563
+## iter   3 value 0.601097
+## iter   4 value 0.601053
+## iter   5 value 0.601053
+## iter   5 value 0.601053
+## iter   5 value 0.601053
+## final  value 0.601053 
+## converged
+## initial  value 0.601132 
+## iter   2 value 0.601132
+## iter   2 value 0.601132
+## iter   2 value 0.601132
+## final  value 0.601132 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-6.png" width="672" /></p>
+<pre class="r"><code>ma3_fit &lt;- sarima(ma2, p = 0, d = 0, q = 3)</code></pre>
+<pre><code>## initial  value 0.620720 
+## iter   2 value 0.601584
+## iter   3 value 0.601080
+## iter   4 value 0.600978
+## iter   5 value 0.600977
+## iter   5 value 0.600977
+## iter   5 value 0.600977
+## final  value 0.600977 
+## converged
+## initial  value 0.601058 
+## iter   2 value 0.601058
+## iter   3 value 0.601058
+## iter   3 value 0.601058
+## iter   3 value 0.601058
+## final  value 0.601058 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-7.png" width="672" /></p>
+<pre class="r"><code>ma4_fit &lt;- sarima(ma2, p = 0, d = 0, q = 4)</code></pre>
+<pre><code>## initial  value 0.620720 
+## iter   2 value 0.599626
+## iter   3 value 0.599377
+## iter   4 value 0.599342
+## iter   5 value 0.599340
+## iter   6 value 0.599340
+## iter   7 value 0.599340
+## iter   7 value 0.599340
+## iter   7 value 0.599340
+## final  value 0.599340 
+## converged
+## initial  value 0.599424 
+## iter   2 value 0.599424
+## iter   3 value 0.599424
+## iter   3 value 0.599424
+## iter   3 value 0.599424
+## final  value 0.599424 
+## converged</code></pre>
+<p><img src="/post/2020-10-21-bt-question-set-p1-t2-20-24-3-aic-and-bic.en_files/figure-html/unnamed-chunk-1-8.png" width="672" /></p>
+<pre class="r"><code>print(&quot;AIC&quot;)</code></pre>
+<pre><code>## [1] &quot;AIC&quot;</code></pre>
+<pre class="r"><code>ar1_fit$AIC</code></pre>
+<pre><code>## [1] 3.801016</code></pre>
+<pre class="r"><code>ar2_fit$AIC</code></pre>
+<pre><code>## [1] 2.910047</code></pre>
+<pre class="r"><code>ar3_fit$AIC</code></pre>
+<pre><code>## [1] 2.912034</code></pre>
+<pre class="r"><code>ar4_fit$AIC</code></pre>
+<pre><code>## [1] 2.915749</code></pre>
+<pre class="r"><code>print(&quot;BIC&quot;)</code></pre>
+<pre><code>## [1] &quot;BIC&quot;</code></pre>
+<pre class="r"><code>ar1_fit$BIC</code></pre>
+<pre><code>## [1] 3.826304</code></pre>
+<pre class="r"><code>ar2_fit$BIC</code></pre>
+<pre><code>## [1] 2.943764</code></pre>
+<pre class="r"><code>ar3_fit$BIC</code></pre>
+<pre><code>## [1] 2.95418</code></pre>
+<pre class="r"><code>ar4_fit$BIC</code></pre>
+<pre><code>## [1] 2.966324</code></pre>
+<pre class="r"><code>AIC_ar2 &lt;- c(ar1_fit$AIC, ar2_fit$AIC, ar3_fit$AIC, ar4_fit$AIC)
+BIC_ar2 &lt;- c(ar1_fit$BIC, ar2_fit$BIC, ar3_fit$BIC, ar4_fit$BIC)
+AIC_BIC_ar2 &lt;- cbind(AIC_ar2, BIC_ar2) %&gt;% data.frame()
+models &lt;- c(&quot;AR(1)&quot;, &quot;AR(2)&quot;, &quot;AR(3)&quot;, &quot;AR(4)&quot;)
+models_AIC_BIC &lt;- cbind(models, AIC_BIC_ar2)
 
-# diff of logs
-model = &quot;diff_logs&quot;
-results_log_list &lt;- h_values %&gt;% map(~Box.test(gdp_log, lag = .))
-log_statistic &lt;- results_log_list %&gt;% map_dbl(&quot;statistic&quot;)
-log_p.value &lt;- results_log_list %&gt;% map_dbl(&quot;p.value&quot;)
-log_cols &lt;- data.frame(cbind(h_values, log_statistic, log_p.value))
-log_all &lt;- cbind(model, log_cols)
-log_all &lt;- log_all %&gt;% rename(
-  &#39;h (lags)&#39; = h_values,
-  statistic = log_statistic,
-  &#39;p-value&#39; = log_p.value
-)
+models_AIC_BIC_gt &lt;- gt(models_AIC_BIC)
 
-# AR(1)
-model = &quot;AR(1)&quot;
-results_ar1_list &lt;- h_values %&gt;% map(~Box.test(ar1_gdp_log$fit$residuals, lag = .))
-ar1_statistic &lt;- results_ar1_list %&gt;% map_dbl(&quot;statistic&quot;)
-ar1_p.value &lt;- results_ar1_list %&gt;% map_dbl(&quot;p.value&quot;)
-ar1_cols &lt;- data.frame(cbind(h_values, ar1_statistic, ar1_p.value))
-ar1_all &lt;- cbind(model, ar1_cols)
-ar1_all &lt;- ar1_all %&gt;% rename(
-  &#39;h (lags)&#39; = h_values,
-  statistic = ar1_statistic,
-  &#39;p-value&#39; = ar1_p.value
-)
-
-# MA(1)
-model = &quot;MA(1)&quot;
-results_ma1_list &lt;- h_values %&gt;% map(~Box.test(ma1_gdp_log$fit$residuals, lag = .))
-ma1_statistic &lt;- results_ma1_list %&gt;% map_dbl(&quot;statistic&quot;)
-ma1_p.value &lt;- results_ma1_list %&gt;% map_dbl(&quot;p.value&quot;)
-ma1_cols &lt;- data.frame(cbind(h_values, ma1_statistic, ma1_p.value))
-ma1_all &lt;- cbind(model, ma1_cols)
-ma1_all &lt;- ma1_all %&gt;% rename(
-  &#39;h (lags)&#39; = h_values,
-  statistic = ma1_statistic,
-  &#39;p-value&#39; = ma1_p.value
-)
-
-models_all &lt;- rbind(log_all, ar1_all, ma1_all)
-models_gt &lt;- gt(models_all)
-
-models_gt &lt;- 
-  models_gt %&gt;% 
+models_AIC_BIC_gt &lt;- 
+  models_AIC_BIC_gt %&gt;% 
   tab_options(
     table.font.size = 14
   ) %&gt;% tab_style(
     style = cell_text(weight = &quot;bold&quot;),
     locations = cells_body()
-  ) %&gt;% tab_style(
-    style = cell_text(color = &quot;cadetblue&quot;),
-    locations = cells_column_labels(
-      columns = vars(model, &#39;h (lags)&#39;, statistic, &#39;p-value&#39;)
-    )
+  # ) %&gt;% tab_style(
+  #  style = cell_text(color = &quot;cadetblue&quot;),
+  #  locations = cells_column_labels(
+  #    columns = vars(model, &#39;h (lags)&#39;, statistic, &#39;p-value&#39;)
+  #  )
   ) %&gt;% tab_header(
-    title = md(&quot;**Box-Pierce test statistics and p-values**&quot;),
-    subtitle = &quot;AR(1) and MA(1) at lags of h = 10 and 20&quot;
+    title = md(&quot;**AIC and BIC values**&quot;),
+    subtitle = &quot;Four candidate models: AR(1) ... AR(4)&quot;
   ) %&gt;% fmt_number(
-    columns = vars(statistic, &#39;p-value&#39;),
-    decimals = 4
+    columns = vars(AIC_ar2, BIC_ar2),
+    decimals = 5
   ) %&gt;% tab_source_note(
-    source_note = md(&quot;Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]&quot;)
+    source_note = md(&quot;AIC = Akaike information criterion&quot;)
   ) %&gt;% tab_source_note(
-    source_note = md(&quot;AR(1) and MA(1) are tests of residuals&quot;)
-  ) %&gt;% cols_width(
-    vars(model, &#39;h (lags)&#39;) ~ px(80),
-    vars(statistic, &#39;p-value&#39;) ~ px(90)
+    source_note = md(&quot;BIC = Bayesian information criterion&quot;)
+  # ) %&gt;% cols_width(
+  #  vars(model) ~ px(70),
+  #  vars(statistic, &#39;p-value&#39;) ~ px(90)
   ) %&gt;% cols_label (
-    model = md(&quot;**model**&quot;),
-    &#39;h (lags)&#39; = md(&quot;**h (lags)**&quot;),
-    statistic = md(&quot;**test stat**&quot;),
-    &#39;p-value&#39; = md(&quot;**p-value**&quot;)
-  ) %&gt;% cols_align(
-    align = &quot;center&quot;,
-    columns = vars(&#39;h (lags)&#39;)
+    models = md(&quot;**model**&quot;),
+    AIC_ar2 = md(&quot;**AIC**&quot;),
+    BIC_ar2 = md(&quot;**BIC**&quot;)
   ) %&gt;% tab_options(
     heading.title.font.size = 16,
     heading.subtitle.font.size = 14
   )
 
-models_gt</code></pre>
+models_AIC_BIC_gt</code></pre>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#cvqxjzfqya .gt_table {
+#lrwmjdgnlm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -916,7 +995,7 @@ models_gt</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_heading {
+#lrwmjdgnlm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -928,7 +1007,7 @@ models_gt</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_title {
+#lrwmjdgnlm .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -938,7 +1017,7 @@ models_gt</code></pre>
   border-bottom-width: 0;
 }
 
-#cvqxjzfqya .gt_subtitle {
+#lrwmjdgnlm .gt_subtitle {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -948,13 +1027,13 @@ models_gt</code></pre>
   border-top-width: 0;
 }
 
-#cvqxjzfqya .gt_bottom_border {
+#lrwmjdgnlm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_col_headings {
+#lrwmjdgnlm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -969,7 +1048,7 @@ models_gt</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_col_heading {
+#lrwmjdgnlm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -989,7 +1068,7 @@ models_gt</code></pre>
   overflow-x: hidden;
 }
 
-#cvqxjzfqya .gt_column_spanner_outer {
+#lrwmjdgnlm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1001,15 +1080,15 @@ models_gt</code></pre>
   padding-right: 4px;
 }
 
-#cvqxjzfqya .gt_column_spanner_outer:first-child {
+#lrwmjdgnlm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cvqxjzfqya .gt_column_spanner_outer:last-child {
+#lrwmjdgnlm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cvqxjzfqya .gt_column_spanner {
+#lrwmjdgnlm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1021,7 +1100,7 @@ models_gt</code></pre>
   width: 100%;
 }
 
-#cvqxjzfqya .gt_group_heading {
+#lrwmjdgnlm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1043,7 +1122,7 @@ models_gt</code></pre>
   vertical-align: middle;
 }
 
-#cvqxjzfqya .gt_empty_group_heading {
+#lrwmjdgnlm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1058,15 +1137,15 @@ models_gt</code></pre>
   vertical-align: middle;
 }
 
-#cvqxjzfqya .gt_from_md > :first-child {
+#lrwmjdgnlm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cvqxjzfqya .gt_from_md > :last-child {
+#lrwmjdgnlm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cvqxjzfqya .gt_row {
+#lrwmjdgnlm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1085,7 +1164,7 @@ models_gt</code></pre>
   overflow-x: hidden;
 }
 
-#cvqxjzfqya .gt_stub {
+#lrwmjdgnlm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1097,7 +1176,7 @@ models_gt</code></pre>
   padding-left: 12px;
 }
 
-#cvqxjzfqya .gt_summary_row {
+#lrwmjdgnlm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1107,7 +1186,7 @@ models_gt</code></pre>
   padding-right: 5px;
 }
 
-#cvqxjzfqya .gt_first_summary_row {
+#lrwmjdgnlm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1117,7 +1196,7 @@ models_gt</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_grand_summary_row {
+#lrwmjdgnlm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1127,7 +1206,7 @@ models_gt</code></pre>
   padding-right: 5px;
 }
 
-#cvqxjzfqya .gt_first_grand_summary_row {
+#lrwmjdgnlm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1137,11 +1216,11 @@ models_gt</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_striped {
+#lrwmjdgnlm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cvqxjzfqya .gt_table_body {
+#lrwmjdgnlm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1150,7 +1229,7 @@ models_gt</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_footnotes {
+#lrwmjdgnlm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1164,13 +1243,13 @@ models_gt</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_footnote {
+#lrwmjdgnlm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#cvqxjzfqya .gt_sourcenotes {
+#lrwmjdgnlm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1184,112 +1263,89 @@ models_gt</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#cvqxjzfqya .gt_sourcenote {
+#lrwmjdgnlm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#cvqxjzfqya .gt_left {
+#lrwmjdgnlm .gt_left {
   text-align: left;
 }
 
-#cvqxjzfqya .gt_center {
+#lrwmjdgnlm .gt_center {
   text-align: center;
 }
 
-#cvqxjzfqya .gt_right {
+#lrwmjdgnlm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cvqxjzfqya .gt_font_normal {
+#lrwmjdgnlm .gt_font_normal {
   font-weight: normal;
 }
 
-#cvqxjzfqya .gt_font_bold {
+#lrwmjdgnlm .gt_font_bold {
   font-weight: bold;
 }
 
-#cvqxjzfqya .gt_font_italic {
+#lrwmjdgnlm .gt_font_italic {
   font-style: italic;
 }
 
-#cvqxjzfqya .gt_super {
+#lrwmjdgnlm .gt_super {
   font-size: 65%;
 }
 
-#cvqxjzfqya .gt_footnote_marks {
+#lrwmjdgnlm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="cvqxjzfqya" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table" style="table-layout: fixed;; width: 0px">
-  <colgroup>
-    <col style="width:80px;"/>
-    <col style="width:80px;"/>
-    <col style="width:90px;"/>
-    <col style="width:90px;"/>
-  </colgroup>
+<div id="lrwmjdgnlm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="4" class="gt_heading gt_title gt_font_normal" style><strong>Box-Pierce test statistics and p-values</strong></th>
+      <th colspan="3" class="gt_heading gt_title gt_font_normal" style><strong>AIC and BIC values</strong></th>
     </tr>
     <tr>
-      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>AR(1) and MA(1) at lags of h = 10 and 20</th>
+      <th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Four candidate models: AR(1) ... AR(4)</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: cadetblue;"><strong>model</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="color: cadetblue;"><strong>h (lags)</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: cadetblue;"><strong>test stat</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: cadetblue;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>model</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>AIC</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>BIC</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">diff_logs</td>
-      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">62.6228</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0000</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">diff_logs</td>
-      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">80.1439</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0000</td>
-    </tr>
-    <tr>
       <td class="gt_row gt_left" style="font-weight: bold;">AR(1)</td>
-      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">15.5465</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.1134</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">3.80102</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">3.82630</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">AR(1)</td>
-      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">30.3091</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0650</td>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(2)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.91005</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.94376</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">MA(1)</td>
-      <td class="gt_row gt_center" style="font-weight: bold;">10</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">24.3689</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0067</td>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(3)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.91203</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.95418</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="font-weight: bold;">MA(1)</td>
-      <td class="gt_row gt_center" style="font-weight: bold;">20</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">39.6618</td>
-      <td class="gt_row gt_right" style="font-weight: bold;">0.0055</td>
+      <td class="gt_row gt_left" style="font-weight: bold;">AR(4)</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.91575</td>
+      <td class="gt_row gt_right" style="font-weight: bold;">2.96632</td>
     </tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="4">Note: diff_logs = LN[GDP(t)] - LN[GPD(t-1)]</td>
+      <td class="gt_sourcenote" colspan="3">AIC = Akaike information criterion</td>
     </tr>
     <tr>
-      <td class="gt_sourcenote" colspan="4">AR(1) and MA(1) are tests of residuals</td>
+      <td class="gt_sourcenote" colspan="3">BIC = Bayesian information criterion</td>
     </tr>
   </tfoot>
   
@@ -1323,7 +1379,7 @@ models_gt</code></pre>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;text=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/&amp;text=BT%20Question%20Set%20P1-T2-20-24-3:%20AIC%20and%20BIC" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1336,7 +1392,7 @@ models_gt</code></pre>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;t=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/&amp;t=BT%20Question%20Set%20P1-T2-20-24-3:%20AIC%20and%20BIC" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1349,7 +1405,7 @@ models_gt</code></pre>
       
       
       <li>
-        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce&amp;body=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=BT%20Question%20Set%20P1-T2-20-24-3:%20AIC%20and%20BIC&amp;body=/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1362,7 +1418,7 @@ models_gt</code></pre>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;title=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/&amp;title=BT%20Question%20Set%20P1-T2-20-24-3:%20AIC%20and%20BIC" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1375,7 +1431,7 @@ models_gt</code></pre>
       
       
       <li>
-        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce%20/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=BT%20Question%20Set%20P1-T2-20-24-3:%20AIC%20and%20BIC%20/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1388,7 +1444,7 @@ models_gt</code></pre>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/&amp;title=BT%20Question%20Set%20P1-T2-20-24-2:%20Box-Pierce" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/&amp;title=BT%20Question%20Set%20P1-T2-20-24-3:%20AIC%20and%20BIC" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1550,7 +1606,7 @@ models_gt</code></pre>
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/2020/bt-question-set-p1-t2-20-24-3-aic-and-bic/">BT Question Set P1-T2-20-24-3: AIC and BIC</a></li>
+      <li><a href="/post/2020/bt-question-set-p1-t2-20-24-2-box-pierce/">BT Question Set P1-T2-20-24-2: Box-Pierce</a></li>
       
       <li><a href="/post/2020/bt-question-set-p1-t2-20-23-set-arma-process/">BT Question Set P1-T2-20-23 set: ARMA process</a></li>
       
