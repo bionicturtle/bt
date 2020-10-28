@@ -77,10 +77,10 @@
     </item>
     
     <item>
-      <title>BT Question Set P1-T2-20-24-5: Long-horizon forecasts</title>
-      <link>/post/bt-question-set-p1-t2-20-24-5-long-horizon-forecasts/</link>
+      <title>BT Question Set P1-T2-20-25: Long-horizon forecasts</title>
+      <link>/post/bt-question-set-p1-t2-20-25-long-horizon-forecasts/</link>
       <pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>/post/bt-question-set-p1-t2-20-24-5-long-horizon-forecasts/</guid>
+      <guid>/post/bt-question-set-p1-t2-20-25-long-horizon-forecasts/</guid>
       <description>
 
 
@@ -143,7 +143,7 @@ AR_tb %&amp;gt;%
 ## family not found in Windows font database&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
 ## font family not found in Windows font database&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-24-5-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-25-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR[9] # the ts not the tibble&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.782&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR[10]&lt;/code&gt;&lt;/pre&gt;
@@ -162,7 +162,7 @@ AR_tb %&amp;gt;%
   # xlim(0, 13)
   # scale_x_discrete(limits = c(0,13), breaks = 1)
   scale_x_continuous(breaks = seq(1, 12, 1), minor_breaks = NULL)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-24-5-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-1-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-25-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-1-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR_11&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 1.6706&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR_12&lt;/code&gt;&lt;/pre&gt;
@@ -203,7 +203,7 @@ AR2_tb %&amp;gt;%
   ggplot(aes(rowid, x)) + 
   geom_line()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Don&amp;#39;t know how to automatically pick scale for object of type ts. Defaulting to continuous.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-24-5-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-25-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR2_11 &amp;lt;- AR2_intercept + AR2_param_1 * AR2[10] + AR2_param_2 * AR2[9]
 AR2_12 &amp;lt;- AR2_intercept + AR2_param_1 * AR2_11 + AR2_param_2 * AR2[10]
 AR2_13 &amp;lt;- AR2_intercept + AR2_param_1 * AR2_12 + AR2_param_2 * AR2_11
@@ -217,7 +217,7 @@ for (i in 3:30) {
 }
 
 plot(x)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-24-5-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-2-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-10-27-bt-question-set-p1-t2-20-25-long-horizon-forecasts.en_files/figure-html/unnamed-chunk-2-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR2_11&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.95892&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;AR2_12&lt;/code&gt;&lt;/pre&gt;

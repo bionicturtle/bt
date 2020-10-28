@@ -1,8 +1,8 @@
 ---
-title: 'BT Question Set P1-T2-20-24-5: Long-horizon forecasts'
+title: 'BT Question Set P1-T2-20-25: Long-horizon forecasts'
 author: David Harper
 date: '2020-10-27'
-slug: bt-question-set-p1-t2-20-24-5-long-horizon-forecasts
+slug: bt-question-set-p1-t2-20-25-long-horizon-forecasts
 categories:
   - R
 tags: []
