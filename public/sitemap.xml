@@ -33,17 +33,22 @@
   </url>
   
   <url>
+    <loc>/post/</loc>
+    <lastmod>2021-03-22T18:51:15-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/test-in-2021/</loc>
+    <lastmod>2021-03-22T18:51:15-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2020/bt-question-set-p1-t2-20-25-long-horizon-forecasts/</loc>
     <lastmod>2020-10-27T18:03:18-07:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-10-27T18:03:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2020-10-27T18:03:18-07:00</lastmod>
   </url>
   

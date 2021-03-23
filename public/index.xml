@@ -77,6 +77,21 @@
     </item>
     
     <item>
+      <title>test in 2021</title>
+      <link>/post/test-in-2021/</link>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>/post/test-in-2021/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Here we go again … isn’t it lovely&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;.libPaths()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;D:/library&amp;quot;               &amp;quot;D:/Rbase/R-4.0.4/library&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>BT Question Set P1-T2-20-25: Long-horizon forecasts</title>
       <link>/post/2020/bt-question-set-p1-t2-20-25-long-horizon-forecasts/</link>
       <pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate>
