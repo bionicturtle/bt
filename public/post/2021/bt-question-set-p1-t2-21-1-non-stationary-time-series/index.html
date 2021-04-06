@@ -660,10 +660,10 @@ c_delta &lt;- 1.20; gamma &lt;- c(-2.6, 7.9, 1.80, 0)
 quarters &lt;- rep(1:4, 5)  
 y = c_delta + gamma[quarters]
 ts.plot(y)</code></pre>
-<p><img src="/post/2021-04-05-bt-question-set-p1-t2-21-1-non-stationary-time-series.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/post/2021/2021-04-05-bt-question-set-p1-t2-21-1-non-stationary-time-series.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="an-ar2-that-is-stationary-as-demonstrated-by-roots-1.0-but-also-our-ability-to-simulate" class="section level3">
-<h3>21.1.2 An AR(2) that is stationary as demonstrated by |roots} &gt; 1.0 but also our ability to simulate</h3>
+<h3>21.1.2 An AR(2) that is stationary as demonstrated by |roots| &gt; 1.0 but also our ability to simulate</h3>
 <p>21.1.2. Peter wants to model the following AR(2) time series: Y(t) = 0.750<em>Y(t-1) - 0.1250</em>T(t-2) + e(t). He wonders if this AR(2) is stationary. He realizes that he can write this as a log polynomial …</p>
 <pre class="r"><code># install.packages(&quot;polynom&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
 library(polynom)
@@ -675,7 +675,7 @@ peters_poly</code></pre>
 <pre><code>## [1] 2 4</code></pre>
 <pre class="r"><code>ar_2 &lt;-  arima.sim(model=list(order=c(2,0,0),ar = c(-0.75, 0.125)),n = 100)
 ts.plot(ar_2)</code></pre>
-<p><img src="/post/2021-04-05-bt-question-set-p1-t2-21-1-non-stationary-time-series.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/post/2021/2021-04-05-bt-question-set-p1-t2-21-1-non-stationary-time-series.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="compares-a-deterministic-trend-to-a-stochastic-random-walk-with-drift-trend" class="section level3">
 <h3>21.1.3 Compares a deterministic trend to a stochastic (random walk with drift) trend</h3>
@@ -723,7 +723,7 @@ p1 &lt;- trends %&gt;% ggplot(aes(x=x)) +
     
 p1</code></pre>
 <pre><code>## Don&#39;t know how to automatically pick scale for object of type ts. Defaulting to continuous.</code></pre>
-<p><img src="/post/2021-04-05-bt-question-set-p1-t2-21-1-non-stationary-time-series.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/2021/2021-04-05-bt-question-set-p1-t2-21-1-non-stationary-time-series.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 
     </div>

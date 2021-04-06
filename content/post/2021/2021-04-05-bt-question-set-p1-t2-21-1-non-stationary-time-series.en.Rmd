@@ -34,7 +34,7 @@ ts.plot(y)
 ```
 
 
-### 21.1.2 An AR(2) that is stationary as demonstrated by |roots} > 1.0 but also our ability to simulate
+### 21.1.2 An AR(2) that is stationary as demonstrated by |roots| > 1.0 but also our ability to simulate
 
 21.1.2. Peter wants to model the following AR(2) time series: Y(t) = 0.750*Y(t-1) - 0.1250*T(t-2) + e(t). He wonders if this AR(2) is stationary. He realizes that he can write this as a log polynomial ... 
 
